@@ -1,0 +1,179 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: arquitetura-consistente
+  
+  profiles:
+    active: local
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sinistros_consistente
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+        connection:
+          isolation: READ_COMMITTED
+  
+  # Security Configuration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:8080/auth/realms/sinistros}
+
+# Saga Configuration
+saga:
+  timeout:
+    step-execution: 60s
+    detran-consultation: 30s
+    total-saga: 300s
+  retry:
+    max-attempts: 3
+    backoff-delay: 2s
+  audit:
+    enabled: true
+    detailed-logging: true
+
+# SpringDoc OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    filter: true
+    displayRequestDuration: true
+    displayOperationId: true
+    defaultModelsExpandDepth: 2
+    defaultModelExpandDepth: 2
+    docExpansion: none
+  show-actuator: true
+
+# Management/Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,saga
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+  health:
+    db:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5, 0.95, 0.99
+  tracing:
+    sampling:
+      probability: 1.0
+
+# Application Specific Configuration
+app:
+  detran:
+    base-url: ${DETRAN_BASE_URL:http://localhost:8080/detran-api}
+    timeout: 30s
+    retry:
+      max-attempts: 3
+      backoff-delay: 2s
+  
+  transaction:
+    timeout: 300s
+    isolation-level: READ_COMMITTED
+  
+  audit:
+    enabled: true
+    retention-days: 90
+
+# Logging Configuration
+logging:
+  level:
+    com.seguradora.consistente: DEBUG
+    org.springframework.web: INFO
+    org.springframework.transaction: DEBUG
+    org.springframework.statemachine: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId:-},%X{spanId:-}] %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId:-},%X{spanId:-}] %logger{36} - %msg%n"
+  file:
+    name: logs/arquitetura-consistente.log
+
+---
+# Local Profile
+spring:
+  config:
+    activate:
+      on-profile: local
+  
+  datasource:
+    url: jdbc:h2:mem:sinistros_consistente
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+app:
+  detran:
+    base-url: http://localhost:8080/detran-api
+
+---
+# Test Profile
+spring:
+  config:
+    activate:
+      on-profile: test
+  
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+saga:
+  timeout:
+    step-execution: 10s
+    total-saga: 30s
