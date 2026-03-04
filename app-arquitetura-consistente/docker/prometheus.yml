@@ -1,0 +1,41 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "saga_rules.yml"
+  # - "consistency_rules.yml"
+
+scrape_configs:
+  # Aplicação Consistente
+  - job_name: 'arquitetura-consistente'
+    static_configs:
+      - targets: ['host.docker.internal:8082']
+    metrics_path: '/api/v1/actuator/prometheus'
+    scrape_interval: 10s
+    scrape_timeout: 5s
+
+  # Detran Simulator
+  - job_name: 'detran-simulator'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+    metrics_path: '/detran-api/actuator/prometheus'
+    scrape_interval: 15s
+    scrape_timeout: 5s
+
+  # PostgreSQL Principal
+  - job_name: 'postgres-main'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+    scrape_interval: 15s
+
+  # PostgreSQL Auditoria
+  - job_name: 'postgres-audit'
+    static_configs:
+      - targets: ['postgres-audit:5432']
+    scrape_interval: 30s
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

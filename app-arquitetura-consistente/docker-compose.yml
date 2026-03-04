@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database Principal (ESSENCIAL para transações ACID)
+  postgres:
+    image: postgres:15-alpine
+    container_name: consistente-postgres
+    environment:
+      POSTGRES_DB: sinistros_consistente
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - consistente-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL para Auditoria (ESSENCIAL para saga pattern)
+  postgres-audit:
+    image: postgres:15-alpine
+    container_name: consistente-postgres-audit
+    environment:
+      POSTGRES_DB: sinistros_audit
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_audit_data:/var/lib/postgresql/data
+      - ./docker/init-audit-db.sql:/docker-entrypoint-initdb.d/init-audit-db.sql
+    networks:
+      - consistente-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+  postgres_audit_data:
+    driver: local
+
+networks:
+  consistente-network:
+    driver: bridge
+    name: consistente-network
