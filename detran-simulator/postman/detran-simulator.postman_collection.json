@@ -1,0 +1,1075 @@
+{
+	"info": {
+		"_postman_id": "detran-simulator-collection",
+		"name": "Detran Simulator - Testes Completos",
+		"description": "Collection completa para testar todos os cenários do simulador Detran, incluindo casos de sucesso, falhas, timeouts e monitoramento.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "detran-simulator"
+	},
+	"item": [
+		{
+			"name": "🚗 Consultas de Veículos",
+			"item": [
+				{
+					"name": "✅ Consulta Válida - Placa Antiga",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response tem dados do veículo\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('placa');",
+									"    pm.expect(jsonData).to.have.property('renavam');",
+									"    pm.expect(jsonData).to.have.property('marca_modelo');",
+									"});",
+									"",
+									"pm.test(\"Tempo de resposta aceitável\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"Headers corretos\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Forwarded-For",
+								"value": "{{client_ip}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa={{placa_valida}}&renavam={{renavam_valido}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "{{placa_valida}}"
+								},
+								{
+									"key": "renavam",
+									"value": "{{renavam_valido}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ Consulta Válida - Placa Mercosul",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response tem dados do veículo\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('placa');",
+									"    pm.expect(jsonData).to.have.property('renavam');",
+									"});",
+									"",
+									"pm.test(\"Placa no formato Mercosul\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.placa).to.match(/^[A-Z]{3}[0-9][A-Z][0-9]{2}$/);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa=BRA2E19&renavam=11234567890",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "BRA2E19"
+								},
+								{
+									"key": "renavam",
+									"value": "11234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ Placa Inválida - Formato",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Tempo de resposta rápido para validação\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa={{placa_invalida}}&renavam={{renavam_valido}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "{{placa_invalida}}"
+								},
+								{
+									"key": "renavam",
+									"value": "{{renavam_valido}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ RENAVAM Inválido - Formato",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Tempo de resposta rápido para validação\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa={{placa_valida}}&renavam={{renavam_invalido}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "{{placa_valida}}"
+								},
+								{
+									"key": "renavam",
+									"value": "{{renavam_invalido}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ Parâmetros Obrigatórios - Sem Placa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?renavam={{renavam_valido}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "renavam",
+									"value": "{{renavam_valido}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ Parâmetros Obrigatórios - Sem RENAVAM",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 400 (Bad Request)\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa={{placa_valida}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "{{placa_valida}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🔄 Testes de Instabilidade",
+			"item": [
+				{
+					"name": "⏱️ Teste de Timeout (Múltiplas Tentativas)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Este teste pode retornar 200, 408 ou 503 dependendo da simulação",
+									"pm.test(\"Status code é válido (200, 408 ou 503)\", function () {",
+									"    const validStatuses = [200, 408, 503];",
+									"    pm.expect(validStatuses).to.include(pm.response.code);",
+									"});",
+									"",
+									"if (pm.response.code === 408) {",
+									"    pm.test(\"Timeout simulado detectado\", function () {",
+									"        console.log('⏱️ Timeout simulado ocorreu');",
+									"    });",
+									"} else if (pm.response.code === 503) {",
+									"    pm.test(\"Indisponibilidade simulada detectada\", function () {",
+									"        console.log('🔴 Indisponibilidade simulada ocorreu');",
+									"    });",
+									"} else {",
+									"    pm.test(\"Consulta bem-sucedida\", function () {",
+									"        console.log('✅ Consulta realizada com sucesso');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa=DEF5678&renavam=23456789012",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "DEF5678"
+								},
+								{
+									"key": "renavam",
+									"value": "23456789012"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🔴 Teste de Indisponibilidade (Múltiplas Tentativas)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Este teste pode retornar diferentes códigos devido à simulação",
+									"pm.test(\"Response recebido\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 408, 500, 503]);",
+									"});",
+									"",
+									"if (pm.response.code === 503) {",
+									"    pm.test(\"Indisponibilidade simulada\", function () {",
+									"        console.log('🔴 Sistema indisponível simulado');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa=GHI9012&renavam=34567890123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "GHI9012"
+								},
+								{
+									"key": "renavam",
+									"value": "34567890123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🐌 Teste de Resposta Lenta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code válido\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 408, 503]);",
+									"});",
+									"",
+									"// Log do tempo de resposta para análise",
+									"console.log('⏱️ Tempo de resposta: ' + pm.response.responseTime + 'ms');",
+									"",
+									"if (pm.response.responseTime > 3000) {",
+									"    pm.test(\"Resposta lenta detectada (>3s)\", function () {",
+									"        console.log('🐌 Resposta lenta simulada');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa=JKL3456&renavam=45678901234",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "JKL3456"
+								},
+								{
+									"key": "renavam",
+									"value": "45678901234"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🔧 Status e Manutenção",
+			"item": [
+				{
+					"name": "✅ Status do Sistema",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contém informações do sistema\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('status');",
+									"    pm.expect(jsonData).to.have.property('sistema');",
+									"    pm.expect(jsonData).to.have.property('versao');",
+									"    pm.expect(jsonData).to.have.property('timestamp');",
+									"});",
+									"",
+									"pm.test(\"Sistema está online\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql('ONLINE');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🔧 Simulação de Manutenção",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 503 (Service Unavailable)\", function () {",
+									"    pm.response.to.have.status(503);",
+									"});",
+									"",
+									"pm.test(\"Response contém informações de manutenção\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('erro');",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"    pm.expect(jsonData.erro).to.eql('SISTEMA_EM_MANUTENCAO');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo/manutencao",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo",
+								"manutencao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "📊 Monitoramento",
+			"item": [
+				{
+					"name": "📈 Dashboard de Estatísticas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Dashboard contém estatísticas\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('total_consultas');",
+									"    pm.expect(jsonData).to.have.property('total_veiculos_cadastrados');",
+									"    pm.expect(jsonData).to.have.property('ultima_hora');",
+									"    pm.expect(jsonData).to.have.property('tempo_medio_resposta_ms');",
+									"});",
+									"",
+									"pm.test(\"Estatísticas da última hora estão presentes\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    const ultimaHora = jsonData.ultima_hora;",
+									"    pm.expect(ultimaHora).to.have.property('total');",
+									"    pm.expect(ultimaHora).to.have.property('sucessos');",
+									"    pm.expect(ultimaHora).to.have.property('falhas');",
+									"    pm.expect(ultimaHora).to.have.property('timeouts');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/dashboard",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "📋 Histórico de Consultas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response é paginado\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('content');",
+									"    pm.expect(jsonData).to.have.property('totalElements');",
+									"    pm.expect(jsonData).to.have.property('totalPages');",
+									"    pm.expect(jsonData).to.have.property('size');",
+									"});",
+									"",
+									"pm.test(\"Conteúdo é um array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.content).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/consultas?page=0&size=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"consultas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🔍 Consultas por Placa Específica",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response é um array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Se há resultados, todos são da placa consultada\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    if (jsonData.length > 0) {",
+									"        jsonData.forEach(consulta => {",
+									"            pm.expect(consulta.placa).to.eql('ABC1234');",
+									"        });",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/consultas/ABC1234",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"consultas",
+								"ABC1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "📊 Métricas Customizadas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Métricas estão presentes\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('detran_success_rate');",
+									"    pm.expect(jsonData).to.have.property('detran_total_requests_last_hour');",
+									"    pm.expect(jsonData).to.have.property('detran_successful_requests_last_hour');",
+									"    pm.expect(jsonData).to.have.property('detran_failed_requests_last_hour');",
+									"    pm.expect(jsonData).to.have.property('detran_timeout_requests_last_hour');",
+									"});",
+									"",
+									"pm.test(\"Taxa de sucesso é um número válido\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.detran_success_rate).to.be.a('number');",
+									"    pm.expect(jsonData.detran_success_rate).to.be.at.least(0);",
+									"    pm.expect(jsonData.detran_success_rate).to.be.at.most(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/metrics/custom",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"metrics",
+								"custom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🧪 Testes de Carga e Stress",
+			"item": [
+				{
+					"name": "🔄 Consulta Sequencial - Lote 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response recebido\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 408, 503]);",
+									"});",
+									"",
+									"// Log para análise de padrões",
+									"console.log(`Lote 1 - Status: ${pm.response.code}, Tempo: ${pm.response.responseTime}ms`);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Sistema-Carga-Teste/1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa=ABC1234&renavam=12345678901",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "ABC1234"
+								},
+								{
+									"key": "renavam",
+									"value": "12345678901"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🔄 Consulta Sequencial - Lote 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response recebido\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 408, 503]);",
+									"});",
+									"",
+									"console.log(`Lote 2 - Status: ${pm.response.code}, Tempo: ${pm.response.responseTime}ms`);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Sistema-Carga-Teste/1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa=DEF5678&renavam=23456789012",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "DEF5678"
+								},
+								{
+									"key": "renavam",
+									"value": "23456789012"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🔄 Consulta Sequencial - Lote 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response recebido\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 408, 503]);",
+									"});",
+									"",
+									"console.log(`Lote 3 - Status: ${pm.response.code}, Tempo: ${pm.response.responseTime}ms`);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Sistema-Carga-Teste/1.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/veiculo?placa=GHI9012&renavam=34567890123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"veiculo"
+							],
+							"query": [
+								{
+									"key": "placa",
+									"value": "GHI9012"
+								},
+								{
+									"key": "renavam",
+									"value": "34567890123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🧹 Utilitários",
+			"item": [
+				{
+					"name": "🗑️ Limpar Logs de Teste",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code é 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response contém informações da limpeza\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"    pm.expect(jsonData).to.have.property('registros_removidos');",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"console.log(`🗑️ Limpeza concluída: ${jsonData.registros_removidos} registros removidos`);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "{{user_agent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/monitoring/consultas/cleanup?diasAtras=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"monitoring",
+								"consultas",
+								"cleanup"
+							],
+							"query": [
+								{
+									"key": "diasAtras",
+									"value": "1",
+									"description": "Remove logs mais antigos que X dias"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado antes de cada request",
+					"console.log('🚀 Executando request: ' + pm.info.requestName);",
+					"",
+					"// Adicionar timestamp para tracking",
+					"pm.globals.set('request_timestamp', new Date().toISOString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado após cada request",
+					"const startTime = pm.globals.get('request_timestamp');",
+					"if (startTime) {",
+					"    const duration = new Date() - new Date(startTime);",
+					"    console.log(`⏱️ Duração total da request: ${duration}ms`);",
+					"}",
+					"",
+					"// Log básico de cada response",
+					"console.log(`📊 Status: ${pm.response.code} | Tempo: ${pm.response.responseTime}ms | Tamanho: ${pm.response.responseSize} bytes`);"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "collection_version",
+			"value": "1.0.0",
+			"type": "string"
+		},
+		{
+			"key": "collection_description",
+			"value": "Collection completa para testes do Detran Simulator",
+			"type": "string"
+		}
+	]
+}
