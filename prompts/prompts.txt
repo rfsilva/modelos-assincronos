@@ -1,0 +1,5 @@
+Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
+ - Implemente a estória US001 definida no documento "refinamento-epico-01.md"
+Como resultado, precisamos:
+ - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md")
+ - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md"
