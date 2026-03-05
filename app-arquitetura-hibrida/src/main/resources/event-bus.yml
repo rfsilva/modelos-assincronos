@@ -1,0 +1,52 @@
+# Event Bus Configuration
+event-bus:
+  # Configurações do pool de threads
+  thread-pool:
+    core-size: 8
+    max-size: 16
+    keep-alive-seconds: 60
+    queue-capacity: 1000
+    thread-name-prefix: "EventBus-Worker"
+  
+  # Configurações de retry
+  retry:
+    enabled: true
+    max-attempts: 3
+    initial-delay-ms: 1000
+    backoff-multiplier: 2.0
+    max-delay-ms: 30000
+    jitter-percent: 0.1
+  
+  # Configurações de timeout
+  timeout:
+    default-handler-timeout-seconds: 30
+    shutdown-timeout-seconds: 60
+  
+  # Configurações de monitoramento
+  monitoring:
+    metrics-enabled: true
+    health-check-enabled: true
+    detailed-logging: false
+    error-rate-threshold: 0.1
+  
+  # Configurações de Kafka (quando habilitado)
+  kafka:
+    enabled: false
+    bootstrap-servers: localhost:9092
+    default-topic: domain-events
+    partitions: 3
+    replication-factor: 1
+    
+    producer:
+      acks: all
+      retries: 3
+      batch-size: 16384
+      linger-ms: 5
+      buffer-memory: 33554432
+    
+    consumer:
+      group-id: event-bus-consumers
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-poll-records: 500
+      session-timeout-ms: 30000
