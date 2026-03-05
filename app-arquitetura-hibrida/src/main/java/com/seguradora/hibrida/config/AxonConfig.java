@@ -2,8 +2,6 @@ package com.seguradora.hibrida.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.seguradora.hibrida.eventstore.EventStore;
-import org.axonframework.commandhandling.CommandBus;
-import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.common.caching.Cache;
 import org.axonframework.common.caching.WeakReferenceCache;
 import org.axonframework.eventhandling.EventBus;
@@ -14,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 /**
  * Configuração do Axon Framework integrada com Event Store customizado.
@@ -44,25 +41,11 @@ public class AxonConfig {
     }
 
     /**
-     * Command Bus simples para processamento de comandos.
-     * 
-     * Configurado com interceptors básicos e métricas.
-     */
-    @Bean
-    @Primary
-    public CommandBus commandBus() {
-        log.info("Configurando Axon Command Bus");
-        return SimpleCommandBus.builder()
-                .build();
-    }
-
-    /**
      * Event Bus simples para publicação de eventos.
      * 
      * Integrado com nosso Event Store customizado para persistência.
      */
-    @Bean
-    @Primary
+    @Bean("axonEventBus")
     public EventBus eventBus() {
         log.info("Configurando Axon Event Bus");
         return SimpleEventBus.builder()

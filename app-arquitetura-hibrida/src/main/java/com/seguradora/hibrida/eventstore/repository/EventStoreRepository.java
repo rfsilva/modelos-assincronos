@@ -108,4 +108,17 @@ public interface EventStoreRepository extends JpaRepository<EventStoreEntry, UUI
         GROUP BY e.eventType
         """)
     List<Object[]> getEventStatistics(@Param("from") Instant from, @Param("to") Instant to);
+    
+    /**
+     * Obtém o número sequencial máximo de evento (para métricas CQRS).
+     * Como usamos UUID como ID, vamos usar count() como aproximação.
+     */
+    @Query("SELECT COUNT(e) FROM EventStoreEntry e")
+    Long findMaxEventId();
+    
+    /**
+     * Conta aggregates distintos no event store.
+     */
+    @Query("SELECT COUNT(DISTINCT e.aggregateId) FROM EventStoreEntry e")
+    long countDistinctAggregateIds();
 }
