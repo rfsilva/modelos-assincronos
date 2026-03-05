@@ -1,0 +1,59 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "cqrs_rules.yml"
+  # - "eventstore_rules.yml"
+
+scrape_configs:
+  # Aplicação Híbrida
+  - job_name: 'arquitetura-hibrida'
+    static_configs:
+      - targets: ['host.docker.internal:8083']
+    metrics_path: '/api/v1/actuator/prometheus'
+    scrape_interval: 10s
+    scrape_timeout: 5s
+
+  # Detran Simulator
+  - job_name: 'detran-simulator'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+    metrics_path: '/detran-api/actuator/prometheus'
+    scrape_interval: 15s
+    scrape_timeout: 5s
+
+  # PostgreSQL Write (Event Store)
+  - job_name: 'postgres-write'
+    static_configs:
+      - targets: ['postgres-write:5432']
+    scrape_interval: 15s
+
+  # PostgreSQL Read (Projections)
+  - job_name: 'postgres-read'
+    static_configs:
+      - targets: ['postgres-read:5432']
+    scrape_interval: 15s
+
+  # Redis (Cache)
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    scrape_interval: 15s
+
+  # Kafka (Event Bus)
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka:9092']
+    scrape_interval: 15s
+
+  # Elasticsearch (Event Store avançado)
+  - job_name: 'elasticsearch'
+    static_configs:
+      - targets: ['elasticsearch:9200']
+    scrape_interval: 30s
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

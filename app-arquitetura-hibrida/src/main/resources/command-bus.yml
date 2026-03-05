@@ -1,0 +1,47 @@
+# Command Bus Configuration
+command-bus:
+  # Timeout padrão para execução de comandos em segundos
+  default-timeout: 30
+  
+  # Tamanho do pool de threads para execução assíncrona
+  async-pool-size: 10
+  
+  # Indica se métricas estão habilitadas
+  metrics-enabled: true
+  
+  # Indica se validação automática está habilitada
+  validation-enabled: true
+  
+  # Indica se logs detalhados estão habilitados
+  detailed-logging: false
+  
+  # Configurações de retry
+  retry:
+    # Indica se retry está habilitado
+    enabled: false
+    
+    # Número máximo de tentativas
+    max-attempts: 3
+    
+    # Delay inicial entre tentativas em milissegundos
+    delay-ms: 1000
+    
+    # Multiplicador para backoff exponencial
+    backoff-multiplier: 2.0
+    
+    # Delay máximo entre tentativas em milissegundos
+    max-delay-ms: 30000
+  
+  # Configurações de circuit breaker
+  circuit-breaker:
+    # Indica se circuit breaker está habilitado
+    enabled: false
+    
+    # Número de falhas consecutivas para abrir o circuito
+    failure-threshold: 5
+    
+    # Tempo em milissegundos para tentar fechar o circuito
+    recovery-timeout-ms: 60000
+    
+    # Percentual de sucesso necessário para fechar o circuito
+    success-threshold: 0.8

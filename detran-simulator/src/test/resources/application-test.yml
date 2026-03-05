@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    defer-datasource-initialization: false
+  
+  sql:
+    init:
+      mode: never  # Desabilita execução do data.sql nos testes
+
+# Configurações de teste - instabilidades desabilitadas para testes determinísticos
+detran:
+  simulator:
+    instability:
+      enabled: false
+      failure-rate: 0.0
+      timeout-rate: 0.0
+      slow-response-rate: 0.0
+    
+    performance:
+      min-response-time: 100
+      max-response-time: 500
+      slow-response-time: 300
+    
+    data:
+      invalid-data-rate: 0.0
+      cache-simulation: false
+
+logging:
+  level:
+    com.seguradora.detran: WARN
+    org.springframework: WARN
+    org.hibernate: WARN
