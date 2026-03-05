@@ -119,12 +119,72 @@ cqrs:
 # Event Store Configuration
 eventstore:
   batch-size: 100
-  snapshot:
-    frequency: 50  # snapshot a cada 50 eventos
-    async: true
   serialization:
     format: json
     compression: gzip
+    compression-threshold: 1024
+    versioning-enabled: true
+  performance:
+    batch-size: 100
+    write-timeout: 30
+    read-timeout: 15
+    cache-enabled: true
+  monitoring:
+    metrics-enabled: true
+    health-check-enabled: true
+
+# Snapshot Configuration
+snapshot:
+  # Número de eventos necessários para criar um novo snapshot
+  snapshot-threshold: 50
+  
+  # Número máximo de snapshots mantidos por aggregate
+  max-snapshots-per-aggregate: 5
+  
+  # Tamanho mínimo (em bytes) para aplicar compressão
+  compression-threshold: 1024
+  
+  # Algoritmo de compressão
+  compression-algorithm: GZIP
+  
+  # Habilita compressão automática
+  compression-enabled: true
+  
+  # Habilita limpeza automática de snapshots antigos
+  auto-cleanup-enabled: true
+  
+  # Intervalo em horas para limpeza automática global
+  cleanup-interval-hours: 24
+  
+  # Habilita criação assíncrona de snapshots
+  async-snapshot-creation: true
+  
+  # Timeout em segundos para operações de snapshot
+  operation-timeout-seconds: 30
+  
+  # Habilita validação de integridade com hash
+  integrity-validation-enabled: true
+  
+  # Habilita métricas detalhadas
+  metrics-enabled: true
+  
+  # Número de dias para manter snapshots
+  retention-days: 365
+  
+  # Configuração do pool de threads assíncronas
+  async-thread-pool-size: 5
+  async-queue-capacity: 100
+  async-thread-name-prefix: "snapshot-"
+  
+  # Configuração de health checks
+  health-check-enabled: true
+  health-check-interval-seconds: 60
+  max-consecutive-failures: 3
+  
+  # Configuração de cache (desabilitado por padrão)
+  cache-enabled: false
+  cache-max-size: 100
+  cache-ttl-minutes: 30
 
 # SpringDoc OpenAPI Configuration
 springdoc:
@@ -150,7 +210,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus,eventstore,projections
+        include: health,info,metrics,prometheus,eventstore,snapshots
   endpoint:
     health:
       show-details: always
@@ -242,6 +302,13 @@ app:
   detran:
     base-url: http://localhost:8080/detran-api
 
+snapshot:
+  # Configurações específicas para ambiente local
+  snapshot-threshold: 10  # Menor threshold para testes
+  cleanup-interval-hours: 1  # Limpeza mais frequente
+  metrics-enabled: true
+  health-check-enabled: true
+
 ---
 # Test Profile
 spring:
@@ -265,3 +332,12 @@ cqrs:
     timeout: 10s
   projection:
     batch-size: 10
+
+snapshot:
+  # Configurações específicas para testes
+  snapshot-threshold: 5
+  max-snapshots-per-aggregate: 3
+  async-snapshot-creation: false  # Síncrono para testes
+  auto-cleanup-enabled: false
+  metrics-enabled: false
+  health-check-enabled: false
