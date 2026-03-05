@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -73,7 +74,16 @@ public abstract class DomainEvent {
         this.version = version;
         this.timestamp = Instant.now();
         this.correlationId = UUID.randomUUID();
-        this.metadata = new EventMetadata();
+        this.metadata = new EventMetadata(new HashMap<>());
+    }
+    
+    /**
+     * Inicialização pós-construção para garantir metadados.
+     */
+    private void ensureMetadata() {
+        if (this.metadata == null) {
+            this.metadata = new EventMetadata(new HashMap<>());
+        }
     }
     
     /**
@@ -101,9 +111,15 @@ public abstract class DomainEvent {
      * Adiciona metadado customizado.
      */
     public void addMetadata(String key, Object value) {
-        if (this.metadata == null) {
-            this.metadata = new EventMetadata();
-        }
+        ensureMetadata();
         this.metadata.put(key, value);
+    }
+    
+    /**
+     * Obtém metadados, inicializando se necessário.
+     */
+    public EventMetadata getMetadata() {
+        ensureMetadata();
+        return this.metadata;
     }
 }
