@@ -10,30 +10,6 @@ spring:
   profiles:
     active: local
   
-  datasource:
-    url: jdbc:postgresql://localhost:5432/sinistros_hibrida
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 20
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
-  
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-        jdbc:
-          batch_size: 20
-        order_inserts: true
-        order_updates: true
-  
   # Redis Configuration for Cache and Event Store
   data:
     redis:
@@ -115,6 +91,17 @@ cqrs:
   projection:
     batch-size: 50
     parallel: true
+    thread-pool:
+      core-size: 5
+      max-size: 20
+      queue-capacity: 1000
+      thread-name-prefix: "projection-"
+    timeout-seconds: 30
+    retry:
+      max-attempts: 3
+      backoff-multiplier: 2.0
+      initial-delay-ms: 1000
+      max-delay-ms: 30000
 
 # Event Store Configuration
 eventstore:
@@ -210,7 +197,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus,eventstore,snapshots
+        include: health,info,metrics,prometheus,eventstore,snapshots,cqrs
   endpoint:
     health:
       show-details: always
@@ -235,6 +222,72 @@ management:
 
 # Application Specific Configuration
 app:
+  # Multiple DataSources Configuration for CQRS
+  datasource:
+    write:
+      url: ${WRITE_DB_URL:jdbc:postgresql://localhost:5435/sinistros_eventstore}
+      username: ${WRITE_DB_USERNAME:postgres}
+      password: ${WRITE_DB_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        maximum-pool-size: 20
+        minimum-idle: 5
+        connection-timeout: 30000
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        validation-timeout: 5000
+        connection-test-query: "SELECT 1"
+        pool-name: "WritePool"
+      flyway:
+        enabled: true
+        locations: ["classpath:db/migration"]
+        default-schema: "eventstore"
+        table: "flyway_schema_history"
+        validate-on-migrate: true
+      jpa:
+        show-sql: false
+        format-sql: false
+        ddl-auto: "validate"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+        batch-size: 50
+        order-inserts: true
+        order-updates: true
+    
+    read:
+      url: ${READ_DB_URL:jdbc:postgresql://localhost:5436/sinistros_projections}
+      username: ${READ_DB_USERNAME:postgres}
+      password: ${READ_DB_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        maximum-pool-size: 50
+        minimum-idle: 10
+        connection-timeout: 20000
+        idle-timeout: 300000
+        max-lifetime: 900000
+        validation-timeout: 3000
+        connection-test-query: "SELECT 1"
+        pool-name: "ReadPool"
+        read-only: true
+      flyway:
+        enabled: true
+        locations: ["classpath:db/migration-projections"]
+        default-schema: "projections"
+        table: "flyway_schema_history_projections"
+        validate-on-migrate: true
+      jpa:
+        show-sql: false
+        format-sql: false
+        ddl-auto: "validate"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+        fetch-size: 100
+        use-second-level-cache: true
+        use-query-cache: true
+      fallback:
+        enabled: true
+        failure-detection-timeout: 5000
+        retry-interval: 30000
+        max-retries: 3
+
   detran:
     base-url: ${DETRAN_BASE_URL:http://localhost:8080/detran-api}
     timeout: 30s
@@ -281,24 +334,36 @@ spring:
   config:
     activate:
       on-profile: local
-  
-  datasource:
-    url: jdbc:h2:mem:sinistros_hibrida
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-  
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
 
 app:
+  datasource:
+    write:
+      url: jdbc:h2:mem:sinistros_eventstore
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 10
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+        show-sql: true
+    
+    read:
+      url: jdbc:h2:mem:sinistros_projections
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 20
+        read-only: false
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+        show-sql: true
+
   detran:
     base-url: http://localhost:8080/detran-api
 
@@ -315,15 +380,34 @@ spring:
   config:
     activate:
       on-profile: test
-  
+
+app:
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-  
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-  
+    write:
+      url: jdbc:h2:mem:testdb_write
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 5
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+    
+    read:
+      url: jdbc:h2:mem:testdb_read
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 10
+        read-only: false
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+
   kafka:
     bootstrap-servers: ${spring.embedded.kafka.brokers}
 
@@ -332,6 +416,7 @@ cqrs:
     timeout: 10s
   projection:
     batch-size: 10
+    parallel: false
 
 snapshot:
   # Configurações específicas para testes
