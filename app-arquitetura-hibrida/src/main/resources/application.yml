@@ -105,7 +105,6 @@ cqrs:
 
 # Event Store Configuration
 eventstore:
-  batch-size: 100
   serialization:
     format: json
     compression: gzip
@@ -116,9 +115,49 @@ eventstore:
     write-timeout: 30
     read-timeout: 15
     cache-enabled: true
+    cache-ttl: 300
   monitoring:
     metrics-enabled: true
     health-check-enabled: true
+    metrics-interval: 60
+    performance-logs-enabled: false
+  
+  # Configurações de Particionamento - US007
+  partitioning:
+    enabled: true
+    strategy: monthly
+    future-partitions: 3
+    auto-indexes: true
+    performance-optimizations: true
+  
+  # Configurações de Arquivamento - US007
+  archive:
+    enabled: true
+    archive-after-years: 2
+    delete-after-archive: false
+    archive-pause-ms: 1000
+    storage:
+      type: filesystem
+      base-path: ./data/archives
+      # Para S3/MinIO (descomentado quando necessário):
+      # endpoint: http://localhost:9000
+      # access-key: minioadmin
+      # secret-key: minioadmin
+      # bucket: eventstore-archives
+      # region: us-east-1
+    compaction:
+      enabled: true
+      compact-after-months: 6
+      algorithm: gzip
+  
+  # Configurações de Manutenção - US007
+  maintenance:
+    enabled: true
+    health-check-enabled: true
+    health-check-interval-hours: 6
+    log-cleanup-enabled: true
+    log-retention-days: 90
+    reports-enabled: true
 
 # Snapshot Configuration
 snapshot:
@@ -367,6 +406,15 @@ app:
   detran:
     base-url: http://localhost:8080/detran-api
 
+# Configurações específicas para ambiente local
+eventstore:
+  archive:
+    enabled: false  # Desabilitado em local
+    storage:
+      base-path: ./data/local/archives
+  maintenance:
+    health-check-interval-hours: 1  # Verificação mais frequente
+
 snapshot:
   # Configurações específicas para ambiente local
   snapshot-threshold: 10  # Menor threshold para testes
@@ -417,6 +465,15 @@ cqrs:
   projection:
     batch-size: 10
     parallel: false
+
+# Configurações específicas para testes
+eventstore:
+  partitioning:
+    enabled: false  # Desabilitado em testes
+  archive:
+    enabled: false  # Desabilitado em testes
+  maintenance:
+    enabled: false  # Desabilitado em testes
 
 snapshot:
   # Configurações específicas para testes

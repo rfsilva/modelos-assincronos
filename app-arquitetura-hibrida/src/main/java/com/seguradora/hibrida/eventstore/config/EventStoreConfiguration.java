@@ -4,7 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.seguradora.hibrida.eventstore.EventStore;
+import com.seguradora.hibrida.eventstore.archive.EventArchiveProperties;
+import com.seguradora.hibrida.eventstore.archive.EventArchiver;
+import com.seguradora.hibrida.eventstore.archive.ArchiveStorageService;
+import com.seguradora.hibrida.eventstore.archive.impl.FileSystemArchiveStorage;
 import com.seguradora.hibrida.eventstore.impl.PostgreSQLEventStore;
+import com.seguradora.hibrida.eventstore.partition.PartitionManager;
 import com.seguradora.hibrida.eventstore.repository.EventStoreRepository;
 import com.seguradora.hibrida.eventstore.serialization.EventSerializer;
 import com.seguradora.hibrida.eventstore.serialization.JsonEventSerializer;
@@ -14,19 +19,22 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * Configuração do Event Store e componentes relacionados.
  * 
  * Configura beans necessários para funcionamento do Event Store,
- * incluindo serialização, métricas e otimizações.
+ * incluindo serialização, métricas, particionamento e arquivamento.
  * 
  * @author Principal Java Architect
  * @since 1.0.0
  */
 @Slf4j
 @Configuration
-@EnableConfigurationProperties(EventStoreProperties.class)
+@EnableScheduling
+@EnableConfigurationProperties({EventStoreProperties.class, EventArchiveProperties.class})
 public class EventStoreConfiguration {
     
     /**
@@ -73,6 +81,36 @@ public class EventStoreConfiguration {
     }
     
     /**
+     * Gerenciador de partições do Event Store.
+     */
+    @Bean
+    public PartitionManager partitionManager(JdbcTemplate jdbcTemplate) {
+        log.info("Configurando PartitionManager");
+        return new PartitionManager(jdbcTemplate);
+    }
+    
+    /**
+     * Serviço de storage para arquivamento.
+     */
+    @Bean
+    public ArchiveStorageService archiveStorageService(EventArchiveProperties properties) {
+        log.info("Configurando ArchiveStorageService: {}", properties.getStorage().getType());
+        return new FileSystemArchiveStorage(properties);
+    }
+    
+    /**
+     * Arquivador de eventos antigos.
+     */
+    @Bean
+    public EventArchiver eventArchiver(JdbcTemplate jdbcTemplate,
+                                     ObjectMapper eventStoreObjectMapper,
+                                     ArchiveStorageService storageService,
+                                     EventArchiveProperties properties) {
+        log.info("Configurando EventArchiver");
+        return new EventArchiver(jdbcTemplate, eventStoreObjectMapper, storageService, properties);
+    }
+    
+    /**
      * Métricas customizadas do Event Store.
      */
     @Bean
@@ -85,8 +123,10 @@ public class EventStoreConfiguration {
      * Health indicator para o Event Store.
      */
     @Bean
-    public EventStoreHealthIndicator eventStoreHealthIndicator(EventStore eventStore) {
+    public EventStoreHealthIndicator eventStoreHealthIndicator(EventStore eventStore,
+                                                             PartitionManager partitionManager,
+                                                             EventArchiver eventArchiver) {
         log.info("Configurando health indicator do Event Store");
-        return new EventStoreHealthIndicator(eventStore);
+        return new EventStoreHealthIndicator(eventStore, partitionManager, eventArchiver);
     }
 }
