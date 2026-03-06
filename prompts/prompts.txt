@@ -4,7 +4,9 @@ Com base na documentação funcional e técnica disponível na pasta "app-arquit
 Como resultado, precisamos:
  - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
  - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
- - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md"
+ - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md", EM ESPECIAL:
+	 - NÃO CRIAR CLASSES DE TESTE
+	 - NÃO CRIAR ARQUIVOS EVOLUTIVOS "_updated" "_fixed" e similares
 
 
 Estávamos executando a seguinte atividade (a):
@@ -27,9 +29,9 @@ Estávamos executando a seguinte atividade (a):
 ---- INICIO ATIVIDADE (a) ---
 Assuma o perfil de Principal Java Architect, tendo um background de desenvolvedor como sendo um exímio desenvolvedor Java, antenado com as melhores práticas e padrões de projeto e desenvolvimento.
 Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
- - Implemente a estória definida no documento "refinamento-epico-01.md" - código US003
+ - Implemente o épico inteiro definido no documento "refinamento-epico-1.5.md"
 Como resultado, precisamos:
- - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
+ - Implementação completa do épico cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
  - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
  - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md"
 --- FIM ATIVIDADE (a) ---

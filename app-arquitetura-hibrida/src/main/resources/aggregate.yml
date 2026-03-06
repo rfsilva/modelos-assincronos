@@ -1,0 +1,72 @@
+# Aggregate System Configuration
+aggregate:
+  # Configurações de métricas
+  metrics:
+    enabled: true
+    detailed-logging: false
+    prefix: "aggregate"
+  
+  # Configurações de health check
+  health-check:
+    enabled: true
+    timeout-seconds: 5
+    interval-seconds: 30
+  
+  # Configurações de validação
+  validation:
+    enabled: true
+    fail-fast: false
+    max-violations: 10
+    timeout-ms: 1000
+  
+  # Configurações de performance
+  performance:
+    cache-handlers: true
+    cache-size: 1000
+    parallel-validation: false
+    max-validation-threads: 4
+    optimize-reflection: true
+  
+  # Configurações de snapshot
+  snapshot:
+    auto-create: true
+    threshold-events: 50
+    compression: true
+    compression-algorithm: "gzip"
+
+---
+# Local Profile
+spring:
+  config:
+    activate:
+      on-profile: local
+
+aggregate:
+  # Configurações específicas para ambiente local
+  snapshot:
+    threshold-events: 10  # Menor threshold para testes
+  health-check:
+    interval-seconds: 10  # Verificação mais frequente
+  metrics:
+    detailed-logging: true
+
+---
+# Test Profile
+spring:
+  config:
+    activate:
+      on-profile: test
+
+aggregate:
+  # Configurações específicas para testes
+  snapshot:
+    threshold-events: 5
+    auto-create: false  # Controle manual para testes
+  validation:
+    fail-fast: true  # Falha rápida em testes
+  performance:
+    parallel-validation: false  # Sequencial para testes
+  metrics:
+    enabled: false  # Desabilitar métricas em testes
+  health-check:
+    enabled: false  # Desabilitar health checks em testes
