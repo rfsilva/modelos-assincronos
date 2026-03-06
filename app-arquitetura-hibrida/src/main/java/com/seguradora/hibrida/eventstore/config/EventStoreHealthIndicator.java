@@ -1,6 +1,8 @@
 package com.seguradora.hibrida.eventstore.config;
 
 import com.seguradora.hibrida.eventstore.EventStore;
+import com.seguradora.hibrida.eventstore.archive.EventArchiver;
+import com.seguradora.hibrida.eventstore.partition.PartitionManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -14,7 +16,8 @@ import java.util.UUID;
  * Health indicator para monitoramento da saúde do Event Store.
  * 
  * Verifica se o Event Store está funcionando corretamente
- * através de operações básicas de teste.
+ * através de operações básicas de teste, incluindo particionamento
+ * e arquivamento.
  * 
  * @author Principal Java Architect
  * @since 1.0.0
@@ -25,6 +28,8 @@ import java.util.UUID;
 public class EventStoreHealthIndicator {
     
     private final EventStore eventStore;
+    private final PartitionManager partitionManager;
+    private final EventArchiver eventArchiver;
     
     /**
      * Verifica a saúde do Event Store.
@@ -35,20 +40,53 @@ public class EventStoreHealthIndicator {
         Map<String, Object> health = new HashMap<>();
         
         try {
-            // Testa operação básica de leitura
+            // Testa operação básica de leitura do Event Store
             long startTime = System.currentTimeMillis();
             
-            // Tenta verificar se um aggregate fictício existe
             String testAggregateId = "health-check-" + UUID.randomUUID();
             boolean exists = eventStore.aggregateExists(testAggregateId);
             
-            long responseTime = System.currentTimeMillis() - startTime;
+            long eventStoreResponseTime = System.currentTimeMillis() - startTime;
             
-            health.put("status", "UP");
-            health.put("details", "Event Store operacional");
-            health.put("responseTime", responseTime + "ms");
+            // Verifica saúde das partições
+            boolean partitionsHealthy = partitionManager.arePartitionsHealthy();
+            
+            // Obtém estatísticas de arquivamento
+            var archiveStats = eventArchiver.getArchiveStatistics();
+            
+            // Determina status geral
+            boolean isHealthy = partitionsHealthy;
+            String status = isHealthy ? "UP" : "DOWN";
+            
+            health.put("status", status);
             health.put("timestamp", Instant.now());
-            health.put("testAggregateExists", exists);
+            
+            // Detalhes do Event Store
+            health.put("eventStore", Map.of(
+                "operational", true,
+                "responseTime", eventStoreResponseTime + "ms",
+                "testResult", !exists // Deve ser false para aggregate fictício
+            ));
+            
+            // Detalhes das partições
+            health.put("partitions", Map.of(
+                "healthy", partitionsHealthy,
+                "status", partitionsHealthy ? "OK" : "NEEDS_MAINTENANCE"
+            ));
+            
+            // Detalhes do arquivamento
+            health.put("archiving", Map.of(
+                "totalArchives", archiveStats.getTotalArchives() != null ? archiveStats.getTotalArchives() : 0,
+                "totalEvents", archiveStats.getTotalEvents() != null ? archiveStats.getTotalEvents() : 0,
+                "operational", true
+            ));
+            
+            if (isHealthy) {
+                health.put("details", "Event Store completamente operacional");
+            } else {
+                health.put("details", "Event Store com problemas nas partições");
+                health.put("recommendation", "Execute manutenção de partições");
+            }
             
             return health;
                     
