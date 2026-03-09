@@ -41,10 +41,6 @@
 - Não criar estruturas específicas do banco de dados (TYPE, TRIGGER, PROCEDURE, FUNCTION, etc.) no migrations
 - Para entities novas, validar no migrations se tabela já implementada. Se não, criar, se sim e precisar atualizar, atualize em versão nova.
 
-### 🔗 Testes:
-- Não criar classes de testes - ignore a cobertura de testes, esse aspecto será trabalhado no futuro
-- Garantir consistência do contrato REST gerado no backend para uso no frontend  
-
 ### ⚠️ Importante:
 - Manter padrões de nomenclatura e pastas
 - NÃO inventar regra que não esteja no documento funcional.
