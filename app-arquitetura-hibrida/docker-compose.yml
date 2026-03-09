@@ -110,6 +110,45 @@ services:
       timeout: 10s
       retries: 5
 
+  # Kafka Init - Cria tópicos automaticamente
+  kafka-init:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: hibrida-kafka-init
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '-c']
+    command: |
+      "
+      # Aguardar Kafka estar pronto
+      echo 'Aguardando Kafka estar pronto...'
+      cub kafka-ready -b kafka:29092 1 30
+      
+      # Criar tópicos de eventos de domínio
+      echo 'Criando tópicos de Segurado...'
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.criado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.atualizado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.desativado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.reativado
+      
+      echo 'Criando tópicos de Apólice...'
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.criada
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.atualizada
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.cancelada
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.renovada
+      
+      echo 'Criando tópicos de Sinistro...'
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.criado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.atualizado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.aprovado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.rejeitado
+      
+      echo 'Tópicos criados com sucesso!'
+      kafka-topics --list --bootstrap-server kafka:29092
+      "
+    networks:
+      - hibrida-network
+
 volumes:
   postgres_write_data:
     driver: local
