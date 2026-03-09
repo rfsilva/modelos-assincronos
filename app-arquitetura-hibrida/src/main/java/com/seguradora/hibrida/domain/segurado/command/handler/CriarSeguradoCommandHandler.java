@@ -1,10 +1,12 @@
 package com.seguradora.hibrida.domain.segurado.command.handler;
 
+import com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException;
+import com.seguradora.hibrida.aggregate.repository.AggregateRepository;
 import com.seguradora.hibrida.command.CommandHandler;
 import com.seguradora.hibrida.command.CommandResult;
 import com.seguradora.hibrida.domain.segurado.aggregate.SeguradoAggregate;
 import com.seguradora.hibrida.domain.segurado.command.CriarSeguradoCommand;
-import com.seguradora.hibrida.eventstore.EventStore;
+import com.seguradora.hibrida.domain.segurado.service.SeguradoValidationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -12,10 +14,15 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 /**
- * Handler responsável por processar comandos de criação de segurado.
+ * Handler para criação de segurado com validações síncronas.
  * 
- * <p>Este handler valida o comando, cria uma nova instância do aggregate
- * SeguradoAggregate e persiste os eventos gerados no Event Store.</p>
+ * <p>Implementa todos os requisitos da US010:
+ * <ul>
+ *   <li>Validação de unicidade de CPF</li>
+ *   <li>Verificação em bureaus de crédito</li>
+ *   <li>Validação de unicidade de email</li>
+ *   <li>Cache de validações</li>
+ * </ul>
  * 
  * @author Principal Java Architect
  * @since 2.0.0
@@ -25,23 +32,30 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CriarSeguradoCommandHandler implements CommandHandler<CriarSeguradoCommand> {
     
-    private final EventStore eventStore;
+    private final AggregateRepository<SeguradoAggregate> aggregateRepository;
+    private final SeguradoValidationService validationService;
     
-    /**
-     * Processa o comando de criação de segurado.
-     * 
-     * @param command Comando contendo os dados do novo segurado
-     * @return CommandResult com o ID do segurado criado
-     */
     @Override
     public CommandResult handle(CriarSeguradoCommand command) {
-        log.info("Processando comando CriarSeguradoCommand para CPF: {}", command.getCpf());
+        log.info("Processando comando CriarSegurado com validações - CPF: {}", 
+                command.getCpf().replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.***.***-$4"));
         
         try {
-            // Gerar novo ID para o aggregate (String para compatibilidade com AggregateRoot)
+            // Validações síncronas antes da criação
+            SeguradoValidationService.ValidationResult validationResult = 
+                validationService.validarCriacaoSegurado(command.getCpf(), command.getEmail());
+            
+            if (!validationResult.isValido()) {
+                throw new BusinessRuleViolationException(
+                    "Falha na validação do segurado",
+                    validationResult.getErros()
+                );
+            }
+            
+            // Gerar novo ID para o aggregate
             String seguradoId = UUID.randomUUID().toString();
             
-            // Criar nova instância do aggregate usando construtor que aplica evento
+            // Criar nova instância do aggregate
             SeguradoAggregate aggregate = new SeguradoAggregate(
                 seguradoId,
                 command.getCpf(),
@@ -52,23 +66,20 @@ public class CriarSeguradoCommandHandler implements CommandHandler<CriarSegurado
                 command.getEndereco()
             );
             
-            // Persistir eventos no Event Store
-            eventStore.saveEvents(
-                aggregate.getId(),
-                aggregate.getUncommittedEvents(),
-                0 // Versão inicial
-            );
+            // Salvar aggregate no repositório
+            aggregateRepository.save(aggregate);
             
-            // Marcar eventos como commitados
-            aggregate.markEventsAsCommitted();
-            
-            log.info("Segurado criado com sucesso. ID: {}, CPF: {}", seguradoId, command.getCpf());
+            log.info("Segurado criado com sucesso - ID: {}", seguradoId);
             
             return CommandResult.success(seguradoId);
             
-        } catch (Exception e) {
-            log.error("Erro ao processar CriarSeguradoCommand para CPF: {}", command.getCpf(), e);
+        } catch (BusinessRuleViolationException e) {
+            log.warn("Falha na validação ao criar segurado: {}", e.getMessage());
             return CommandResult.failure(e.getMessage());
+            
+        } catch (Exception e) {
+            log.error("Erro ao processar comando CriarSegurado", e);
+            return CommandResult.failure("Erro interno do sistema");
         }
     }
     

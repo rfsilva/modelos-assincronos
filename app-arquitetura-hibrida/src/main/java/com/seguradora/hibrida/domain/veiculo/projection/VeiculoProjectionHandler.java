@@ -33,9 +33,9 @@ public class VeiculoProjectionHandler {
         try {
             VeiculoQueryModel queryModel = VeiculoQueryModel.builder()
                 .id(event.getAggregateId())
-                .placa(event.getPlaca().getPlaca())
-                .renavam(event.getRenavam().getRenavam())
-                .chassi(event.getChassi().getChassi())
+                .placa(event.getPlaca().getValor())
+                .renavam(event.getRenavam().getValor())
+                .chassi(event.getChassi().getValor())
                 .marca(event.getMarca())
                 .modelo(event.getModelo())
                 .anoFabricacao(event.getAnoModelo().getAnoFabricacao())

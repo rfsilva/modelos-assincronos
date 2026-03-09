@@ -52,4 +52,10 @@ public class AtualizarSeguradoCommand implements Command {
     @NotNull(message = "Endereço é obrigatório")
     @Valid
     private Endereco endereco;
+    
+    /**
+     * Versão esperada do aggregate para controle de concorrência otimista.
+     */
+    @Min(value = 0, message = "Versão esperada deve ser maior ou igual a 0")
+    private Long versaoEsperada;
 }

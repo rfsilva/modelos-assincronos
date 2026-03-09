@@ -2,6 +2,7 @@ package com.seguradora.hibrida.domain.segurado.controller;
 
 import com.seguradora.hibrida.domain.segurado.model.StatusSegurado;
 import com.seguradora.hibrida.domain.segurado.query.model.SeguradoQueryModel;
+import com.seguradora.hibrida.domain.segurado.query.model.SeguradoListView;
 import com.seguradora.hibrida.domain.segurado.query.service.SeguradoQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -82,11 +83,11 @@ public class SeguradoQueryController {
      * @return ResponseEntity com página de segurados
      */
     @GetMapping
-    public ResponseEntity<Page<SeguradoQueryModel>> listarTodos(
+    public ResponseEntity<Page<SeguradoListView>> listarTodos(
             @PageableDefault(size = 20, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Requisição para listar todos os segurados - Página: {}", pageable.getPageNumber());
         
-        Page<SeguradoQueryModel> page = queryService.findAll(pageable);
+        Page<SeguradoListView> page = queryService.findAll(pageable);
         return ResponseEntity.ok(page);
     }
     
@@ -98,12 +99,12 @@ public class SeguradoQueryController {
      * @return ResponseEntity com página de segurados
      */
     @GetMapping("/status/{status}")
-    public ResponseEntity<Page<SeguradoQueryModel>> listarPorStatus(
+    public ResponseEntity<Page<SeguradoListView>> listarPorStatus(
             @PathVariable StatusSegurado status,
             @PageableDefault(size = 20, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Requisição para listar segurados por status: {} - Página: {}", status, pageable.getPageNumber());
         
-        Page<SeguradoQueryModel> page = queryService.findByStatus(status, pageable);
+        Page<SeguradoListView> page = queryService.findByStatus(status, pageable);
         return ResponseEntity.ok(page);
     }
     
@@ -115,12 +116,12 @@ public class SeguradoQueryController {
      * @return ResponseEntity com página de segurados
      */
     @GetMapping("/buscar/nome")
-    public ResponseEntity<Page<SeguradoQueryModel>> buscarPorNome(
+    public ResponseEntity<Page<SeguradoListView>> buscarPorNome(
             @RequestParam String nome,
             @PageableDefault(size = 20, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Requisição para buscar segurados por nome: {} - Página: {}", nome, pageable.getPageNumber());
         
-        Page<SeguradoQueryModel> page = queryService.findByNome(nome, pageable);
+        Page<SeguradoListView> page = queryService.findByNome(nome, pageable);
         return ResponseEntity.ok(page);
     }
     
@@ -132,12 +133,12 @@ public class SeguradoQueryController {
      * @return ResponseEntity com página de segurados
      */
     @GetMapping("/cidade/{cidade}")
-    public ResponseEntity<Page<SeguradoQueryModel>> buscarPorCidade(
+    public ResponseEntity<Page<SeguradoListView>> buscarPorCidade(
             @PathVariable String cidade,
             @PageableDefault(size = 20, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Requisição para buscar segurados por cidade: {} - Página: {}", cidade, pageable.getPageNumber());
         
-        Page<SeguradoQueryModel> page = queryService.findByCidade(cidade, pageable);
+        Page<SeguradoListView> page = queryService.findByCidade(cidade, pageable);
         return ResponseEntity.ok(page);
     }
     
@@ -149,12 +150,12 @@ public class SeguradoQueryController {
      * @return ResponseEntity com página de segurados
      */
     @GetMapping("/estado/{estado}")
-    public ResponseEntity<Page<SeguradoQueryModel>> buscarPorEstado(
+    public ResponseEntity<Page<SeguradoListView>> buscarPorEstado(
             @PathVariable String estado,
             @PageableDefault(size = 20, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Requisição para buscar segurados por estado: {} - Página: {}", estado, pageable.getPageNumber());
         
-        Page<SeguradoQueryModel> page = queryService.findByEstado(estado, pageable);
+        Page<SeguradoListView> page = queryService.findByEstado(estado, pageable);
         return ResponseEntity.ok(page);
     }
     
