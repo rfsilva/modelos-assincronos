@@ -5,9 +5,11 @@ import com.seguradora.hibrida.aggregate.EventSourcingHandler;
 import com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException;
 import com.seguradora.hibrida.aggregate.validation.BusinessRule;
 import com.seguradora.hibrida.domain.segurado.event.*;
+import com.seguradora.hibrida.domain.segurado.model.Contato;
 import com.seguradora.hibrida.domain.segurado.model.Endereco;
 import com.seguradora.hibrida.domain.segurado.model.Segurado;
 import com.seguradora.hibrida.domain.segurado.model.StatusSegurado;
+import com.seguradora.hibrida.domain.segurado.model.TipoContato;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +26,7 @@ import java.util.regex.Pattern;
  *   <li>Criar novos segurados com validações completas</li>
  *   <li>Atualizar dados de segurados existentes</li>
  *   <li>Desativar e reativar segurados</li>
+ *   <li>Gerenciar contatos e endereços</li>
  *   <li>Garantir invariantes de negócio</li>
  *   <li>Gerar eventos de domínio para cada operação</li>
  * </ul>
@@ -42,6 +45,7 @@ public class SeguradoAggregate extends AggregateRoot {
     
     // Estado do aggregate
     private Segurado segurado;
+    private List<Contato> contatos = new ArrayList<>();
     
     /**
      * Construtor padrão para reconstrução do aggregate.
@@ -77,7 +81,7 @@ public class SeguradoAggregate extends AggregateRoot {
     public void atualizarDados(String nome, String email, String telefone, 
                                LocalDate dataNascimento, Endereco endereco) {
         // Validar se o segurado está ativo
-        if (!segurado.isAtivo()) {
+        if (!isAtivo()) {
             throw new BusinessRuleViolationException(
                 "Não é possível atualizar dados de segurado inativo", 
                 List.of("Segurado deve estar ativo para atualização")
@@ -96,13 +100,81 @@ public class SeguradoAggregate extends AggregateRoot {
     }
     
     /**
+     * Atualiza apenas o endereço do segurado.
+     */
+    public void atualizarEndereco(Endereco endereco) {
+        if (!isAtivo()) {
+            throw new BusinessRuleViolationException(
+                "Não é possível atualizar endereço de segurado inativo", 
+                List.of("Segurado deve estar ativo para atualização")
+            );
+        }
+        
+        validarEndereco(endereco);
+        // Corrigir: usar endereço anterior e novo endereço
+        applyEvent(new EnderecoAtualizadoEvent(getId(), this.segurado.getEndereco(), endereco));
+    }
+    
+    /**
+     * Adiciona um contato ao segurado.
+     */
+    public void adicionarContato(TipoContato tipo, String valor, boolean principal) {
+        if (!isAtivo()) {
+            throw new BusinessRuleViolationException(
+                "Não é possível adicionar contato a segurado inativo", 
+                List.of("Segurado deve estar ativo para adicionar contato")
+            );
+        }
+        
+        // Validar se já existe contato do mesmo tipo e valor
+        boolean jaExiste = contatos.stream()
+            .anyMatch(c -> c.getTipo() == tipo && c.getValor().equals(valor));
+            
+        if (jaExiste) {
+            throw new BusinessRuleViolationException(
+                "Contato já existe", 
+                List.of("Já existe um contato do tipo " + tipo + " com o valor " + valor)
+            );
+        }
+        
+        // Corrigir: usar factory method do Contato
+        Contato contato = Contato.of(tipo, valor, principal);
+        applyEvent(new ContatoAdicionadoEvent(getId(), tipo, valor, principal));
+    }
+    
+    /**
+     * Remove um contato do segurado.
+     */
+    public void removerContato(TipoContato tipo, String valor) {
+        if (!isAtivo()) {
+            throw new BusinessRuleViolationException(
+                "Não é possível remover contato de segurado inativo", 
+                List.of("Segurado deve estar ativo para remover contato")
+            );
+        }
+        
+        // Verificar se o contato existe
+        boolean existe = contatos.stream()
+            .anyMatch(c -> c.getTipo() == tipo && c.getValor().equals(valor));
+            
+        if (!existe) {
+            throw new BusinessRuleViolationException(
+                "Contato não encontrado", 
+                List.of("Não foi encontrado contato do tipo " + tipo + " com o valor " + valor)
+            );
+        }
+        
+        applyEvent(new ContatoRemovidoEvent(getId(), tipo, valor));
+    }
+    
+    /**
      * Desativa o segurado.
      */
     public void desativar(String motivo) {
-        if (!segurado.isAtivo()) {
+        if (!isAtivo()) {
             throw new BusinessRuleViolationException(
                 "Segurado já está inativo", 
-                List.of("Status atual: " + segurado.getStatus())
+                List.of("Status atual: " + getStatus())
             );
         }
         
@@ -120,10 +192,10 @@ public class SeguradoAggregate extends AggregateRoot {
      * Reativa o segurado.
      */
     public void reativar(String motivo) {
-        if (segurado.isAtivo()) {
+        if (isAtivo()) {
             throw new BusinessRuleViolationException(
                 "Segurado já está ativo", 
-                List.of("Status atual: " + segurado.getStatus())
+                List.of("Status atual: " + getStatus())
             );
         }
         
@@ -135,6 +207,28 @@ public class SeguradoAggregate extends AggregateRoot {
         }
         
         applyEvent(new SeguradoReativadoEvent(getId(), motivo));
+    }
+    
+    // ==================== GETTERS ADICIONAIS ====================
+    
+    public boolean isAtivo() {
+        return segurado != null && segurado.isAtivo();
+    }
+    
+    public StatusSegurado getStatus() {
+        return segurado != null ? segurado.getStatus() : null;
+    }
+    
+    public String getEmail() {
+        return segurado != null ? segurado.getEmail() : null;
+    }
+    
+    public String getCpf() {
+        return segurado != null ? segurado.getCpf() : null;
+    }
+    
+    public String getNome() {
+        return segurado != null ? segurado.getNome() : null;
     }
     
     // ==================== EVENT SOURCING HANDLERS ====================
@@ -160,6 +254,27 @@ public class SeguradoAggregate extends AggregateRoot {
         this.segurado.setDataNascimento(event.getDataNascimento());
         this.segurado.setEndereco(event.getEndereco());
         log.debug("Segurado atualizado: ID={}", getId());
+    }
+    
+    @EventSourcingHandler
+    protected void on(EnderecoAtualizadoEvent event) {
+        // Corrigir: usar o novo endereço
+        this.segurado.setEndereco(event.getNovoEndereco());
+        log.debug("Endereço atualizado: ID={}", getId());
+    }
+    
+    @EventSourcingHandler
+    protected void on(ContatoAdicionadoEvent event) {
+        // Corrigir: criar contato a partir dos dados do evento
+        Contato contato = Contato.of(event.getTipo(), event.getValor(), event.isPrincipal());
+        this.contatos.add(contato);
+        log.debug("Contato adicionado: ID={}, Tipo={}", getId(), event.getTipo());
+    }
+    
+    @EventSourcingHandler
+    protected void on(ContatoRemovidoEvent event) {
+        this.contatos.removeIf(c -> c.getTipo() == event.getTipo() && c.getValor().equals(event.getValor()));
+        log.debug("Contato removido: ID={}, Tipo={}", getId(), event.getTipo());
     }
     
     @EventSourcingHandler
@@ -339,5 +454,6 @@ public class SeguradoAggregate extends AggregateRoot {
     @Override
     protected void clearState() {
         this.segurado = null;
+        this.contatos.clear();
     }
 }
