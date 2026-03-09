@@ -1,0 +1,485 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: arquitetura-hibrida
+  
+  profiles:
+    active: local
+  
+  # Redis Configuration for Cache and Event Store
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+  
+  # Kafka Configuration for Event Processing
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+      properties:
+        enable.idempotence: true
+    consumer:
+      group-id: sinistros-hibrida
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.seguradora.hibrida"
+      auto-offset-reset: earliest
+  
+  # Cache Configuration
+  cache:
+    type: redis
+    redis:
+      time-to-live: 24h
+      cache-null-values: false
+  
+  # Security Configuration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:8080/auth/realms/sinistros}
+
+# Axon Framework Configuration
+axon:
+  eventhandling:
+    processors:
+      # Configuração para processamento de eventos
+      sinistro-projection:
+        mode: tracking
+        batch-size: 50
+        thread-count: 2
+      detran-integration:
+        mode: tracking
+        batch-size: 10
+        thread-count: 1
+  
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson
+  
+  axonserver:
+    enabled: false # Usando Event Store customizado
+
+# CQRS Configuration
+cqrs:
+  command:
+    timeout: 30s
+    retry:
+      max-attempts: 3
+      backoff: 1s
+  query:
+    cache:
+      ttl: 300s
+      max-size: 10000
+  projection:
+    batch-size: 50
+    parallel: true
+    thread-pool:
+      core-size: 5
+      max-size: 20
+      queue-capacity: 1000
+      thread-name-prefix: "projection-"
+    timeout-seconds: 30
+    retry:
+      max-attempts: 3
+      backoff-multiplier: 2.0
+      initial-delay-ms: 1000
+      max-delay-ms: 30000
+
+# Event Store Configuration
+eventstore:
+  serialization:
+    format: json
+    compression: gzip
+    compression-threshold: 1024
+    versioning-enabled: true
+  performance:
+    batch-size: 100
+    write-timeout: 30
+    read-timeout: 15
+    cache-enabled: true
+    cache-ttl: 300
+  monitoring:
+    metrics-enabled: true
+    health-check-enabled: true
+    metrics-interval: 60
+    performance-logs-enabled: false
+  
+  # Configurações de Particionamento - US007
+  partitioning:
+    enabled: true
+    strategy: monthly
+    future-partitions: 3
+    auto-indexes: true
+    performance-optimizations: true
+  
+  # Configurações de Arquivamento - US007
+  archive:
+    enabled: true
+    archive-after-years: 2
+    delete-after-archive: false
+    archive-pause-ms: 1000
+    storage:
+      type: filesystem
+      base-path: ./data/archives
+      # Para S3/MinIO (descomentado quando necessário):
+      # endpoint: http://localhost:9000
+      # access-key: minioadmin
+      # secret-key: minioadmin
+      # bucket: eventstore-archives
+      # region: us-east-1
+    compaction:
+      enabled: true
+      compact-after-months: 6
+      algorithm: gzip
+  
+  # Configurações de Manutenção - US007
+  maintenance:
+    enabled: true
+    health-check-enabled: true
+    health-check-interval-hours: 6
+    log-cleanup-enabled: true
+    log-retention-days: 90
+    reports-enabled: true
+
+# Snapshot Configuration
+snapshot:
+  # Número de eventos necessários para criar um novo snapshot
+  snapshot-threshold: 50
+  
+  # Número máximo de snapshots mantidos por aggregate
+  max-snapshots-per-aggregate: 5
+  
+  # Tamanho mínimo (em bytes) para aplicar compressão
+  compression-threshold: 1024
+  
+  # Algoritmo de compressão
+  compression-algorithm: GZIP
+  
+  # Habilita compressão automática
+  compression-enabled: true
+  
+  # Habilita limpeza automática de snapshots antigos
+  auto-cleanup-enabled: true
+  
+  # Intervalo em horas para limpeza automática global
+  cleanup-interval-hours: 24
+  
+  # Habilita criação assíncrona de snapshots
+  async-snapshot-creation: true
+  
+  # Timeout em segundos para operações de snapshot
+  operation-timeout-seconds: 30
+  
+  # Habilita validação de integridade com hash
+  integrity-validation-enabled: true
+  
+  # Habilita métricas detalhadas
+  metrics-enabled: true
+  
+  # Número de dias para manter snapshots
+  retention-days: 365
+  
+  # Configuração do pool de threads assíncronas
+  async-thread-pool-size: 5
+  async-queue-capacity: 100
+  async-thread-name-prefix: "snapshot-"
+  
+  # Configuração de health checks
+  health-check-enabled: true
+  health-check-interval-seconds: 60
+  max-consecutive-failures: 3
+  
+  # Configuração de cache (desabilitado por padrão)
+  cache-enabled: false
+  cache-max-size: 100
+  cache-ttl-minutes: 30
+
+# SpringDoc OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    filter: true
+    displayRequestDuration: true
+    displayOperationId: true
+    defaultModelsExpandDepth: 2
+    defaultModelExpandDepth: 2
+    docExpansion: none
+  show-actuator: true
+
+# Management/Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,eventstore,snapshots,cqrs
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+  health:
+    redis:
+      enabled: true
+    db:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5, 0.95, 0.99
+  tracing:
+    sampling:
+      probability: 1.0
+
+# Application Specific Configuration
+app:
+  # Multiple DataSources Configuration for CQRS
+  datasource:
+    write:
+      url: ${WRITE_DB_URL:jdbc:postgresql://localhost:5435/sinistros_eventstore}
+      username: ${WRITE_DB_USERNAME:postgres}
+      password: ${WRITE_DB_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        maximum-pool-size: 20
+        minimum-idle: 5
+        connection-timeout: 30000
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        validation-timeout: 5000
+        connection-test-query: "SELECT 1"
+        pool-name: "WritePool"
+      flyway:
+        enabled: true
+        locations: ["classpath:db/migration"]
+        default-schema: "eventstore"
+        table: "flyway_schema_history"
+        validate-on-migrate: true
+      jpa:
+        show-sql: false
+        format-sql: false
+        ddl-auto: "validate"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+        batch-size: 50
+        order-inserts: true
+        order-updates: true
+    
+    read:
+      url: ${READ_DB_URL:jdbc:postgresql://localhost:5436/sinistros_projections}
+      username: ${READ_DB_USERNAME:postgres}
+      password: ${READ_DB_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        maximum-pool-size: 50
+        minimum-idle: 10
+        connection-timeout: 20000
+        idle-timeout: 300000
+        max-lifetime: 900000
+        validation-timeout: 3000
+        connection-test-query: "SELECT 1"
+        pool-name: "ReadPool"
+        read-only: true
+      flyway:
+        enabled: true
+        locations: ["classpath:db/migration-projections"]
+        default-schema: "projections"
+        table: "flyway_schema_history_projections"
+        validate-on-migrate: true
+      jpa:
+        show-sql: false
+        format-sql: false
+        ddl-auto: "validate"
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"
+        fetch-size: 100
+        use-second-level-cache: true
+        use-query-cache: true
+      fallback:
+        enabled: true
+        failure-detection-timeout: 5000
+        retry-interval: 30000
+        max-retries: 3
+
+  detran:
+    base-url: ${DETRAN_BASE_URL:http://localhost:8080/detran-api}
+    timeout: 30s
+    retry:
+      max-attempts: 3
+      backoff-delay: 2s
+  
+  cache:
+    detran:
+      ttl: 24h
+      max-size: 10000
+    query:
+      ttl: 5m
+      max-size: 5000
+  
+  async:
+    core-pool-size: 10
+    max-pool-size: 50
+    queue-capacity: 1000
+    thread-name-prefix: "async-"
+  
+  kafka:
+    topics:
+      domain-events: domain-events-topic
+      integration-events: integration-events-topic
+      notification-events: notification-events-topic
+
+# Logging Configuration
+logging:
+  level:
+    com.seguradora.hibrida: DEBUG
+    org.springframework.web: INFO
+    org.springframework.kafka: INFO
+    org.axonframework: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId:-},%X{spanId:-}] %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%X{traceId:-},%X{spanId:-}] %logger{36} - %msg%n"
+  file:
+    name: logs/arquitetura-hibrida.log
+
+---
+# Local Profile
+spring:
+  config:
+    activate:
+      on-profile: local
+
+app:
+  datasource:
+    write:
+      url: jdbc:h2:mem:sinistros_eventstore
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 10
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+        show-sql: true
+    
+    read:
+      url: jdbc:h2:mem:sinistros_projections
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 20
+        read-only: false
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+        show-sql: true
+
+  detran:
+    base-url: http://localhost:8080/detran-api
+
+# Configurações específicas para ambiente local
+eventstore:
+  archive:
+    enabled: false  # Desabilitado em local
+    storage:
+      base-path: ./data/local/archives
+  maintenance:
+    health-check-interval-hours: 1  # Verificação mais frequente
+
+snapshot:
+  # Configurações específicas para ambiente local
+  snapshot-threshold: 10  # Menor threshold para testes
+  cleanup-interval-hours: 1  # Limpeza mais frequente
+  metrics-enabled: true
+  health-check-enabled: true
+
+---
+# Test Profile
+spring:
+  config:
+    activate:
+      on-profile: test
+
+app:
+  datasource:
+    write:
+      url: jdbc:h2:mem:testdb_write
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 5
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+    
+    read:
+      url: jdbc:h2:mem:testdb_read
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      hikari:
+        maximum-pool-size: 10
+        read-only: false
+      flyway:
+        enabled: false
+      jpa:
+        ddl-auto: create-drop
+
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+
+cqrs:
+  command:
+    timeout: 10s
+  projection:
+    batch-size: 10
+    parallel: false
+
+# Configurações específicas para testes
+eventstore:
+  partitioning:
+    enabled: false  # Desabilitado em testes
+  archive:
+    enabled: false  # Desabilitado em testes
+  maintenance:
+    enabled: false  # Desabilitado em testes
+
+snapshot:
+  # Configurações específicas para testes
+  snapshot-threshold: 5
+  max-snapshots-per-aggregate: 3
+  async-snapshot-creation: false  # Síncrono para testes
+  auto-cleanup-enabled: false
+  metrics-enabled: false
+  health-check-enabled: false
