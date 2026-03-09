@@ -105,6 +105,7 @@ cqrs:
 
 # Event Store Configuration
 eventstore:
+  batch-size: 100
   serialization:
     format: json
     compression: gzip
@@ -115,117 +116,9 @@ eventstore:
     write-timeout: 30
     read-timeout: 15
     cache-enabled: true
-    cache-ttl: 300
   monitoring:
     metrics-enabled: true
     health-check-enabled: true
-    metrics-interval: 60
-    performance-logs-enabled: false
-  
-  # Configurações de Particionamento - US007
-  partitioning:
-    enabled: true
-    strategy: monthly
-    future-partitions: 3
-    auto-indexes: true
-    performance-optimizations: true
-  
-  # Configurações de Arquivamento - US007
-  archive:
-    enabled: true
-    archive-after-years: 2
-    delete-after-archive: false
-    archive-pause-ms: 1000
-    storage:
-      type: filesystem
-      base-path: ./data/archives
-      # Para S3/MinIO (descomentado quando necessário):
-      # endpoint: http://localhost:9000
-      # access-key: minioadmin
-      # secret-key: minioadmin
-      # bucket: eventstore-archives
-      # region: us-east-1
-    compaction:
-      enabled: true
-      compact-after-months: 6
-      algorithm: gzip
-  
-  # Configurações de Manutenção - US007
-  maintenance:
-    enabled: true
-    health-check-enabled: true
-    health-check-interval-hours: 6
-    log-cleanup-enabled: true
-    log-retention-days: 90
-    reports-enabled: true
-  
-  # Configurações de Replay - US008
-  replay:
-    # Habilita o sistema de replay
-    enabled: true
-    
-    # Configurações padrão para replay
-    defaults:
-      # Tamanho padrão do lote
-      batch-size: 100
-      
-      # Timeout padrão por lote (segundos)
-      batch-timeout-seconds: 30
-      
-      # Número máximo de tentativas
-      max-retries: 3
-      
-      # Delay entre tentativas (milissegundos)
-      retry-delay-ms: 1000
-      
-      # Parar no primeiro erro
-      stop-on-error: false
-      
-      # Gerar relatório detalhado por padrão
-      generate-detailed-report: false
-      
-      # Intervalo de notificação de progresso
-      progress-notification-interval: 1000
-    
-    # Configurações de performance
-    performance:
-      # Número máximo de replays simultâneos
-      max-concurrent-replays: 5
-      
-      # Tamanho do pool de threads
-      thread-pool-size: 10
-      
-      # Timeout para operações de replay (segundos)
-      operation-timeout-seconds: 3600 # 1 hora
-      
-      # Tamanho máximo da fila de replays
-      max-queue-size: 100
-      
-      # Habilita cache de eventos para replay
-      enable-event-cache: true
-      
-      # TTL do cache de eventos (segundos)
-      event-cache-ttl-seconds: 300 # 5 minutos
-    
-    # Configurações de monitoramento
-    monitoring:
-      # Habilita métricas detalhadas
-      enable-detailed-metrics: true
-      
-      # Habilita health checks
-      enable-health-checks: true
-      
-      # Intervalo de coleta de métricas (segundos)
-      metrics-collection-interval-seconds: 60
-      
-      # Número máximo de resultados no histórico
-      max-history-size: 1000
-      
-      # Habilita logs detalhados
-      enable-detailed-logging: false
-      
-      # Nível de log para replay
-      log-level: INFO
 
 # Snapshot Configuration
 snapshot:
@@ -304,7 +197,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus,eventstore,snapshots,cqrs,replay
+        include: health,info,metrics,prometheus,eventstore,snapshots,cqrs
   endpoint:
     health:
       show-details: always
@@ -474,25 +367,6 @@ app:
   detran:
     base-url: http://localhost:8080/detran-api
 
-# Configurações específicas para ambiente local
-eventstore:
-  archive:
-    enabled: false  # Desabilitado em local
-    storage:
-      base-path: ./data/local/archives
-  maintenance:
-    health-check-interval-hours: 1  # Verificação mais frequente
-  replay:
-    defaults:
-      batch-size: 50
-      generate-detailed-report: true
-    performance:
-      max-concurrent-replays: 2
-      thread-pool-size: 5
-    monitoring:
-      enable-detailed-logging: true
-      log-level: DEBUG
-
 snapshot:
   # Configurações específicas para ambiente local
   snapshot-threshold: 10  # Menor threshold para testes
@@ -544,17 +418,6 @@ cqrs:
     batch-size: 10
     parallel: false
 
-# Configurações específicas para testes
-eventstore:
-  partitioning:
-    enabled: false  # Desabilitado em testes
-  archive:
-    enabled: false  # Desabilitado em testes
-  maintenance:
-    enabled: false  # Desabilitado em testes
-  replay:
-    enabled: false  # Desabilitado em testes
-
 snapshot:
   # Configurações específicas para testes
   snapshot-threshold: 5
@@ -563,23 +426,3 @@ snapshot:
   auto-cleanup-enabled: false
   metrics-enabled: false
   health-check-enabled: false
-
----
-# Production Profile
-spring:
-  config:
-    activate:
-      on-profile: production
-
-eventstore:
-  replay:
-    defaults:
-      batch-size: 200
-      batch-timeout-seconds: 60
-    performance:
-      max-concurrent-replays: 10
-      thread-pool-size: 20
-      operation-timeout-seconds: 7200 # 2 horas
-    monitoring:
-      enable-detailed-logging: false
-      log-level: WARN

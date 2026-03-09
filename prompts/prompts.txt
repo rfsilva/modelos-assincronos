@@ -1,49 +1,5 @@
-Assuma o perfil de Principal Java Architect, tendo um background de desenvolvedor como sendo um exímio desenvolvedor Java, antenado com as melhores práticas e padrões de projeto e desenvolvimento.
 Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
- - Implemente a estória definida no documento "refinamento-epico-01.md" - código US008
+ - Implemente a estória US001 definida no documento "refinamento-epico-01.md"
 Como resultado, precisamos:
- - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
- - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
- - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md", EM ESPECIAL:
-	 - NÃO CRIAR CLASSES DE TESTE
-	 - NÃO CRIAR ARQUIVOS EVOLUTIVOS "_updated" "_fixed" e similares
-
-
-Estávamos executando a seguinte atividade (a):
----- INICIO ATIVIDADE (a) ---
-Assuma o perfil de Principal Java Architect, tendo um background de desenvolvedor como sendo um exímio desenvolvedor Java, antenado com as melhores práticas e padrões de projeto e desenvolvimento.
-Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
- - Implemente a estória definida no documento "refinamento-epico-01.md" - código US005
-Como resultado, precisamos:
- - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
- - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
- - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md", EM ESPECIAL:
-	 - NÃO CRIAR CLASSES DE TESTE
-	 - NÃO CRIAR ARQUIVOS EVOLUTIVOS "_updated" "_fixed" e similares
---- FIM ATIVIDADE (a) ---
-Estávamos na implementação da atividade (a) quando o processo foi interrompido no meio por motivos alheios à minha vontade. Então, quero que você faça o seguinte:
-1) Identifique a metodologia adotada para a execução da atividade (a);
-2) Identifique o ponto de parada;
-3) Retome e finalize a implementação
-
-
-Estávamos executando a seguinte atividade (a):
----- INICIO ATIVIDADE (a) ---
-Assuma o perfil de Principal Java Architect, tendo um background de desenvolvedor como sendo um exímio desenvolvedor Java, antenado com as melhores práticas e padrões de projeto e desenvolvimento.
-Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
- - Implemente a estória definida no documento "refinamento-epico-01.md" - código US005
-Como resultado, precisamos:
- - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
- - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
- - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md", EM ESPECIAL:
-	 - NÃO CRIAR CLASSES DE TESTE
-	 - NÃO CRIAR ARQUIVOS EVOLUTIVOS "_updated" "_fixed" e similares
---- FIM ATIVIDADE (a) ---
-Estávamos realizando as correções do build da atividade (a) quando o processo foi interrompido no meio por motivos alheios à minha vontade. Então, quero que você faça o seguinte:
-1) Identifique a metodologia adotada para a execução da atividade (a);
-2) Identifique, retome e corrija todos os erros
-
-
-
-
-Agora preciso que você gere um roteiro técnico, para o nível de um analista java junior, explicando cada uma das frentes que desenvolvemos tecnicmente e que você citou no relatório: Event Sourcing, CQRS, DDD, de acordo com o que está implementado. Preciso preparar os analistas pra iniciar o desenvolvimento do core de sinistro e garantir que eles vão seguir os padrões e boas práticas de uso alinhados ao que temos de frentes técnicas desenvolvidas. Separe em capítulos, se desejar. Gera os arquivos em formato Markdown numa pasta chamada "roteiro"
+ - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md")
+ - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md"

@@ -29,10 +29,10 @@ event-bus:
     detailed-logging: false
     error-rate-threshold: 0.1
   
-  # Configurações de Kafka (habilitado por padrão)
+  # Configurações de Kafka (quando habilitado)
   kafka:
-    enabled: true
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    enabled: false
+    bootstrap-servers: localhost:9092
     default-topic: domain-events
     partitions: 3
     replication-factor: 1
@@ -50,58 +50,3 @@ event-bus:
       enable-auto-commit: false
       max-poll-records: 500
       session-timeout-ms: 30000
-
----
-# Configurações específicas por ambiente
-
-# Ambiente local - Kafka desabilitado para desenvolvimento simples
-spring:
-  config:
-    activate:
-      on-profile: local
-
-event-bus:
-  kafka:
-    enabled: false
-
----
-# Ambiente de teste - Kafka com TestContainers
-spring:
-  config:
-    activate:
-      on-profile: test
-
-event-bus:
-  kafka:
-    enabled: true
-    bootstrap-servers: ${spring.embedded.kafka.brokers:localhost:9092}
-    default-topic: test-events
-    partitions: 1
-    replication-factor: 1
-
----
-# Ambiente de produção - Kafka totalmente configurado
-spring:
-  config:
-    activate:
-      on-profile: prod
-
-event-bus:
-  kafka:
-    enabled: true
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
-    default-topic: domain-events-prod
-    partitions: 6
-    replication-factor: 3
-    
-    producer:
-      acks: all
-      retries: 5
-      batch-size: 32768
-      linger-ms: 10
-      buffer-memory: 67108864
-    
-    consumer:
-      group-id: event-bus-consumers-prod
-      max-poll-records: 1000
-      session-timeout-ms: 45000
