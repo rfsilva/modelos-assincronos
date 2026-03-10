@@ -172,7 +172,11 @@ public class DataSourceConfiguration {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(readDataSource());
         em.setPackagesToScan(
-            "com.seguradora.hibrida.query.model"
+            "com.seguradora.hibrida.domain.sinistro.query.model",
+            "com.seguradora.hibrida.domain.segurado.query.model",
+            "com.seguradora.hibrida.domain.veiculo.query.model",
+            "com.seguradora.hibrida.domain.apolice.query.model",
+            "com.seguradora.hibrida.domain.analytics.model"
         );
         
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

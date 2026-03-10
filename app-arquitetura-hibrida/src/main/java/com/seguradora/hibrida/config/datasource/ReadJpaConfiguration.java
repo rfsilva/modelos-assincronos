@@ -18,7 +18,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories(
     basePackages = {
-        "com.seguradora.hibrida.query.repository"
+        "com.seguradora.hibrida.domain.sinistro.query.repository",
+        "com.seguradora.hibrida.domain.segurado.query.repository",
+        "com.seguradora.hibrida.domain.veiculo.query.repository",
+        "com.seguradora.hibrida.domain.apolice.query.repository",
+        "com.seguradora.hibrida.domain.analytics.repository"
     },
     entityManagerFactoryRef = "readEntityManagerFactory",
     transactionManagerRef = "readTransactionManager"
