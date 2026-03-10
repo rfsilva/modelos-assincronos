@@ -9,18 +9,28 @@ services:
       POSTGRES_DB: sinistros_eventstore
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
     ports:
       - "5435:5432"
     volumes:
       - postgres_write_data:/var/lib/postgresql/data
-      - ./docker/init-eventstore-db.sql:/docker-entrypoint-initdb.d/init-eventstore-db.sql
+      - ./docker/init-extensions.sql:/docker-entrypoint-initdb.d/01-init-extensions.sql
     networks:
       - hibrida-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d sinistros_eventstore"]
       interval: 10s
       timeout: 5s
       retries: 5
+    command: >
+      postgres
+      -c max_connections=200
+      -c shared_buffers=256MB
+      -c effective_cache_size=1GB
+      -c maintenance_work_mem=64MB
+      -c checkpoint_completion_target=0.9
+      -c wal_buffers=16MB
+      -c default_statistics_target=100
 
   # PostgreSQL Read Side - Projections (ESSENCIAL para Query Side)
   postgres-read:
@@ -30,28 +40,46 @@ services:
       POSTGRES_DB: sinistros_projections
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
     ports:
       - "5436:5432"
     volumes:
       - postgres_read_data:/var/lib/postgresql/data
-      - ./docker/init-projections-db.sql:/docker-entrypoint-initdb.d/init-projections-db.sql
+      - ./docker/init-extensions.sql:/docker-entrypoint-initdb.d/01-init-extensions.sql
     networks:
       - hibrida-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d sinistros_projections"]
       interval: 10s
       timeout: 5s
       retries: 5
+    command: >
+      postgres
+      -c max_connections=300
+      -c shared_buffers=256MB
+      -c effective_cache_size=1GB
+      -c maintenance_work_mem=64MB
+      -c random_page_cost=1.1
+      -c effective_io_concurrency=200
 
   # Redis Cache (ESSENCIAL para Query Side performance)
   redis:
     image: redis:7-alpine
     container_name: hibrida-redis
     ports:
-      - "6380:6379"
+      - "6380:6379"  # ✅ PORTA ALTERNATIVA para evitar conflito com Redis local
     volumes:
       - redis_data:/data
-    command: redis-server --maxmemory 1gb --maxmemory-policy allkeys-lru --databases 16
+    command: >
+      redis-server
+      --maxmemory 1gb
+      --maxmemory-policy allkeys-lru
+      --databases 16
+      --save 900 1
+      --save 300 10
+      --save 60 10000
+      --appendonly yes
+      --appendfsync everysec
     networks:
       - hibrida-network
     healthcheck:
@@ -67,8 +95,12 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_SYNC_LIMIT: 2
+      ZOOKEEPER_INIT_LIMIT: 5
+      ZOOKEEPER_MAX_CLIENT_CNXNS: 60
     volumes:
       - zookeeper_data:/var/lib/zookeeper/data
+      - zookeeper_logs:/var/lib/zookeeper/log
     networks:
       - hibrida-network
     healthcheck:
@@ -85,7 +117,7 @@ services:
       zookeeper:
         condition: service_healthy
     ports:
-      - "9093:9092"
+      - "9093:9092"  # ✅ PORTA ALTERNATIVA para evitar conflito com Kafka local
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -100,6 +132,16 @@ services:
       # Configurações específicas para Event Sourcing
       KAFKA_LOG_RETENTION_HOURS: 168
       KAFKA_LOG_CLEANUP_POLICY: 'compact,delete'
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824
+      KAFKA_LOG_RETENTION_BYTES: 1073741824
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      # Performance otimizada
+      KAFKA_SOCKET_SEND_BUFFER_BYTES: 102400
+      KAFKA_SOCKET_RECEIVE_BUFFER_BYTES: 102400
+      KAFKA_SOCKET_REQUEST_MAX_BYTES: 104857600
+      KAFKA_NUM_NETWORK_THREADS: 8
+      KAFKA_NUM_IO_THREADS: 8
     volumes:
       - kafka_data:/var/lib/kafka/data
     networks:
@@ -122,32 +164,132 @@ services:
       "
       # Aguardar Kafka estar pronto
       echo 'Aguardando Kafka estar pronto...'
-      cub kafka-ready -b kafka:29092 1 30
+      cub kafka-ready -b kafka:29092 1 60
       
-      # Criar tópicos de eventos de domínio
+      # Criar tópicos de eventos de domínio com configurações otimizadas
       echo 'Criando tópicos de Segurado...'
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.criado
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.atualizado
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.desativado
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.reativado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.criado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.atualizado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.desativado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic segurado.reativado --config cleanup.policy=compact --config retention.ms=604800000
       
       echo 'Criando tópicos de Apólice...'
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.criada
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.atualizada
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.cancelada
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.renovada
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.criada --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.atualizada --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.cancelada --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic apolice.renovada --config cleanup.policy=compact --config retention.ms=604800000
       
       echo 'Criando tópicos de Sinistro...'
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.criado
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.atualizado
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.aprovado
-      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.rejeitado
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.criado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.atualizado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.aprovado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic sinistro.rejeitado --config cleanup.policy=compact --config retention.ms=604800000
+      
+      echo 'Criando tópicos de Veículo...'
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic veiculo.criado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic veiculo.atualizado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic veiculo.associado --config cleanup.policy=compact --config retention.ms=604800000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic veiculo.desassociado --config cleanup.policy=compact --config retention.ms=604800000
+      
+      echo 'Criando tópicos de integração...'
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic detran.consulta.iniciada --config cleanup.policy=delete --config retention.ms=259200000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic detran.consulta.concluida --config cleanup.policy=delete --config retention.ms=259200000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic detran.consulta.erro --config cleanup.policy=delete --config retention.ms=259200000
+      
+      echo 'Criando tópicos de notificação...'
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic notificacao.email --config cleanup.policy=delete --config retention.ms=86400000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic notificacao.sms --config cleanup.policy=delete --config retention.ms=86400000
+      kafka-topics --create --if-not-exists --bootstrap-server kafka:29092 --replication-factor 1 --partitions 3 --topic notificacao.push --config cleanup.policy=delete --config retention.ms=86400000
       
       echo 'Tópicos criados com sucesso!'
       kafka-topics --list --bootstrap-server kafka:29092
+      
+      echo 'Configuração do Kafka concluída!'
       "
     networks:
       - hibrida-network
+
+  # 🎯 KAFKA UI - Interface Gráfica para Kafka
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: hibrida-kafka-ui
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: "Hibrida Kafka Cluster"
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:29092"
+      KAFKA_CLUSTERS_0_ZOOKEEPER: "zookeeper:2181"
+      # Configurações de UI
+      KAFKA_CLUSTERS_0_READONLY: "false"
+      # Configurações de segurança (desabilitadas para desenvolvimento)
+      AUTH_TYPE: "DISABLED"
+      # Configurações de performance
+      MANAGEMENT_HEALTH_LDAP_ENABLED: "false"
+      # Configurações de logging
+      LOGGING_LEVEL_COM_PROVECTUS: "INFO"
+      LOGGING_LEVEL_ORG_APACHE_KAFKA: "WARN"
+    networks:
+      - hibrida-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # 🎯 REDIS COMMANDER - Interface Gráfica para Redis
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: hibrida-redis-commander
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      REDIS_HOSTS: "local:redis:6379"
+      REDIS_HOST: "redis"
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ""
+      HTTP_USER: ""
+      HTTP_PASSWORD: ""
+    networks:
+      - hibrida-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8081"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🎯 PGADMIN - Interface Gráfica para PostgreSQL
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: hibrida-pgadmin
+    depends_on:
+      postgres-write:
+        condition: service_healthy
+      postgres-read:
+        condition: service_healthy
+    ports:
+      - "8082:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@hibrida.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin123"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./docker/pgadmin-servers.json:/pgadmin4/servers.json
+    networks:
+      - hibrida-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/misc/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   postgres_write_data:
@@ -158,10 +300,17 @@ volumes:
     driver: local
   zookeeper_data:
     driver: local
+  zookeeper_logs:
+    driver: local
   kafka_data:
+    driver: local
+  pgadmin_data:
     driver: local
 
 networks:
   hibrida-network:
     driver: bridge
     name: hibrida-network
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
