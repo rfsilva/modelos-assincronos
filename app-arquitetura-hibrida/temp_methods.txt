@@ -1,0 +1,23 @@
+    
+    // === CONSULTAS PARA SCHEDULER DE NOTIFICAÇÕES ===
+    
+    /**
+     * Busca apólices que vencem em uma data específica com status específico.
+     * Usado pelo scheduler para detectar vencimentos.
+     */
+    @Query("SELECT a FROM ApoliceQueryModel a WHERE a.vigenciaFim = :data AND a.status = :status ORDER BY a.numeroApolice")
+    List<ApoliceQueryModel> findByVigenciaFimAndStatusOrderByNumeroApolice(@Param("data") LocalDate data, @Param("status") String status);
+    
+    /**
+     * Busca apólices que vencem antes de uma data com status específico.
+     * Usado para detectar apólices já vencidas.
+     */
+    @Query("SELECT a FROM ApoliceQueryModel a WHERE a.vigenciaFim < :data AND a.status = :status ORDER BY a.vigenciaFim")
+    List<ApoliceQueryModel> findByVigenciaFimLessThanAndStatusOrderByVigenciaFim(@Param("data") LocalDate data, @Param("status") String status);
+    
+    /**
+     * Busca apólices que vencem até uma data com status específico.
+     * Usado para detectar apólices elegíveis para renovação.
+     */
+    @Query("SELECT a FROM ApoliceQueryModel a WHERE a.vigenciaFim <= :data AND a.status = :status ORDER BY a.vigenciaFim")
+    List<ApoliceQueryModel> findByVigenciaFimLessThanEqualAndStatusOrderByVigenciaFim(@Param("data") LocalDate data, @Param("status") String status);

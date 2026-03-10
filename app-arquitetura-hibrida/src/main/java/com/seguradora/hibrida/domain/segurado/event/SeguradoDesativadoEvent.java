@@ -21,6 +21,13 @@ public class SeguradoDesativadoEvent extends DomainEvent {
         this.motivo = motivo;
     }
     
+    /**
+     * Retorna o ID do segurado (mesmo que aggregateId).
+     */
+    public String getSeguradoId() {
+        return getAggregateId();
+    }
+    
     @Override
     public String getEventType() {
         return "SeguradoDesativado";
