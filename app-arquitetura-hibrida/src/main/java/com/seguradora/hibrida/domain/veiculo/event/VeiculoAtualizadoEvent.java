@@ -1,76 +1,114 @@
 package com.seguradora.hibrida.domain.veiculo.event;
 
-import com.seguradora.hibrida.domain.veiculo.model.Especificacao;
 import com.seguradora.hibrida.eventstore.model.DomainEvent;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.seguradora.hibrida.domain.veiculo.model.Especificacao;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 
 /**
- * Evento de domínio disparado quando as especificações de um veículo são atualizadas.
- * Contém as especificações alteradas, valores anteriores e novos valores para auditoria.
+ * Evento disparado quando um veículo é atualizado.
+ * 
+ * @author Principal Java Architect
+ * @since 1.0.0
  */
-@Getter
-@NoArgsConstructor
 public class VeiculoAtualizadoEvent extends DomainEvent {
     
-    private Especificacao novaEspecificacao;
-    private Map<String, Object> valoresAnteriores;
-    private Map<String, Object> novosValores;
-    private String operadorId;
-
-    public VeiculoAtualizadoEvent(
-            String aggregateId,
-            Especificacao novaEspecificacao,
-            Map<String, Object> valoresAnteriores,
-            Map<String, Object> novosValores,
-            String operadorId) {
-        
-        super(aggregateId, "VeiculoAggregate", 0);
-        this.novaEspecificacao = validarEspecificacao(novaEspecificacao);
-        this.valoresAnteriores = valoresAnteriores != null ? new HashMap<>(valoresAnteriores) : new HashMap<>();
-        this.novosValores = novosValores != null ? new HashMap<>(novosValores) : new HashMap<>();
-        this.operadorId = validarOperadorId(operadorId);
+    private static final String EVENT_TYPE = "VeiculoAtualizado";
+    
+    private final Especificacao especificacaoAnterior;
+    private final Especificacao novaEspecificacao;
+    private final String operadorId;
+    private final String motivoAlteracao;
+    
+    public VeiculoAtualizadoEvent(String aggregateId, long version, 
+                                 Especificacao especificacaoAnterior, Especificacao novaEspecificacao,
+                                 String operadorId, String motivoAlteracao) {
+        super(aggregateId, "VeiculoAggregate", version);
+        this.especificacaoAnterior = especificacaoAnterior;
+        this.novaEspecificacao = novaEspecificacao;
+        this.operadorId = operadorId;
+        this.motivoAlteracao = motivoAlteracao;
     }
-
-    private Especificacao validarEspecificacao(Especificacao especificacao) {
-        if (especificacao == null) {
-            throw new IllegalArgumentException("Nova especificação não pode ser nula");
-        }
-        return especificacao;
+    
+    public static VeiculoAtualizadoEvent create(String aggregateId, long version,
+                                               Especificacao especificacaoAnterior, 
+                                               Especificacao novaEspecificacao,
+                                               String operadorId, String motivoAlteracao) {
+        return new VeiculoAtualizadoEvent(aggregateId, version, especificacaoAnterior, 
+                                         novaEspecificacao, operadorId, motivoAlteracao);
     }
-
-    private String validarOperadorId(String operadorId) {
-        if (operadorId == null || operadorId.trim().isEmpty()) {
-            throw new IllegalArgumentException("ID do operador não pode ser nulo ou vazio");
-        }
-        return operadorId.trim();
-    }
-
-    /**
-     * Verifica se houve mudança em um campo específico.
-     */
-    public boolean houveAlteracaoEm(String campo) {
-        return novosValores.containsKey(campo) && 
-               !novosValores.get(campo).equals(valoresAnteriores.get(campo));
-    }
-
-    /**
-     * Retorna a descrição das alterações realizadas.
-     */
-    public String getDescricaoAlteracoes() {
-        StringBuilder sb = new StringBuilder();
-        novosValores.forEach((campo, novoValor) -> {
-            Object valorAnterior = valoresAnteriores.get(campo);
-            sb.append(String.format("%s: %s → %s; ", campo, valorAnterior, novoValor));
-        });
-        return sb.toString();
-    }
-
+    
     @Override
     public String getEventType() {
-        return "VeiculoAtualizado";
+        return EVENT_TYPE;
+    }
+    
+    public Especificacao getEspecificacaoAnterior() {
+        return especificacaoAnterior;
+    }
+    
+    public Especificacao getNovaEspecificacao() {
+        return novaEspecificacao;
+    }
+    
+    public String getOperadorId() {
+        return operadorId;
+    }
+    
+    public String getMotivoAlteracao() {
+        return motivoAlteracao;
+    }
+    
+    public String getDescricaoAlteracoes() {
+        StringBuilder sb = new StringBuilder();
+        
+        if (!Objects.equals(especificacaoAnterior.getCor(), novaEspecificacao.getCor())) {
+            sb.append("Cor: ").append(especificacaoAnterior.getCor())
+              .append(" → ").append(novaEspecificacao.getCor()).append("; ");
+        }
+        
+        if (!Objects.equals(especificacaoAnterior.getTipoCombustivel(), novaEspecificacao.getTipoCombustivel())) {
+            sb.append("Combustível: ").append(especificacaoAnterior.getTipoCombustivel())
+              .append(" → ").append(novaEspecificacao.getTipoCombustivel()).append("; ");
+        }
+        
+        if (!Objects.equals(especificacaoAnterior.getCilindrada(), novaEspecificacao.getCilindrada())) {
+            sb.append("Cilindrada: ").append(especificacaoAnterior.getCilindrada())
+              .append(" → ").append(novaEspecificacao.getCilindrada()).append("; ");
+        }
+        
+        return sb.length() > 0 ? sb.toString() : "Nenhuma alteração detectada";
+    }
+    
+    public boolean houveAlteracaoEm(String campo) {
+        return switch (campo.toLowerCase()) {
+            case "cor" -> !Objects.equals(especificacaoAnterior.getCor(), novaEspecificacao.getCor());
+            case "combustivel" -> !Objects.equals(especificacaoAnterior.getTipoCombustivel(), novaEspecificacao.getTipoCombustivel());
+            case "cilindrada" -> !Objects.equals(especificacaoAnterior.getCilindrada(), novaEspecificacao.getCilindrada());
+            default -> false;
+        };
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        
+        VeiculoAtualizadoEvent that = (VeiculoAtualizadoEvent) obj;
+        return Objects.equals(especificacaoAnterior, that.especificacaoAnterior) &&
+               Objects.equals(novaEspecificacao, that.novaEspecificacao) &&
+               Objects.equals(operadorId, that.operadorId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), especificacaoAnterior, novaEspecificacao, operadorId);
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("VeiculoAtualizadoEvent{aggregateId='%s', operador='%s', alteracoes='%s'}",
+            getAggregateId(), operadorId, getDescricaoAlteracoes());
     }
 }

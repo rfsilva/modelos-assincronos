@@ -1,8 +1,8 @@
-package com.seguradora.hibrida.projection.example;
+package com.seguradora.hibrida.domain.sinistro.projection;
 
 import com.seguradora.hibrida.eventstore.model.DomainEvent;
 import com.seguradora.hibrida.projection.AbstractProjectionHandler;
-import com.seguradora.hibrida.query.model.SinistroQueryModel;
+import com.seguradora.hibrida.domain.sinistro.query.model.SinistroQueryModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -14,10 +14,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Exemplo de Projection Handler para eventos de sinistro.
+ * Projection Handler para eventos de sinistro.
  * 
- * <p>Este handler demonstra como implementar um projection handler
- * que processa eventos de domínio e atualiza query models.
+ * <p>Este handler processa eventos de domínio relacionados a sinistros
+ * e atualiza as projeções de consulta correspondentes.
  * 
  * <p>Características:
  * <ul>

@@ -5,9 +5,9 @@ import com.seguradora.hibrida.domain.apolice.aggregate.ApoliceAggregate;
 import com.seguradora.hibrida.domain.apolice.command.CriarApoliceCommand;
 import com.seguradora.hibrida.domain.apolice.model.NumeroApolice;
 import com.seguradora.hibrida.domain.apolice.service.ApoliceValidationService;
-import com.seguradora.hibrida.domain.apolice.service.SeguradoValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,12 +29,12 @@ public class CriarApoliceCommandHandler {
     
     private final AggregateRepository<ApoliceAggregate> repository;
     private final ApoliceValidationService apoliceValidationService;
-    private final SeguradoValidationService seguradoValidationService;
+    private final ApoliceValidationService seguradoValidationService;
     
     public CriarApoliceCommandHandler(
             AggregateRepository<ApoliceAggregate> repository,
             ApoliceValidationService apoliceValidationService,
-            SeguradoValidationService seguradoValidationService) {
+            @Qualifier("apoliceValidationService") ApoliceValidationService seguradoValidationService) {
         
         this.repository = repository;
         this.apoliceValidationService = apoliceValidationService;

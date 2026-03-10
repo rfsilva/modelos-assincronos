@@ -2,44 +2,102 @@ package com.seguradora.hibrida.domain.veiculo.command;
 
 import com.seguradora.hibrida.command.Command;
 import com.seguradora.hibrida.domain.veiculo.model.Especificacao;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import lombok.Builder;
-import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.Instant;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Comando para atualização de especificações de um veículo.
- * Permite alterar cor, tipo de combustível e cilindrada.
+ * Comando para atualizar especificações de um veículo.
  * 
  * @author Principal Java Architect
- * @since 3.0.0
+ * @since 1.0.0
  */
-@Data
-@Builder
 public class AtualizarVeiculoCommand implements Command {
     
-    @Builder.Default
-    private UUID commandId = UUID.randomUUID();
+    private final UUID commandId;
+    private final Instant timestamp;
+    private final UUID correlationId;
+    private final String userId;
     
-    @Builder.Default
-    private Instant timestamp = Instant.now();
+    @NotBlank(message = "ID do veículo é obrigatório")
+    private final String veiculoId;
     
-    private UUID correlationId;
-    private String userId;
+    @NotNull(message = "Nova especificação é obrigatória")
+    private final Especificacao novaEspecificacao;
     
-    @NotBlank(message = "ID do veículo não pode ser vazio")
-    private String veiculoId;
+    @NotBlank(message = "ID do operador é obrigatório")
+    private final String operadorId;
     
-    @NotNull(message = "Nova especificação não pode ser nula")
-    @Valid
-    private Especificacao novaEspecificacao;
+    private final Long versaoEsperada;
     
-    @NotBlank(message = "ID do operador não pode ser vazio")
-    private String operadorId;
+    public AtualizarVeiculoCommand(String veiculoId, Especificacao novaEspecificacao, 
+                                  String operadorId, Long versaoEsperada, 
+                                  UUID correlationId, String userId) {
+        this.commandId = UUID.randomUUID();
+        this.timestamp = Instant.now();
+        this.correlationId = correlationId;
+        this.userId = userId;
+        this.veiculoId = veiculoId;
+        this.novaEspecificacao = novaEspecificacao;
+        this.operadorId = operadorId;
+        this.versaoEsperada = versaoEsperada;
+    }
     
-    @Min(value = 0, message = "Versão esperada deve ser maior ou igual a zero")
-    private long versaoEsperada;
+    @Override
+    public UUID getCommandId() {
+        return commandId;
+    }
+    
+    @Override
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+    
+    @Override
+    public UUID getCorrelationId() {
+        return correlationId;
+    }
+    
+    @Override
+    public String getUserId() {
+        return userId;
+    }
+    
+    public String getVeiculoId() {
+        return veiculoId;
+    }
+    
+    public Especificacao getNovaEspecificacao() {
+        return novaEspecificacao;
+    }
+    
+    public String getOperadorId() {
+        return operadorId;
+    }
+    
+    public Long getVersaoEsperada() {
+        return versaoEsperada;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        AtualizarVeiculoCommand that = (AtualizarVeiculoCommand) obj;
+        return Objects.equals(commandId, that.commandId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(commandId);
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("AtualizarVeiculoCommand{id=%s, veiculoId='%s'}", 
+                           commandId, veiculoId);
+    }
 }

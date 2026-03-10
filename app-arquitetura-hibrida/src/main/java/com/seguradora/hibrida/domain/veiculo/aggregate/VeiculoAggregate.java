@@ -2,27 +2,31 @@ package com.seguradora.hibrida.domain.veiculo.aggregate;
 
 import com.seguradora.hibrida.aggregate.AggregateRoot;
 import com.seguradora.hibrida.aggregate.EventSourcingHandler;
+import com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException;
 import com.seguradora.hibrida.domain.veiculo.event.*;
 import com.seguradora.hibrida.domain.veiculo.model.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.*;
 
 /**
  * Aggregate Root para o domínio de Veículo.
- * Gerencia o ciclo de vida completo de um veículo, incluindo criação,
- * atualização de especificações, transferência de propriedade e
- * associação com apólices de seguro.
+ * 
+ * <p>Gerencia o ciclo de vida completo de um veículo, incluindo:
+ * <ul>
+ *   <li>Criação com validações específicas do domínio automotivo</li>
+ *   <li>Atualização de especificações técnicas</li>
+ *   <li>Associação/desassociação com apólices de seguro</li>
+ *   <li>Transferência de propriedade</li>
+ *   <li>Controle de status e histórico</li>
+ * </ul>
  * 
  * @author Principal Java Architect
- * @since 3.0.0
+ * @since 1.0.0
  */
-@Getter
-@NoArgsConstructor
 public class VeiculoAggregate extends AggregateRoot {
-
+    
+    // Estado do veículo
     private Placa placa;
     private Renavam renavam;
     private Chassi chassi;
@@ -34,301 +38,254 @@ public class VeiculoAggregate extends AggregateRoot {
     private StatusVeiculo status;
     
     // Relacionamentos com apólices
-    private Map<String, LocalDate> apolicesAtivas = new HashMap<>();
+    private final Set<String> apolicesAssociadas = new HashSet<>();
     
-    // Histórico de propriedade
-    private List<Proprietario> historicoProprietarios = new ArrayList<>();
-
+    // Metadados
+    private String operadorCriacao;
+    private String ultimoOperador;
+    
     /**
-     * Construtor para criação de um novo veículo.
-     * Aplica evento VeiculoCriadoEvent.
+     * Construtor padrão para reconstrução do histórico.
      */
-    public VeiculoAggregate(
-            String veiculoId,
-            Placa placa,
-            Renavam renavam,
-            Chassi chassi,
-            String marca,
-            String modelo,
-            AnoModelo anoModelo,
-            Especificacao especificacao,
-            Proprietario proprietario) {
-        
-        // Validações de negócio
-        validarCriacaoVeiculo(placa, renavam, chassi, marca, modelo, anoModelo, especificacao, proprietario);
-        
-        // Aplicar evento
-        applyEvent(new VeiculoCriadoEvent(
-            veiculoId,
-            placa,
-            renavam,
-            chassi,
-            marca,
-            modelo,
-            anoModelo,
-            especificacao,
-            proprietario,
-            StatusVeiculo.ATIVO
-        ));
+    public VeiculoAggregate() {
+        super();
+        registerBusinessRules();
     }
-
+    
+    /**
+     * Construtor para criação de novo veículo.
+     */
+    public VeiculoAggregate(String id) {
+        super(id);
+        registerBusinessRules();
+    }
+    
+    /**
+     * Cria um novo veículo no sistema.
+     */
+    public static VeiculoAggregate criarVeiculo(String id, String placa, String renavam, String chassi,
+                                               String marca, String modelo, int anoFabricacao, int anoModelo,
+                                               Especificacao especificacao, Proprietario proprietario,
+                                               String operadorId) {
+        VeiculoAggregate veiculo = new VeiculoAggregate(id);
+        
+        // Validações de criação
+        veiculo.validarCriacaoVeiculo(
+            Placa.of(placa), Renavam.of(renavam), Chassi.of(chassi),
+            marca, modelo, AnoModelo.of(anoFabricacao, anoModelo),
+            especificacao, proprietario
+        );
+        
+        // Aplicar evento de criação
+        VeiculoCriadoEvent evento = VeiculoCriadoEvent.create(
+            id, 1L, placa, renavam, chassi, marca, modelo,
+            anoFabricacao, anoModelo, especificacao, proprietario, operadorId
+        );
+        
+        veiculo.applyEvent(evento);
+        return veiculo;
+    }
+    
     /**
      * Atualiza as especificações do veículo.
-     * Valida compatibilidade e aplica evento VeiculoAtualizadoEvent.
      */
     public void atualizarEspecificacoes(Especificacao novaEspecificacao, String operadorId) {
+        if (novaEspecificacao == null) {
+            throw new BusinessRuleViolationException("Nova especificação é obrigatória", 
+                Arrays.asList("Especificação não pode ser nula"));
+        }
+        
         validarAtualizacao(novaEspecificacao);
         
-        Map<String, Object> valoresAnteriores = new HashMap<>();
-        Map<String, Object> novosValores = new HashMap<>();
+        VeiculoAtualizadoEvent evento = VeiculoAtualizadoEvent.create(
+            getId(), getVersion() + 1, this.especificacao, 
+            novaEspecificacao, operadorId, "Atualização de especificações"
+        );
         
-        if (!especificacao.getCor().equals(novaEspecificacao.getCor())) {
-            valoresAnteriores.put("cor", especificacao.getCor());
-            novosValores.put("cor", novaEspecificacao.getCor());
-        }
-        
-        if (especificacao.getTipoCombustivel() != novaEspecificacao.getTipoCombustivel()) {
-            valoresAnteriores.put("tipoCombustivel", especificacao.getTipoCombustivel());
-            novosValores.put("tipoCombustivel", novaEspecificacao.getTipoCombustivel());
-        }
-        
-        if (especificacao.getCilindrada() != novaEspecificacao.getCilindrada()) {
-            valoresAnteriores.put("cilindrada", especificacao.getCilindrada());
-            novosValores.put("cilindrada", novaEspecificacao.getCilindrada());
-        }
-        
-        applyEvent(new VeiculoAtualizadoEvent(
-            getId(),
-            novaEspecificacao,
-            valoresAnteriores,
-            novosValores,
-            operadorId
-        ));
+        applyEvent(evento);
     }
-
+    
     /**
-     * Transfere a propriedade do veículo para novo proprietário.
-     * Aplica evento PropriedadeTransferidaEvent.
-     */
-    public void transferirPropriedade(Proprietario novoProprietario, LocalDate dataTransferencia, String operadorId) {
-        validarTransferenciaPropriedade(novoProprietario);
-        
-        applyEvent(new PropriedadeTransferidaEvent(
-            getId(),
-            proprietario,
-            novoProprietario,
-            dataTransferencia,
-            operadorId
-        ));
-    }
-
-    /**
-     * Associa o veículo a uma apólice de seguro.
-     * Aplica evento VeiculoAssociadoEvent.
+     * Associa o veículo a uma apólice.
      */
     public void associarApolice(String apoliceId, LocalDate dataInicio, String operadorId) {
+        if (apoliceId == null || apoliceId.trim().isEmpty()) {
+            throw new BusinessRuleViolationException("ID da apólice é obrigatório",
+                Arrays.asList("ID da apólice não pode ser nulo ou vazio"));
+        }
+        
         validarAssociacaoApolice(apoliceId);
         
-        applyEvent(new VeiculoAssociadoEvent(
-            getId(),
-            apoliceId,
-            dataInicio,
-            operadorId
-        ));
+        VeiculoAssociadoEvent evento = VeiculoAssociadoEvent.create(
+            getId(), getVersion() + 1, apoliceId, dataInicio, operadorId
+        );
+        
+        applyEvent(evento);
     }
-
+    
     /**
-     * Desassocia o veículo de uma apólice de seguro.
-     * Aplica evento VeiculoDesassociadoEvent.
+     * Desassocia o veículo de uma apólice.
      */
     public void desassociarApolice(String apoliceId, LocalDate dataFim, String motivo, String operadorId) {
+        if (apoliceId == null || apoliceId.trim().isEmpty()) {
+            throw new BusinessRuleViolationException("ID da apólice é obrigatório",
+                Arrays.asList("ID da apólice não pode ser nulo ou vazio"));
+        }
+        
         validarDesassociacaoApolice(apoliceId);
         
-        applyEvent(new VeiculoDesassociadoEvent(
-            getId(),
-            apoliceId,
-            dataFim,
-            motivo,
-            operadorId
-        ));
+        VeiculoDesassociadoEvent evento = VeiculoDesassociadoEvent.create(
+            getId(), getVersion() + 1, apoliceId, dataFim, motivo, operadorId
+        );
+        
+        applyEvent(evento);
     }
-
-    // =========================
-    // EVENT SOURCING HANDLERS
-    // =========================
-
+    
+    /**
+     * Transfere a propriedade do veículo.
+     */
+    public void transferirPropriedade(Proprietario novoProprietario, LocalDate dataTransferencia, String operadorId) {
+        if (novoProprietario == null) {
+            throw new BusinessRuleViolationException("Novo proprietário é obrigatório",
+                Arrays.asList("Proprietário não pode ser nulo"));
+        }
+        
+        validarTransferenciaPropriedade(novoProprietario);
+        
+        PropriedadeTransferidaEvent evento = PropriedadeTransferidaEvent.create(
+            getId(), getVersion() + 1, this.proprietario, novoProprietario,
+            dataTransferencia, operadorId, "Transferência de propriedade"
+        );
+        
+        applyEvent(evento);
+    }
+    
+    // Event Handlers
+    
     @EventSourcingHandler
     protected void on(VeiculoCriadoEvent event) {
-        this.placa = event.getPlaca();
-        this.renavam = event.getRenavam();
-        this.chassi = event.getChassi();
+        this.placa = Placa.of(event.getPlaca());
+        this.renavam = Renavam.of(event.getRenavam());
+        this.chassi = Chassi.of(event.getChassi());
         this.marca = event.getMarca();
         this.modelo = event.getModelo();
-        this.anoModelo = event.getAnoModelo();
+        this.anoModelo = AnoModelo.of(event.getAnoFabricacao(), event.getAnoModelo());
         this.especificacao = event.getEspecificacao();
         this.proprietario = event.getProprietario();
         this.status = event.getStatus();
-        this.historicoProprietarios.add(event.getProprietario());
+        this.operadorCriacao = event.getOperadorId();
+        this.ultimoOperador = event.getOperadorId();
     }
-
+    
     @EventSourcingHandler
     protected void on(VeiculoAtualizadoEvent event) {
         this.especificacao = event.getNovaEspecificacao();
+        this.ultimoOperador = event.getOperadorId();
     }
-
+    
+    @EventSourcingHandler
+    protected void on(VeiculoAssociadoEvent event) {
+        this.apolicesAssociadas.add(event.getApoliceId());
+        this.ultimoOperador = event.getOperadorId();
+    }
+    
+    @EventSourcingHandler
+    protected void on(VeiculoDesassociadoEvent event) {
+        this.apolicesAssociadas.remove(event.getApoliceId());
+        this.ultimoOperador = event.getOperadorId();
+    }
+    
     @EventSourcingHandler
     protected void on(PropriedadeTransferidaEvent event) {
         this.proprietario = event.getNovoProprietario();
-        this.historicoProprietarios.add(event.getNovoProprietario());
+        this.ultimoOperador = event.getOperadorId();
     }
-
-    @EventSourcingHandler
-    protected void on(VeiculoAssociadoEvent event) {
-        this.apolicesAtivas.put(event.getApoliceId(), event.getDataInicio());
-    }
-
-    @EventSourcingHandler
-    protected void on(VeiculoDesassociadoEvent event) {
-        this.apolicesAtivas.remove(event.getApoliceId());
-    }
-
-    // =========================
-    // VALIDAÇÕES DE NEGÓCIO
-    // =========================
-
-    private void validarCriacaoVeiculo(
-            Placa placa, Renavam renavam, Chassi chassi,
-            String marca, String modelo, AnoModelo anoModelo,
-            Especificacao especificacao, Proprietario proprietario) {
+    
+    // Validações
+    
+    private void validarCriacaoVeiculo(Placa placa, Renavam renavam, Chassi chassi,
+                                      String marca, String modelo, AnoModelo anoModelo,
+                                      Especificacao especificacao, Proprietario proprietario) {
+        List<String> erros = new ArrayList<>();
         
-        if (placa == null) {
-            throw new IllegalArgumentException("Placa não pode ser nula");
-        }
-        if (renavam == null) {
-            throw new IllegalArgumentException("RENAVAM não pode ser nulo");
-        }
-        if (chassi == null) {
-            throw new IllegalArgumentException("Chassi não pode ser nulo");
-        }
-        if (marca == null || marca.trim().isEmpty()) {
-            throw new IllegalArgumentException("Marca não pode ser nula ou vazia");
-        }
-        if (modelo == null || modelo.trim().isEmpty()) {
-            throw new IllegalArgumentException("Modelo não pode ser nulo ou vazio");
-        }
-        if (anoModelo == null) {
-            throw new IllegalArgumentException("Ano/Modelo não pode ser nulo");
-        }
-        if (especificacao == null) {
-            throw new IllegalArgumentException("Especificação não pode ser nula");
-        }
-        if (proprietario == null) {
-            throw new IllegalArgumentException("Proprietário não pode ser nulo");
-        }
+        if (placa == null) erros.add("Placa é obrigatória");
+        if (renavam == null) erros.add("RENAVAM é obrigatório");
+        if (chassi == null) erros.add("Chassi é obrigatório");
+        if (marca == null || marca.trim().isEmpty()) erros.add("Marca é obrigatória");
+        if (modelo == null || modelo.trim().isEmpty()) erros.add("Modelo é obrigatório");
+        if (anoModelo == null) erros.add("Ano/modelo é obrigatório");
+        if (especificacao == null) erros.add("Especificação é obrigatória");
+        if (proprietario == null) erros.add("Proprietário é obrigatório");
         
-        // Validar compatibilidade entre categoria e especificações
-        if (!especificacao.isCompativel(especificacao.getCategoria())) {
-            throw new IllegalArgumentException("Especificação incompatível com categoria do veículo");
-        }
-        
-        if (!especificacao.isCombustivelCompativel()) {
-            throw new IllegalArgumentException("Tipo de combustível incompatível com categoria do veículo");
+        if (!erros.isEmpty()) {
+            throw new BusinessRuleViolationException("Dados inválidos para criação do veículo", erros);
         }
     }
-
+    
     private void validarAtualizacao(Especificacao novaEspecificacao) {
-        if (status == StatusVeiculo.BLOQUEADO) {
-            throw new IllegalStateException("Não é possível atualizar veículo bloqueado");
-        }
-        if (status == StatusVeiculo.SINISTRADO) {
-            throw new IllegalStateException("Não é possível atualizar veículo sinistrado");
-        }
-        if (novaEspecificacao == null) {
-            throw new IllegalArgumentException("Nova especificação não pode ser nula");
-        }
-        // Categoria não pode ser alterada após criação
-        if (novaEspecificacao.getCategoria() != especificacao.getCategoria()) {
-            throw new IllegalArgumentException("Categoria do veículo não pode ser alterada");
-        }
-    }
-
-    private void validarTransferenciaPropriedade(Proprietario novoProprietario) {
-        if (status == StatusVeiculo.BLOQUEADO) {
-            throw new IllegalStateException("Não é possível transferir veículo bloqueado");
-        }
-        if (novoProprietario == null) {
-            throw new IllegalArgumentException("Novo proprietário não pode ser nulo");
-        }
-        if (novoProprietario.getCpfCnpj().equals(proprietario.getCpfCnpj())) {
-            throw new IllegalArgumentException("Novo proprietário não pode ser igual ao proprietário atual");
-        }
-    }
-
-    private void validarAssociacaoApolice(String apoliceId) {
-        if (status != StatusVeiculo.ATIVO) {
-            throw new IllegalStateException("Veículo deve estar ativo para ser associado a uma apólice");
-        }
-        if (apoliceId == null || apoliceId.trim().isEmpty()) {
-            throw new IllegalArgumentException("ID da apólice não pode ser nulo ou vazio");
-        }
-        if (apolicesAtivas.containsKey(apoliceId)) {
-            throw new IllegalArgumentException("Veículo já está associado a esta apólice");
-        }
-    }
-
-    private void validarDesassociacaoApolice(String apoliceId) {
-        if (apoliceId == null || apoliceId.trim().isEmpty()) {
-            throw new IllegalArgumentException("ID da apólice não pode ser nulo ou vazio");
-        }
-        if (!apolicesAtivas.containsKey(apoliceId)) {
-            throw new IllegalArgumentException("Veículo não está associado a esta apólice");
-        }
-    }
-
-    // =========================
-    // SNAPSHOT SUPPORT
-    // =========================
-
-    @Override
-    public Object createSnapshot() {
-        Map<String, Object> snapshot = new HashMap<>();
-        snapshot.put("id", getId());
-        snapshot.put("placa", placa);
-        snapshot.put("renavam", renavam);
-        snapshot.put("chassi", chassi);
-        snapshot.put("marca", marca);
-        snapshot.put("modelo", modelo);
-        snapshot.put("anoModelo", anoModelo);
-        snapshot.put("especificacao", especificacao);
-        snapshot.put("proprietario", proprietario);
-        snapshot.put("status", status);
-        snapshot.put("apolicesAtivas", new HashMap<>(apolicesAtivas));
-        snapshot.put("historicoProprietarios", new ArrayList<>(historicoProprietarios));
-        snapshot.put("version", getVersion());
-        return snapshot;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    protected void restoreFromSnapshot(Object snapshotData) {
-        if (!(snapshotData instanceof Map)) {
-            throw new IllegalArgumentException("Snapshot data must be a Map");
+        if (this.status != StatusVeiculo.ATIVO) {
+            throw new BusinessRuleViolationException("Veículo deve estar ativo para atualização",
+                Arrays.asList("Status atual: " + this.status));
         }
         
-        Map<String, Object> snapshot = (Map<String, Object>) snapshotData;
-        this.placa = (Placa) snapshot.get("placa");
-        this.renavam = (Renavam) snapshot.get("renavam");
-        this.chassi = (Chassi) snapshot.get("chassi");
-        this.marca = (String) snapshot.get("marca");
-        this.modelo = (String) snapshot.get("modelo");
-        this.anoModelo = (AnoModelo) snapshot.get("anoModelo");
-        this.especificacao = (Especificacao) snapshot.get("especificacao");
-        this.proprietario = (Proprietario) snapshot.get("proprietario");
-        this.status = (StatusVeiculo) snapshot.get("status");
-        this.apolicesAtivas = (Map<String, LocalDate>) snapshot.get("apolicesAtivas");
-        this.historicoProprietarios = (List<Proprietario>) snapshot.get("historicoProprietarios");
+        if (!novaEspecificacao.isCompativel(this.especificacao.getCategoria())) {
+            throw new BusinessRuleViolationException("Nova especificação incompatível com categoria",
+                Arrays.asList("Categoria: " + this.especificacao.getCategoria()));
+        }
     }
-
+    
+    private void validarAssociacaoApolice(String apoliceId) {
+        if (this.apolicesAssociadas.contains(apoliceId)) {
+            throw new BusinessRuleViolationException("Veículo já associado à apólice",
+                Arrays.asList("Apólice: " + apoliceId));
+        }
+        
+        if (this.status != StatusVeiculo.ATIVO) {
+            throw new BusinessRuleViolationException("Veículo deve estar ativo para associação",
+                Arrays.asList("Status atual: " + this.status));
+        }
+    }
+    
+    private void validarDesassociacaoApolice(String apoliceId) {
+        if (!this.apolicesAssociadas.contains(apoliceId)) {
+            throw new BusinessRuleViolationException("Veículo não está associado à apólice",
+                Arrays.asList("Apólice: " + apoliceId));
+        }
+    }
+    
+    private void validarTransferenciaPropriedade(Proprietario novoProprietario) {
+        if (this.proprietario.equals(novoProprietario)) {
+            throw new BusinessRuleViolationException("Novo proprietário deve ser diferente do atual",
+                Arrays.asList("Proprietário atual: " + this.proprietario.getNome()));
+        }
+        
+        if (this.status != StatusVeiculo.ATIVO) {
+            throw new BusinessRuleViolationException("Veículo deve estar ativo para transferência",
+                Arrays.asList("Status atual: " + this.status));
+        }
+    }
+    
+    private void registerBusinessRules() {
+        // Registrar regras de negócio específicas do veículo
+        // Implementação futura conforme necessário
+    }
+    
+    // Métodos auxiliares
+    
+    public boolean isAssociadoA(String apoliceId) {
+        return apolicesAssociadas.contains(apoliceId);
+    }
+    
+    public boolean temApolicesAtivas() {
+        return !apolicesAssociadas.isEmpty();
+    }
+    
+    public int getQuantidadeApolicesAtivas() {
+        return apolicesAssociadas.size();
+    }
+    
+    // Implementação dos métodos abstratos
+    
     @Override
     protected void clearState() {
         this.placa = null;
@@ -340,32 +297,113 @@ public class VeiculoAggregate extends AggregateRoot {
         this.especificacao = null;
         this.proprietario = null;
         this.status = null;
-        this.apolicesAtivas.clear();
-        this.historicoProprietarios.clear();
+        this.apolicesAssociadas.clear();
+        this.operadorCriacao = null;
+        this.ultimoOperador = null;
     }
-
-    // =========================
-    // MÉTODOS AUXILIARES
-    // =========================
-
-    /**
-     * Verifica se o veículo possui apólices ativas.
-     */
-    public boolean temApolicesAtivas() {
-        return !apolicesAtivas.isEmpty();
+    
+    @Override
+    protected void restoreFromSnapshot(Object snapshotData) {
+        if (snapshotData instanceof VeiculoSnapshot snapshot) {
+            this.placa = snapshot.getPlaca();
+            this.renavam = snapshot.getRenavam();
+            this.chassi = snapshot.getChassi();
+            this.marca = snapshot.getMarca();
+            this.modelo = snapshot.getModelo();
+            this.anoModelo = snapshot.getAnoModelo();
+            this.especificacao = snapshot.getEspecificacao();
+            this.proprietario = snapshot.getProprietario();
+            this.status = snapshot.getStatus();
+            this.apolicesAssociadas.clear();
+            this.apolicesAssociadas.addAll(snapshot.getApolicesAssociadas());
+            this.operadorCriacao = snapshot.getOperadorCriacao();
+            this.ultimoOperador = snapshot.getUltimoOperador();
+        }
     }
-
-    /**
-     * Retorna a quantidade de apólices ativas.
-     */
-    public int getQuantidadeApolicesAtivas() {
-        return apolicesAtivas.size();
+    
+    @Override
+    public Object createSnapshot() {
+        return new VeiculoSnapshot(
+            getId(), getVersion(), placa, renavam, chassi, marca, modelo,
+            anoModelo, especificacao, proprietario, status,
+            new HashSet<>(apolicesAssociadas), operadorCriacao, ultimoOperador
+        );
     }
-
+    
+    // Getters
+    
+    public Placa getPlaca() { return placa; }
+    public Renavam getRenavam() { return renavam; }
+    public Chassi getChassi() { return chassi; }
+    public String getMarca() { return marca; }
+    public String getModelo() { return modelo; }
+    public AnoModelo getAnoModelo() { return anoModelo; }
+    public Especificacao getEspecificacao() { return especificacao; }
+    public Proprietario getProprietario() { return proprietario; }
+    public StatusVeiculo getStatus() { return status; }
+    public Set<String> getApolicesAssociadas() { return Collections.unmodifiableSet(apolicesAssociadas); }
+    public String getOperadorCriacao() { return operadorCriacao; }
+    public String getUltimoOperador() { return ultimoOperador; }
+    
+    @Override
+    public String toString() {
+        return String.format("VeiculoAggregate{id='%s', placa='%s', marca='%s', modelo='%s', status=%s}",
+            getId(), placa != null ? placa.getFormatada() : null, marca, modelo, status);
+    }
+    
     /**
-     * Verifica se o veículo está associado a uma apólice específica.
+     * Classe interna para snapshot do veículo.
      */
-    public boolean isAssociadoA(String apoliceId) {
-        return apolicesAtivas.containsKey(apoliceId);
+    public static class VeiculoSnapshot {
+        private final String id;
+        private final long version;
+        private final Placa placa;
+        private final Renavam renavam;
+        private final Chassi chassi;
+        private final String marca;
+        private final String modelo;
+        private final AnoModelo anoModelo;
+        private final Especificacao especificacao;
+        private final Proprietario proprietario;
+        private final StatusVeiculo status;
+        private final Set<String> apolicesAssociadas;
+        private final String operadorCriacao;
+        private final String ultimoOperador;
+        
+        public VeiculoSnapshot(String id, long version, Placa placa, Renavam renavam, Chassi chassi,
+                              String marca, String modelo, AnoModelo anoModelo, Especificacao especificacao,
+                              Proprietario proprietario, StatusVeiculo status, Set<String> apolicesAssociadas,
+                              String operadorCriacao, String ultimoOperador) {
+            this.id = id;
+            this.version = version;
+            this.placa = placa;
+            this.renavam = renavam;
+            this.chassi = chassi;
+            this.marca = marca;
+            this.modelo = modelo;
+            this.anoModelo = anoModelo;
+            this.especificacao = especificacao;
+            this.proprietario = proprietario;
+            this.status = status;
+            this.apolicesAssociadas = apolicesAssociadas;
+            this.operadorCriacao = operadorCriacao;
+            this.ultimoOperador = ultimoOperador;
+        }
+        
+        // Getters
+        public String getId() { return id; }
+        public long getVersion() { return version; }
+        public Placa getPlaca() { return placa; }
+        public Renavam getRenavam() { return renavam; }
+        public Chassi getChassi() { return chassi; }
+        public String getMarca() { return marca; }
+        public String getModelo() { return modelo; }
+        public AnoModelo getAnoModelo() { return anoModelo; }
+        public Especificacao getEspecificacao() { return especificacao; }
+        public Proprietario getProprietario() { return proprietario; }
+        public StatusVeiculo getStatus() { return status; }
+        public Set<String> getApolicesAssociadas() { return apolicesAssociadas; }
+        public String getOperadorCriacao() { return operadorCriacao; }
+        public String getUltimoOperador() { return ultimoOperador; }
     }
 }

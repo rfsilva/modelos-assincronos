@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "command-bus-collection",
+		"name": "Command Bus - Monitoring",
+		"description": "Collection para testar os endpoints de monitoramento do Command Bus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check - Command Bus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has health data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData).to.have.property('commandBus');",
+							"    pm.expect(jsonData).to.have.property('registeredHandlers');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/command-bus/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"command-bus",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Estatísticas do Command Bus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has statistics data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('totalCommands');",
+							"    pm.expect(jsonData).to.have.property('successfulCommands');",
+							"    pm.expect(jsonData).to.have.property('failedCommands');",
+							"    pm.expect(jsonData).to.have.property('averageExecutionTime');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/command-bus/statistics",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"command-bus",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Estatísticas por Tipo de Comando",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has statistics by type\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an('object');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/command-bus/statistics/by-type",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"command-bus",
+						"statistics",
+						"by-type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Handlers Registrados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has handlers data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('registeredHandlers');",
+							"    pm.expect(jsonData).to.have.property('totalHandlers');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/command-bus/handlers",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"command-bus",
+						"handlers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar Handler Específico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response has handler info\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('commandType');",
+							"        pm.expect(jsonData).to.have.property('handlerClass');",
+							"        pm.expect(jsonData).to.have.property('registered');",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/command-bus/handlers/CriarSeguradoCommand",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"command-bus",
+						"handlers",
+						"CriarSeguradoCommand"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Estatísticas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('resetadas');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/command-bus/statistics/reset",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"command-bus",
+						"statistics",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado antes de cada request",
+					"console.log('Executando request para Command Bus...');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado após cada request",
+					"console.log('Request finalizado para Command Bus');"
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,86 @@
+{
+	"id": "arquitetura-hibrida-env",
+	"name": "Arquitetura Híbrida - Environment",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"description": "URL base da aplicação",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "apiVersion",
+			"value": "v1",
+			"description": "Versão da API",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "contentType",
+			"value": "application/json",
+			"description": "Content-Type padrão",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "seguradoId",
+			"value": "",
+			"description": "ID do segurado para testes",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "veiculoId",
+			"value": "",
+			"description": "ID do veículo para testes",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "sinistroId",
+			"value": "",
+			"description": "ID do sinistro para testes",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "apoliceId",
+			"value": "",
+			"description": "ID da apólice para testes",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cpfTeste",
+			"value": "12345678901",
+			"description": "CPF para testes",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "emailTeste",
+			"value": "teste@seguradora.com",
+			"description": "Email para testes",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "placaTeste",
+			"value": "ABC1234",
+			"description": "Placa para testes",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "protocoloTeste",
+			"value": "SIN-2024-001234",
+			"description": "Protocolo de sinistro para testes",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-12-19T10:00:00.000Z",
+	"_postman_exported_using": "Postman/10.20.0"
+}

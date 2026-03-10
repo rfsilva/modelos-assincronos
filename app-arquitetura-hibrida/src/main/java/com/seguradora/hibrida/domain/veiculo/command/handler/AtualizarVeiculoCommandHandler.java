@@ -4,76 +4,75 @@ import com.seguradora.hibrida.command.CommandHandler;
 import com.seguradora.hibrida.command.CommandResult;
 import com.seguradora.hibrida.domain.veiculo.aggregate.VeiculoAggregate;
 import com.seguradora.hibrida.domain.veiculo.command.AtualizarVeiculoCommand;
-import com.seguradora.hibrida.eventstore.EventStore;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import com.seguradora.hibrida.aggregate.repository.AggregateRepository;
+import com.seguradora.hibrida.eventstore.exception.ConcurrencyException;
+
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Map;
 
 /**
- * Handler para o comando de atualização de especificações de veículo.
- * Carrega o aggregate do Event Store e aplica as alterações.
+ * Handler para o comando de atualização de veículo.
  * 
  * @author Principal Java Architect
- * @since 3.0.0
+ * @since 1.0.0
  */
-@Slf4j
 @Component
-@RequiredArgsConstructor
 public class AtualizarVeiculoCommandHandler implements CommandHandler<AtualizarVeiculoCommand> {
     
-    private final EventStore eventStore;
-
+    private final AggregateRepository<VeiculoAggregate> veiculoRepository;
+    
+    public AtualizarVeiculoCommandHandler(AggregateRepository<VeiculoAggregate> veiculoRepository) {
+        this.veiculoRepository = veiculoRepository;
+    }
+    
     @Override
+    @Transactional
     public CommandResult handle(AtualizarVeiculoCommand command) {
-        log.info("Processando comando AtualizarVeiculo para ID: {}", command.getVeiculoId());
-        
         try {
-            // Carregar aggregate do Event Store
-            VeiculoAggregate aggregate = new VeiculoAggregate();
-            aggregate.loadFromHistory(eventStore.loadEvents(command.getVeiculoId()));
+            // Carregar aggregate do veículo
+            VeiculoAggregate veiculo = veiculoRepository.getById(command.getVeiculoId());
             
-            // Verificar versão esperada (controle de concorrência otimista)
-            if (aggregate.getVersion() != command.getVersaoEsperada()) {
-                String errorMsg = String.format(
-                    "Conflito de concorrência: versão esperada %d, versão atual %d",
-                    command.getVersaoEsperada(), aggregate.getVersion()
+            // Verificar versão esperada para controle de concorrência
+            if (command.getVersaoEsperada() != null && 
+                !command.getVersaoEsperada().equals(veiculo.getVersion())) {
+                throw new ConcurrencyException(
+                    command.getVeiculoId(), 
+                    command.getVersaoEsperada(), 
+                    veiculo.getVersion()
                 );
-                log.warn(errorMsg);
-                return CommandResult.failure(errorMsg);
             }
             
-            // Aplicar alterações
-            aggregate.atualizarEspecificacoes(
+            // Atualizar especificações
+            veiculo.atualizarEspecificacoes(
                 command.getNovaEspecificacao(),
                 command.getOperadorId()
             );
             
-            // Persistir eventos
-            eventStore.saveEvents(
-                aggregate.getId(),
-                aggregate.getUncommittedEvents(),
-                aggregate.getVersion()
-            );
+            // Salvar alterações
+            veiculoRepository.save(veiculo);
             
-            aggregate.markEventsAsCommitted();
+            // Retornar resultado de sucesso
+            return CommandResult.success(command.getVeiculoId(), Map.of(
+                "novaVersao", veiculo.getVersion(),
+                "especificacao", command.getNovaEspecificacao()
+            )).withCorrelationId(command.getCorrelationId());
             
-            log.info("Veículo {} atualizado com sucesso", command.getVeiculoId());
-            
-            return CommandResult.success(command.getVeiculoId());
-            
-        } catch (IllegalStateException | IllegalArgumentException e) {
-            log.error("Erro de validação ao atualizar veículo {}: {}", 
-                command.getVeiculoId(), e.getMessage());
-            return CommandResult.failure(e.getMessage());
         } catch (Exception e) {
-            log.error("Erro inesperado ao atualizar veículo {}: {}", 
-                command.getVeiculoId(), e.getMessage(), e);
-            return CommandResult.failure("Erro ao atualizar veículo: " + e.getMessage());
+            return CommandResult.failure(e)
+                .withCorrelationId(command.getCorrelationId())
+                .withMetadata("veiculoId", command.getVeiculoId());
         }
     }
-
+    
     @Override
     public Class<AtualizarVeiculoCommand> getCommandType() {
         return AtualizarVeiculoCommand.class;
+    }
+    
+    @Override
+    public int getTimeoutSeconds() {
+        return 20;
     }
 }
