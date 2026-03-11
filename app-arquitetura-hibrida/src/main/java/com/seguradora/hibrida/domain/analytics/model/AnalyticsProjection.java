@@ -45,118 +45,152 @@ public class AnalyticsProjection {
     private String valorDimensao; // SP, Seguro Auto, Online, etc.
     
     // === MÉTRICAS DE SEGURADOS ===
-    
+
+    @Builder.Default
     @Column(name = "total_segurados")
     private Long totalSegurados = 0L;
-    
+
+    @Builder.Default
     @Column(name = "segurados_ativos")
     private Long seguradosAtivos = 0L;
-    
+
+    @Builder.Default
     @Column(name = "segurados_inativos")
     private Long seguradosInativos = 0L;
-    
+
+    @Builder.Default
     @Column(name = "novos_segurados")
     private Long novosSegurados = 0L;
-    
+
+    @Builder.Default
     @Column(name = "segurados_cancelados")
     private Long seguradosCancelados = 0L;
-    
+
     // === MÉTRICAS DE APÓLICES ===
-    
+
+    @Builder.Default
     @Column(name = "total_apolices")
     private Long totalApolices = 0L;
-    
+
+    @Builder.Default
     @Column(name = "apolices_ativas")
     private Long apolicesAtivas = 0L;
-    
+
+    @Builder.Default
     @Column(name = "apolices_vencidas")
     private Long apolicesVencidas = 0L;
-    
+
+    @Builder.Default
     @Column(name = "apolices_canceladas")
     private Long apolicesCanceladas = 0L;
-    
+
+    @Builder.Default
     @Column(name = "novas_apolices")
     private Long novasApolices = 0L;
-    
+
+    @Builder.Default
     @Column(name = "renovacoes")
     private Long renovacoes = 0L;
-    
+
     // === MÉTRICAS FINANCEIRAS ===
-    
+
+    @Builder.Default
     @Column(name = "valor_total_segurado", precision = 15, scale = 2)
     private BigDecimal valorTotalSegurado = BigDecimal.ZERO;
-    
+
+    @Builder.Default
     @Column(name = "premio_total", precision = 15, scale = 2)
     private BigDecimal premioTotal = BigDecimal.ZERO;
-    
+
+    @Builder.Default
     @Column(name = "premio_medio", precision = 15, scale = 2)
     private BigDecimal premioMedio = BigDecimal.ZERO;
-    
+
+    @Builder.Default
     @Column(name = "valor_medio_segurado", precision = 15, scale = 2)
     private BigDecimal valorMedioSegurado = BigDecimal.ZERO;
-    
+
     // === MÉTRICAS DE PERFORMANCE ===
-    
+
+    @Builder.Default
     @Column(name = "taxa_renovacao", precision = 5, scale = 2)
     private BigDecimal taxaRenovacao = BigDecimal.ZERO;
-    
+
+    @Builder.Default
     @Column(name = "taxa_cancelamento", precision = 5, scale = 2)
     private BigDecimal taxaCancelamento = BigDecimal.ZERO;
-    
+
+    @Builder.Default
     @Column(name = "taxa_crescimento", precision = 5, scale = 2)
     private BigDecimal taxaCrescimento = BigDecimal.ZERO;
-    
+
+    @Builder.Default
     @Column(name = "score_medio_renovacao", precision = 5, scale = 2)
     private BigDecimal scoreMedioRenovacao = BigDecimal.ZERO;
-    
+
     // === DISTRIBUIÇÃO POR FAIXA ETÁRIA ===
-    
+
+    @Builder.Default
     @Column(name = "faixa_18_25")
     private Long faixa18a25 = 0L;
-    
+
+    @Builder.Default
     @Column(name = "faixa_26_35")
     private Long faixa26a35 = 0L;
-    
+
+    @Builder.Default
     @Column(name = "faixa_36_45")
     private Long faixa36a45 = 0L;
-    
+
+    @Builder.Default
     @Column(name = "faixa_46_55")
     private Long faixa46a55 = 0L;
-    
+
+    @Builder.Default
     @Column(name = "faixa_56_65")
     private Long faixa56a65 = 0L;
-    
+
+    @Builder.Default
     @Column(name = "faixa_65_mais")
     private Long faixa65Mais = 0L;
-    
+
     // === DISTRIBUIÇÃO POR REGIÃO ===
-    
+
+    @Builder.Default
     @Column(name = "regiao_norte")
     private Long regiaoNorte = 0L;
-    
+
+    @Builder.Default
     @Column(name = "regiao_nordeste")
     private Long regiaoNordeste = 0L;
-    
+
+    @Builder.Default
     @Column(name = "regiao_centro_oeste")
     private Long regiaoCentroOeste = 0L;
-    
+
+    @Builder.Default
     @Column(name = "regiao_sudeste")
     private Long regiaoSudeste = 0L;
-    
+
+    @Builder.Default
     @Column(name = "regiao_sul")
     private Long regiaoSul = 0L;
-    
+
     // === DISTRIBUIÇÃO POR CANAL ===
-    
+
+    @Builder.Default
     @Column(name = "canal_online")
     private Long canalOnline = 0L;
-    
+
+    @Builder.Default
     @Column(name = "canal_telefone")
     private Long canalTelefone = 0L;
-    
+
+    @Builder.Default
     @Column(name = "canal_agencia")
     private Long canalAgencia = 0L;
-    
+
+    @Builder.Default
     @Column(name = "canal_corretor")
     private Long canalCorretor = 0L;
     
@@ -170,7 +204,8 @@ public class AnalyticsProjection {
     
     @Column(name = "last_event_id")
     private Long lastEventId;
-    
+
+    @Builder.Default
     @Column(name = "version")
     private Long version = 0L;
     
