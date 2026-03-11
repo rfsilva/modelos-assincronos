@@ -1,9 +1,9 @@
 Assuma o perfil de Principal Java Architect, tendo um background de desenvolvedor como sendo um exímio desenvolvedor Java, antenado com as melhores práticas e padrões de projeto e desenvolvimento.
-Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
- - Implemente as estórias definidas no documento "refinamento-epico-03.md" - códigos US017 a US020
+Com base na documentação funcional e técnica disponível na pasta "doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
+ - Implemente as estórias definidas no documento "refinamento-epico-04.md" - códigos US021 a US025
 Como resultado, precisamos:
  - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
- - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
+ - Gerar relatório de implementação na pasta "doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
  - Respeitar RIGOROSAMENTE as condições e premissas do documento "doc/contexto-e-premissas.md", EM ESPECIAL:
 	 - NÃO CRIAR CLASSES DE TESTE
 	 - NÃO CRIAR ARQUIVOS EVOLUTIVOS "_updated" "_fixed" e similares
@@ -96,3 +96,7 @@ ViaCepServiceUpdated
 
 
 Realize agora uma varredura completa, simulando todas as situações que partem de requisições REST, e valide todos os fluxos e funcionamentos, a ideia é mapear e identificar proativamente problemas de conrfiguração, de fluxo, de implementação e de comportamento
+
+A partir da implementação do projeto app-arquitetura-hibrida, preciso que você decida qual movimento faz mais sentido agora, considerando que o domínio de sinistro oficialmente será objeto de análise e implementação em um épico futuro, e em tese não deve haver código desse domínio implementado no projeto. Tome a melhor decisão:
+1) Remover tudo o que está implementado em relação a esse domínio, ou 
+2) Mover toda a estrutura de classes e implementações de sinistro pra dentro do dominio "sinistro" (package "sinistro" dentro da package "domain"), padronizando a parte de domínios para seu lugar correto
