@@ -1,132 +1,380 @@
 package com.seguradora.hibrida.domain.veiculo.model;
 
-import lombok.Value;
-
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
- * Value Object representando as especificações técnicas de um veículo.
- * Encapsula informações sobre cor, combustível, categoria e cilindrada.
+ * Value Object que representa as especificações técnicas de um veículo.
+ * 
+ * <p>Encapsula informações como cor, combustível, categoria e cilindrada,
+ * incluindo validações de compatibilidade entre os diferentes atributos.
+ * 
+ * <p>Este Value Object garante que as especificações sejam consistentes
+ * e compatíveis entre si, seguindo as regras da indústria automotiva.
+ * 
+ * @author Principal Java Architect
+ * @since 1.0.0
  */
-@Value
-public class Especificacao implements Serializable {
+public final class Especificacao implements Serializable {
+    
     private static final long serialVersionUID = 1L;
-
-    String cor;
-    TipoCombustivel tipoCombustivel;
-    CategoriaVeiculo categoria;
-    Integer cilindrada;
-
+    
+    private final String cor;
+    private final TipoCombustivel tipoCombustivel;
+    private final CategoriaVeiculo categoria;
+    private final Integer cilindrada; // em cc
+    
     /**
-     * Construtor com validações de negócio.
-     *
+     * Construtor privado.
+     * 
      * @param cor Cor do veículo
      * @param tipoCombustivel Tipo de combustível
      * @param categoria Categoria do veículo
-     * @param cilindrada Cilindrada do motor em cm³
+     * @param cilindrada Cilindrada em cc
      */
-    public Especificacao(String cor, TipoCombustivel tipoCombustivel, CategoriaVeiculo categoria, Integer cilindrada) {
-        this.cor = validarCor(cor);
-        this.tipoCombustivel = validarTipoCombustivel(tipoCombustivel);
-        this.categoria = validarCategoria(categoria);
-        this.cilindrada = validarCilindrada(cilindrada, categoria);
+    private Especificacao(String cor, TipoCombustivel tipoCombustivel, 
+                         CategoriaVeiculo categoria, Integer cilindrada) {
+        this.cor = cor;
+        this.tipoCombustivel = tipoCombustivel;
+        this.categoria = categoria;
+        this.cilindrada = cilindrada;
     }
-
-    private String validarCor(String cor) {
-        if (cor == null || cor.trim().isEmpty()) {
-            throw new IllegalArgumentException("Cor não pode ser nula ou vazia");
-        }
-        if (cor.length() > 50) {
-            throw new IllegalArgumentException("Cor não pode ter mais de 50 caracteres");
-        }
-        return cor.trim().toUpperCase();
+    
+    /**
+     * Cria uma instância de Especificacao.
+     * 
+     * @param cor Cor do veículo
+     * @param tipoCombustivel Tipo de combustível
+     * @param categoria Categoria do veículo
+     * @param cilindrada Cilindrada em cc (pode ser null)
+     * @return Instância de Especificacao
+     * @throws IllegalArgumentException se alguma especificação for inválida
+     */
+    public static Especificacao of(String cor, TipoCombustivel tipoCombustivel, 
+                                  CategoriaVeiculo categoria, Integer cilindrada) {
+        
+        String corValidada = validarCor(cor);
+        TipoCombustivel combustivelValidado = validarTipoCombustivel(tipoCombustivel);
+        CategoriaVeiculo categoriaValidada = validarCategoria(categoria);
+        Integer cilindradaValidada = validarCilindrada(cilindrada, categoria);
+        
+        // Validar compatibilidade entre especificações
+        validarCompatibilidade(combustivelValidado, categoriaValidada, cilindradaValidada);
+        
+        return new Especificacao(corValidada, combustivelValidado, 
+                                categoriaValidada, cilindradaValidada);
     }
-
-    private TipoCombustivel validarTipoCombustivel(TipoCombustivel tipoCombustivel) {
-        if (tipoCombustivel == null) {
-            throw new IllegalArgumentException("Tipo de combustível não pode ser nulo");
-        }
+    
+    /**
+     * Cria uma especificação básica sem cilindrada.
+     * 
+     * @param cor Cor do veículo
+     * @param tipoCombustivel Tipo de combustível
+     * @param categoria Categoria do veículo
+     * @return Instância de Especificacao
+     */
+    public static Especificacao of(String cor, TipoCombustivel tipoCombustivel, 
+                                  CategoriaVeiculo categoria) {
+        return of(cor, tipoCombustivel, categoria, null);
+    }
+    
+    /**
+     * Retorna a cor do veículo.
+     * 
+     * @return Cor do veículo
+     */
+    public String getCor() {
+        return cor;
+    }
+    
+    /**
+     * Retorna o tipo de combustível.
+     * 
+     * @return Tipo de combustível
+     */
+    public TipoCombustivel getTipoCombustivel() {
         return tipoCombustivel;
     }
-
-    private CategoriaVeiculo validarCategoria(CategoriaVeiculo categoria) {
-        if (categoria == null) {
-            throw new IllegalArgumentException("Categoria do veículo não pode ser nula");
-        }
+    
+    /**
+     * Retorna a categoria do veículo.
+     * 
+     * @return Categoria do veículo
+     */
+    public CategoriaVeiculo getCategoria() {
         return categoria;
     }
-
-    private Integer validarCilindrada(Integer cilindrada, CategoriaVeiculo categoria) {
-        if (cilindrada == null) {
-            throw new IllegalArgumentException("Cilindrada não pode ser nula");
-        }
-        if (cilindrada <= 0) {
-            throw new IllegalArgumentException("Cilindrada deve ser maior que zero");
-        }
-        
-        // Validações específicas por categoria
-        switch (categoria) {
-            case MOTOCICLETA:
-                if (cilindrada < 50 || cilindrada > 2500) {
-                    throw new IllegalArgumentException(
-                        "Cilindrada de motocicleta deve estar entre 50 e 2500 cm³"
-                    );
-                }
-                break;
-            case PASSEIO:
-            case UTILITARIO:
-                if (cilindrada < 800 || cilindrada > 8000) {
-                    throw new IllegalArgumentException(
-                        "Cilindrada de veículo de passeio/utilitário deve estar entre 800 e 8000 cm³"
-                    );
-                }
-                break;
-            case CAMINHAO:
-                if (cilindrada < 3000 || cilindrada > 16000) {
-                    throw new IllegalArgumentException(
-                        "Cilindrada de caminhão deve estar entre 3000 e 16000 cm³"
-                    );
-                }
-                break;
-        }
-        
+    
+    /**
+     * Retorna a cilindrada em cc.
+     * 
+     * @return Cilindrada ou null se não informada
+     */
+    public Integer getCilindrada() {
         return cilindrada;
     }
-
+    
     /**
-     * Valida se a especificação é compatível com a categoria do veículo.
-     *
-     * @param categoria Categoria a ser validada
-     * @return true se compatível
+     * Retorna a cilindrada formatada.
+     * 
+     * @return Cilindrada formatada (ex: "1.6L") ou "N/I" se não informada
+     */
+    public String getCilindradaFormatada() {
+        if (cilindrada == null) {
+            return "N/I";
+        }
+        
+        if (cilindrada < 1000) {
+            return cilindrada + "cc";
+        } else {
+            double litros = cilindrada / 1000.0;
+            return String.format("%.1fL", litros);
+        }
+    }
+    
+    /**
+     * Verifica se as especificações são compatíveis entre si.
+     * 
+     * @return true se são compatíveis
+     */
+    public boolean isCompativel() {
+        return isCompativel(categoria) && isCombustivelCompativel();
+    }
+    
+    /**
+     * Verifica se é compatível com uma categoria específica.
+     * 
+     * @param categoria Categoria a verificar
+     * @return true se é compatível
      */
     public boolean isCompativel(CategoriaVeiculo categoria) {
-        return this.categoria == categoria;
-    }
-
-    /**
-     * Verifica se o tipo de combustível é compatível com a categoria.
-     *
-     * @return true se compatível
-     */
-    public boolean isCombustivelCompativel() {
-        // Motocicletas geralmente não usam diesel
-        if (categoria == CategoriaVeiculo.MOTOCICLETA && 
-            tipoCombustivel == TipoCombustivel.DIESEL) {
+        if (categoria == null) {
             return false;
         }
         
-        // Caminhões geralmente não usam gasolina comum
-        if (categoria == CategoriaVeiculo.CAMINHAO && 
-            tipoCombustivel == TipoCombustivel.GASOLINA) {
+        // Verificar compatibilidade de combustível com categoria
+        if (!tipoCombustivel.isCompativelCom(categoria)) {
+            return false;
+        }
+        
+        // Verificar compatibilidade de cilindrada com categoria
+        if (cilindrada != null && !categoria.isCompativelComCilindrada(cilindrada)) {
             return false;
         }
         
         return true;
     }
-
+    
+    /**
+     * Verifica se o combustível é compatível com a categoria.
+     * 
+     * @return true se é compatível
+     */
+    public boolean isCombustivelCompativel() {
+        return tipoCombustivel.isCompativelCom(categoria);
+    }
+    
+    /**
+     * Calcula o fator de risco baseado nas especificações.
+     * 
+     * @return Fator de risco combinado
+     */
+    public double getFatorRisco() {
+        double fatorCategoria = categoria.getFatorRisco();
+        double fatorCombustivel = tipoCombustivel.getFatorRisco();
+        double fatorCilindrada = calcularFatorRiscoCilindrada();
+        
+        return fatorCategoria * fatorCombustivel * fatorCilindrada;
+    }
+    
+    /**
+     * Calcula o fator de risco baseado na cilindrada.
+     * 
+     * @return Fator de risco da cilindrada
+     */
+    private double calcularFatorRiscoCilindrada() {
+        if (cilindrada == null) {
+            return 1.0;
+        }
+        
+        if (cilindrada <= 1000) {
+            return 0.9; // Menor risco
+        } else if (cilindrada <= 1600) {
+            return 1.0; // Risco padrão
+        } else if (cilindrada <= 2000) {
+            return 1.1;
+        } else if (cilindrada <= 3000) {
+            return 1.3;
+        } else {
+            return 1.5; // Alto risco
+        }
+    }
+    
+    /**
+     * Verifica se é um veículo esportivo baseado nas especificações.
+     * 
+     * @return true se tem características esportivas
+     */
+    public boolean isVeiculoEsportivo() {
+        return cilindrada != null && cilindrada > 2500 && 
+               categoria == CategoriaVeiculo.PASSEIO;
+    }
+    
+    /**
+     * Verifica se é um veículo econômico.
+     * 
+     * @return true se tem características econômicas
+     */
+    public boolean isVeiculoEconomico() {
+        return (cilindrada == null || cilindrada <= 1000) &&
+               (tipoCombustivel == TipoCombustivel.FLEX || 
+                tipoCombustivel == TipoCombustivel.ETANOL ||
+                tipoCombustivel == TipoCombustivel.ELETRICO);
+    }
+    
+    /**
+     * Retorna uma descrição resumida das especificações.
+     * 
+     * @return Descrição das especificações
+     */
+    public String getDescricaoResumo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(categoria.getNome());
+        sb.append(" ").append(cor);
+        sb.append(" ").append(tipoCombustivel.getNome());
+        
+        if (cilindrada != null) {
+            sb.append(" ").append(getCilindradaFormatada());
+        }
+        
+        return sb.toString();
+    }
+    
+    /**
+     * Valida a cor do veículo.
+     * 
+     * @param cor Cor a ser validada
+     * @return Cor validada
+     * @throws IllegalArgumentException se a cor for inválida
+     */
+    private static String validarCor(String cor) {
+        if (cor == null || cor.trim().isEmpty()) {
+            throw new IllegalArgumentException("Cor não pode ser nula ou vazia");
+        }
+        
+        String corLimpa = cor.trim();
+        if (corLimpa.length() > 50) {
+            throw new IllegalArgumentException("Cor não pode ter mais de 50 caracteres");
+        }
+        
+        return corLimpa;
+    }
+    
+    /**
+     * Valida o tipo de combustível.
+     * 
+     * @param tipoCombustivel Tipo a ser validado
+     * @return Tipo validado
+     * @throws IllegalArgumentException se o tipo for inválido
+     */
+    private static TipoCombustivel validarTipoCombustivel(TipoCombustivel tipoCombustivel) {
+        if (tipoCombustivel == null) {
+            throw new IllegalArgumentException("Tipo de combustível não pode ser nulo");
+        }
+        return tipoCombustivel;
+    }
+    
+    /**
+     * Valida a categoria do veículo.
+     * 
+     * @param categoria Categoria a ser validada
+     * @return Categoria validada
+     * @throws IllegalArgumentException se a categoria for inválida
+     */
+    private static CategoriaVeiculo validarCategoria(CategoriaVeiculo categoria) {
+        if (categoria == null) {
+            throw new IllegalArgumentException("Categoria não pode ser nula");
+        }
+        return categoria;
+    }
+    
+    /**
+     * Valida a cilindrada.
+     * 
+     * @param cilindrada Cilindrada a ser validada
+     * @param categoria Categoria para validação de compatibilidade
+     * @return Cilindrada validada
+     * @throws IllegalArgumentException se a cilindrada for inválida
+     */
+    private static Integer validarCilindrada(Integer cilindrada, CategoriaVeiculo categoria) {
+        if (cilindrada == null) {
+            return null; // Cilindrada é opcional
+        }
+        
+        if (cilindrada <= 0) {
+            throw new IllegalArgumentException("Cilindrada deve ser maior que zero");
+        }
+        
+        if (cilindrada > 20000) { // 20L máximo
+            throw new IllegalArgumentException("Cilindrada não pode ser superior a 20000cc");
+        }
+        
+        return cilindrada;
+    }
+    
+    /**
+     * Valida a compatibilidade entre as especificações.
+     * 
+     * @param combustivel Tipo de combustível
+     * @param categoria Categoria do veículo
+     * @param cilindrada Cilindrada
+     * @throws IllegalArgumentException se houver incompatibilidade
+     */
+    private static void validarCompatibilidade(TipoCombustivel combustivel, 
+                                             CategoriaVeiculo categoria, 
+                                             Integer cilindrada) {
+        
+        if (!combustivel.isCompativelCom(categoria)) {
+            throw new IllegalArgumentException(
+                String.format("Combustível %s não é compatível com categoria %s", 
+                    combustivel.getNome(), categoria.getNome()));
+        }
+        
+        if (cilindrada != null && !categoria.isCompativelComCilindrada(cilindrada)) {
+            throw new IllegalArgumentException(
+                String.format("Cilindrada %dcc não é compatível com categoria %s", 
+                    cilindrada, categoria.getNome()));
+        }
+    }
+    
+    /**
+     * Gera uma especificação de exemplo para testes.
+     * 
+     * @return Especificação de exemplo
+     */
+    public static Especificacao exemplo() {
+        return of("Branco", TipoCombustivel.FLEX, CategoriaVeiculo.PASSEIO, 1600);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        
+        Especificacao that = (Especificacao) obj;
+        return Objects.equals(cor, that.cor) &&
+               tipoCombustivel == that.tipoCombustivel &&
+               categoria == that.categoria &&
+               Objects.equals(cilindrada, that.cilindrada);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(cor, tipoCombustivel, categoria, cilindrada);
+    }
+    
     @Override
     public String toString() {
-        return String.format("Especificacao[cor=%s, combustivel=%s, categoria=%s, cilindrada=%d cm³]",
-            cor, tipoCombustivel, categoria, cilindrada);
+        return getDescricaoResumo();
     }
 }

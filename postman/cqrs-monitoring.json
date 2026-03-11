@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "cqrs-monitoring-collection",
+		"name": "CQRS - Monitoring",
+		"description": "Collection para testar os endpoints de monitoramento geral do CQRS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check - CQRS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has health data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData).to.have.property('cqrs');",
+							"    pm.expect(jsonData).to.have.property('commandSide');",
+							"    pm.expect(jsonData).to.have.property('querySide');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/cqrs/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"cqrs",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Status Geral do CQRS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has status data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('overallStatus');",
+							"    pm.expect(jsonData).to.have.property('components');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/cqrs/status",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"cqrs",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Métricas do CQRS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has metrics data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('commandSideMetrics');",
+							"    pm.expect(jsonData).to.have.property('querySideMetrics');",
+							"    pm.expect(jsonData).to.have.property('projectionMetrics');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/cqrs/metrics",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"cqrs",
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Dashboard do CQRS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has dashboard data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('overview');",
+							"    pm.expect(jsonData).to.have.property('performance');",
+							"    pm.expect(jsonData).to.have.property('health');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/cqrs/dashboard",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"cqrs",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Projeções do CQRS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has pagination structure\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('content');",
+							"    pm.expect(jsonData).to.have.property('pageable');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/cqrs/projections?page=0&size=20&sort=projectionName",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"cqrs",
+						"projections"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						},
+						{
+							"key": "sort",
+							"value": "projectionName"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Projeção Específica do CQRS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response has projection data\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('projectionName');",
+							"        pm.expect(jsonData).to.have.property('status');",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/cqrs/projections/SinistroProjectionHandler",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"cqrs",
+						"projections",
+						"SinistroProjectionHandler"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Métricas do CQRS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('atualizadas');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/cqrs/metrics/refresh",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"cqrs",
+						"metrics",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado antes de cada request",
+					"console.log('Executando request para CQRS Monitoring...');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado após cada request",
+					"console.log('Request finalizado para CQRS Monitoring');"
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "segurado-commands-collection",
+		"name": "Segurado - Commands",
+		"description": "Collection para testar os endpoints de comandos (write) do domínio Segurado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar Segurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response has success field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('success');",
+							"    pm.expect(jsonData.success).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Response has data field with ID\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('data');",
+							"    pm.expect(jsonData.data).to.not.be.null;",
+							"    // Salva o ID para uso em outros testes",
+							"    pm.environment.set(\"seguradoId\", jsonData.data);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{contentType}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cpf\": \"{{cpfTeste}}\",\n  \"nome\": \"João da Silva\",\n  \"email\": \"{{emailTeste}}\",\n  \"telefone\": \"11987654321\",\n  \"dataNascimento\": \"1985-05-15\",\n  \"endereco\": {\n    \"logradouro\": \"Rua das Flores, 123\",\n    \"bairro\": \"Centro\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"01234567\"\n  }\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/segurados",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"segurados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Segurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('success');",
+							"    pm.expect(jsonData.success).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Response has message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('atualizado');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{contentType}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"João da Silva Santos\",\n  \"email\": \"joao.santos@seguradora.com\",\n  \"telefone\": \"11987654322\",\n  \"dataNascimento\": \"1985-05-15\",\n  \"endereco\": {\n    \"logradouro\": \"Rua das Flores, 456\",\n    \"bairro\": \"Centro\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"01234567\"\n  }\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/segurados/{{seguradoId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"segurados",
+						"{{seguradoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Desativar Segurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('success');",
+							"    pm.expect(jsonData.success).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Response has message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('desativado');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{contentType}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"motivo\": \"Solicitação do cliente\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/segurados/{{seguradoId}}/desativar",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"segurados",
+						"{{seguradoId}}",
+						"desativar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reativar Segurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('success');",
+							"    pm.expect(jsonData.success).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Response has message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('reativado');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "{{contentType}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"motivo\": \"Cliente retornou interesse\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/{{apiVersion}}/segurados/{{seguradoId}}/reativar",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"{{apiVersion}}",
+						"segurados",
+						"{{seguradoId}}",
+						"reativar"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado antes de cada request",
+					"console.log('Executando request para Segurado Commands...');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado após cada request",
+					"console.log('Request finalizado para Segurado Commands');"
+				]
+			}
+		}
+	]
+}

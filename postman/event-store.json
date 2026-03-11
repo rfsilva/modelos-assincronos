@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "event-store-collection",
+		"name": "Event Store - Monitoring",
+		"description": "Collection para testar os endpoints de monitoramento e administração do Event Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check - Event Store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has health data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData).to.have.property('eventStore');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Estatísticas do Event Store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has statistics data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('totalEvents');",
+							"    pm.expect(jsonData).to.have.property('totalAggregates');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/statistics",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Eventos por Aggregate ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response is array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.be.an('array');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/events/aggregate/{{seguradoId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"events",
+						"aggregate",
+						"{{seguradoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Eventos por Tipo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has pagination structure\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('content');",
+							"    pm.expect(jsonData).to.have.property('pageable');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/events/type/SeguradoCriadoEvent?page=0&size=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"events",
+						"type",
+						"SeguradoCriadoEvent"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Eventos por Período",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has pagination structure\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('content');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/events/period?from=2024-01-01T00:00:00Z&to=2024-12-31T23:59:59Z&page=0&size=10",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"events",
+						"period"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2024-01-01T00:00:00Z"
+						},
+						{
+							"key": "to",
+							"value": "2024-12-31T23:59:59Z"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Eventos Recentes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has pagination structure\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('content');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/events/recent?page=0&size=20",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"events",
+						"recent"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Dashboard do Event Store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has dashboard data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('overview');",
+							"    pm.expect(jsonData).to.have.property('recentActivity');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/dashboard",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar Integridade do Event Store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has integrity data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData).to.have.property('checks');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/maintenance/integrity",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"maintenance",
+						"integrity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Status de Manutenção",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has maintenance status\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('maintenanceMode');",
+							"    pm.expect(jsonData).to.have.property('lastMaintenance');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/maintenance/status",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"maintenance",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Executar Limpeza de Eventos Antigos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 202\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);",
+							"});",
+							"",
+							"pm.test(\"Response has cleanup info\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/eventstore/maintenance/cleanup?days=30",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"eventstore",
+						"maintenance",
+						"cleanup"
+					],
+					"query": [
+						{
+							"key": "days",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado antes de cada request",
+					"console.log('Executando request para Event Store...');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado após cada request",
+					"console.log('Request finalizado para Event Store');"
+				]
+			}
+		}
+	]
+}

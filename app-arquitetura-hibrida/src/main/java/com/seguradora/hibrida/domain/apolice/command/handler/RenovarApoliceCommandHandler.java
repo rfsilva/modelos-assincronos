@@ -4,9 +4,9 @@ import com.seguradora.hibrida.aggregate.repository.AggregateRepository;
 import com.seguradora.hibrida.domain.apolice.aggregate.ApoliceAggregate;
 import com.seguradora.hibrida.domain.apolice.command.RenovarApoliceCommand;
 import com.seguradora.hibrida.domain.apolice.service.ApoliceValidationService;
-import com.seguradora.hibrida.domain.apolice.service.SeguradoValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,12 +28,12 @@ public class RenovarApoliceCommandHandler {
     
     private final AggregateRepository<ApoliceAggregate> repository;
     private final ApoliceValidationService apoliceValidationService;
-    private final SeguradoValidationService seguradoValidationService;
+    private final ApoliceValidationService seguradoValidationService;
     
     public RenovarApoliceCommandHandler(
             AggregateRepository<ApoliceAggregate> repository,
             ApoliceValidationService apoliceValidationService,
-            SeguradoValidationService seguradoValidationService) {
+            @Qualifier("apoliceValidationService") ApoliceValidationService seguradoValidationService) {
         
         this.repository = repository;
         this.apoliceValidationService = apoliceValidationService;
@@ -202,7 +202,7 @@ public class RenovarApoliceCommandHandler {
         
         // Obter histórico de sinistros para ajustar prêmio
         String seguradoId = aggregate.getSeguradoId();
-        SeguradoValidationService.HistoricoSinistros historico = 
+        ApoliceValidationService.HistoricoSinistros historico = 
                 seguradoValidationService.obterHistoricoSinistros(seguradoId);
         
         // Aplicar fator de risco baseado no histórico

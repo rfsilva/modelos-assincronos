@@ -134,6 +134,12 @@ public class SnapshotProperties {
     private int maxConsecutiveFailures = 3;
     
     /**
+     * Habilita o sistema de snapshots completamente.
+     * Padrão: true.
+     */
+    private boolean enabled = true;
+
+    /**
      * Habilita cache de snapshots em memória.
      * Padrão: false (para evitar uso excessivo de memória).
      */
@@ -227,10 +233,19 @@ public class SnapshotProperties {
     
     /**
      * Verifica se operações assíncronas estão habilitadas.
-     * 
+     *
      * @return true se habilitadas, false caso contrário
      */
     public boolean isAsyncEnabled() {
         return asyncSnapshotCreation;
+    }
+
+    /**
+     * Verifica se o sistema de snapshots está habilitado.
+     *
+     * @return true se habilitado, false caso contrário
+     */
+    public boolean isEnabled() {
+        return enabled;
     }
 }

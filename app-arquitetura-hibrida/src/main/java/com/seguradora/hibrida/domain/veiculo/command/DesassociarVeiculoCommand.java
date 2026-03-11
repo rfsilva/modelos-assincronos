@@ -1,46 +1,112 @@
 package com.seguradora.hibrida.domain.veiculo.command;
 
 import com.seguradora.hibrida.command.Command;
-import jakarta.validation.constraints.*;
-import lombok.Builder;
-import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Comando para desassociar um veículo de uma apólice de seguro.
+ * Comando para desassociar um veículo de uma apólice.
  * 
  * @author Principal Java Architect
- * @since 3.0.0
+ * @since 1.0.0
  */
-@Data
-@Builder
 public class DesassociarVeiculoCommand implements Command {
     
-    @Builder.Default
-    private UUID commandId = UUID.randomUUID();
+    private final UUID commandId;
+    private final Instant timestamp;
+    private final UUID correlationId;
+    private final String userId;
     
-    @Builder.Default
-    private Instant timestamp = Instant.now();
+    @NotBlank(message = "ID do veículo é obrigatório")
+    private final String veiculoId;
     
-    private UUID correlationId;
-    private String userId;
+    @NotBlank(message = "ID da apólice é obrigatório")
+    private final String apoliceId;
     
-    @NotBlank(message = "ID do veículo não pode ser vazio")
-    private String veiculoId;
+    @NotNull(message = "Data de fim é obrigatória")
+    private final LocalDate dataFim;
     
-    @NotBlank(message = "ID da apólice não pode ser vazio")
-    private String apoliceId;
+    @NotBlank(message = "Motivo é obrigatório")
+    private final String motivo;
     
-    @NotNull(message = "Data de fim não pode ser nula")
-    private LocalDate dataFim;
+    @NotBlank(message = "ID do operador é obrigatório")
+    private final String operadorId;
     
-    @NotBlank(message = "Motivo não pode ser vazio")
-    @Size(max = 500, message = "Motivo não pode ter mais de 500 caracteres")
-    private String motivo;
+    public DesassociarVeiculoCommand(String veiculoId, String apoliceId, LocalDate dataFim, 
+                                    String motivo, String operadorId, 
+                                    UUID correlationId, String userId) {
+        this.commandId = UUID.randomUUID();
+        this.timestamp = Instant.now();
+        this.correlationId = correlationId;
+        this.userId = userId;
+        this.veiculoId = veiculoId;
+        this.apoliceId = apoliceId;
+        this.dataFim = dataFim;
+        this.motivo = motivo;
+        this.operadorId = operadorId;
+    }
     
-    @NotBlank(message = "ID do operador não pode ser vazio")
-    private String operadorId;
+    @Override
+    public UUID getCommandId() {
+        return commandId;
+    }
+    
+    @Override
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+    
+    @Override
+    public UUID getCorrelationId() {
+        return correlationId;
+    }
+    
+    @Override
+    public String getUserId() {
+        return userId;
+    }
+    
+    public String getVeiculoId() {
+        return veiculoId;
+    }
+    
+    public String getApoliceId() {
+        return apoliceId;
+    }
+    
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
+    
+    public String getMotivo() {
+        return motivo;
+    }
+    
+    public String getOperadorId() {
+        return operadorId;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        DesassociarVeiculoCommand that = (DesassociarVeiculoCommand) obj;
+        return Objects.equals(commandId, that.commandId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(commandId);
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("DesassociarVeiculoCommand{id=%s, veiculoId='%s', apoliceId='%s'}", 
+                           commandId, veiculoId, apoliceId);
+    }
 }

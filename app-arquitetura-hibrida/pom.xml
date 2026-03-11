@@ -120,6 +120,13 @@
             <version>1.5.5.Final</version>
         </dependency>
         
+        <!-- Rate Limiting -->
+        <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j-core</artifactId>
+            <version>8.2.0</version>
+        </dependency>
+
         <!-- Monitoring -->
         <dependency>
             <groupId>io.micrometer</groupId>

@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "projections-collection",
+		"name": "Projections - Monitoring",
+		"description": "Collection para testar os endpoints de monitoramento e gerenciamento de projeções CQRS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check - Projections",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has health data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('status');",
+							"    pm.expect(jsonData).to.have.property('projections');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Todas as Projeções",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has pagination structure\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('content');",
+							"    pm.expect(jsonData).to.have.property('pageable');",
+							"    pm.expect(jsonData).to.have.property('totalElements');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections?page=0&size=20&sort=projectionName",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						},
+						{
+							"key": "sort",
+							"value": "projectionName"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Projeção Específica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Response has projection data\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property('projectionName');",
+							"        pm.expect(jsonData).to.have.property('status');",
+							"        pm.expect(jsonData).to.have.property('lastProcessedEventId');",
+							"        pm.expect(jsonData).to.have.property('eventsProcessed');",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/SinistroProjection",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"SinistroProjection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Estatísticas das Projeções",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has statistics data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('totalProjections');",
+							"    pm.expect(jsonData).to.have.property('activeProjections');",
+							"    pm.expect(jsonData).to.have.property('errorProjections');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/statistics",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Dashboard das Projeções",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has dashboard data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('overview');",
+							"    pm.expect(jsonData).to.have.property('projections');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/dashboard",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar Consistência de Projeção",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has consistency data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('projectionName');",
+							"    pm.expect(jsonData).to.have.property('consistent');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/SinistroProjection/consistency",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"SinistroProjection",
+						"consistency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar Consistência Geral",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has consistency report\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('healthy');",
+							"    pm.expect(jsonData).to.have.property('totalProjections');",
+							"    pm.expect(jsonData).to.have.property('issues');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/consistency",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"consistency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pausar Projeção",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('pausada');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/SinistroProjection/pause",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"SinistroProjection",
+						"pause"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retomar Projeção",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has success message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('retomada');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/SinistroProjection/resume",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"SinistroProjection",
+						"resume"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rebuild Completo de Projeção",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 202\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);",
+							"});",
+							"",
+							"pm.test(\"Response has rebuild info\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('rebuild');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/SinistroProjection/rebuild",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"SinistroProjection",
+						"rebuild"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rebuild Incremental de Projeção",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 202\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);",
+							"});",
+							"",
+							"pm.test(\"Response has rebuild info\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message).to.include('incremental');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/projections/SinistroProjection/rebuild/incremental",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"projections",
+						"SinistroProjection",
+						"rebuild",
+						"incremental"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado antes de cada request",
+					"console.log('Executando request para Projections...');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script executado após cada request",
+					"console.log('Request finalizado para Projections');"
+				]
+			}
+		}
+	]
+}

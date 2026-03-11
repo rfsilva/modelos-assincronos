@@ -1,6 +1,6 @@
 Assuma o perfil de Principal Java Architect, tendo um background de desenvolvedor como sendo um exímio desenvolvedor Java, antenado com as melhores práticas e padrões de projeto e desenvolvimento.
 Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
- - Implemente as estórias definidas no documento "refinamento-epico-02.md" - códigos US010 e US011
+ - Implemente as estórias definidas no documento "refinamento-epico-03.md" - códigos US017 a US020
 Como resultado, precisamos:
  - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
  - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
@@ -13,7 +13,7 @@ Estávamos executando a seguinte atividade (a):
 ---- INICIO ATIVIDADE (a) ---
 (a) Assuma o perfil de Principal Java Architect, tendo um background de desenvolvedor como sendo um exímio desenvolvedor Java, antenado com as melhores práticas e padrões de projeto e desenvolvimento.
 Com base na documentação funcional e técnica disponível na pasta "app-arquitetura-hibrida/doc", e considerando o backlog e os refinamentos realizados, também constantes da pasta citada, preciso que você:
- - Implemente as estórias definidas no documento "refinamento-epico-02.md" - códigos US012 a US016
+ - Implemente as estórias definidas no documento "refinamento-epico-03.md" - códigos US017 a US020
 Como resultado, precisamos:
  - Implementação completa da estória cumprindo com todos os critérios de aceite e definições de pronto - definidos nos documentos de backlog geral;
  - Gerar relatório de implementação na pasta "app-arquitetura-hibrida/doc/implementacao", em formato Markdown com o nome no formato "<NRO_US>_relatorio_implementacao.md" (ex. "US012_relatorio_implementacao.md") - siga o modelo do relatório da US001;
@@ -24,7 +24,7 @@ Como resultado, precisamos:
 Mas o processo foi interrompido no meio por motivos alheios à minha vontade. Então, quero que você faça o seguinte:
 1) Identifique a metodologia adotada para a execução da atividade (a);
 2) Identifique o ponto de parada;
-3) Retome e finalize a implementação
+3) Retome e finalize a implementação, garantindo 100% de build bem sucedido
 
 
 Estávamos executando a seguinte atividade (a):
@@ -42,9 +42,33 @@ Como resultado, precisamos:
 Estávamos realizando as correções do build da atividade (a) quando o processo foi interrompido no meio por motivos alheios à minha vontade. Então, quero que você faça o seguinte:
 1) Identifique a metodologia adotada para a execução da atividade (a);
 2) Identifique, retome e conclua a implementação de todas as USs citadas, garantindo 100% de build
+Erros de build a corrigir: "[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project app-arquitetura-hibrida: Compilation failure: Compilation failure:
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/notification/service/NotificationSenderService.java:[102,20] the switch expression does not cover all possible input values
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[138,46] method create in class com.seguradora.hibrida.domain.apolice.event.ApoliceAtualizadaEvent cannot be applied to given types;
+[ERROR]   required: java.lang.String,long,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>,java.lang.String,java.lang.String
+[ERROR]   found:    java.lang.String,long,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>,java.util.Map<java.lang.String,java.lang.Object>,java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[142,21] incompatible types: java.util.Map<java.lang.String,java.lang.Object> cannot be converted to java.lang.String
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[166,41] method create in class com.seguradora.hibrida.domain.apolice.event.ApoliceCanceladaEvent cannot be applied to given types;
+[ERROR]   required: java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.time.LocalDate,java.lang.String,java.lang.String,java.lang.String,com.seguradora.hibrida.domain.apolice.event.ApoliceCanceladaEvent.TipoCancelamento
+[ERROR]   found:    java.lang.String,long,java.lang.String,java.lang.String,java.time.LocalDate,java.lang.String,java.lang.String,java.lang.String,com.seguradora.hibrida.domain.apolice.event.ApoliceCanceladaEvent.TipoCancelamento
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[171,17] incompatible types: java.time.LocalDate cannot be converted to java.lang.String
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[203,40] method create in class com.seguradora.hibrida.domain.apolice.event.ApoliceRenovadaEvent cannot be applied to given types;
+[ERROR]   required: java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List<java.util.Map<java.lang.String,java.lang.Object>>,java.lang.String,java.lang.String,com.seguradora.hibrida.domain.apolice.event.ApoliceRenovadaEvent.TipoRenovacao,java.lang.String
+[ERROR]   found:    java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.List<java.util.Map<java.lang.String,java.lang.Object>>,java.lang.String,java.lang.String,com.seguradora.hibrida.domain.apolice.event.ApoliceRenovadaEvent.TipoRenovacao,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[211,17] incompatible types: java.util.List<java.util.Map<java.lang.String,java.lang.Object>> cannot be converted to java.lang.String
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[233,44] method create in class com.seguradora.hibrida.domain.apolice.event.CoberturaAdicionadaEvent cannot be applied to given types;
+[ERROR]   required: java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String
+[ERROR]   found:    java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/aggregate/ApoliceAggregate.java:[240,46] incompatible types: int cannot be converted to java.lang.String
+[ERROR] -> [Help 1]
+[ERROR]"
 
 
-
+Laureus world breaktrough of the year nominee
 
 
 Estávamos executando a seguinte atividade (a):
@@ -69,3 +93,6 @@ Análises pra usar o Turing na automatização:
 CriarSeguradoCommandHandlerEnhanced
 CepValidationServiceEnhanced
 ViaCepServiceUpdated
+
+
+Realize agora uma varredura completa, simulando todas as situações que partem de requisições REST, e valide todos os fluxos e funcionamentos, a ideia é mapear e identificar proativamente problemas de conrfiguração, de fluxo, de implementação e de comportamento

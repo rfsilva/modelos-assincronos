@@ -1,0 +1,93 @@
+{
+	"id": "arquitetura-hibrida-env",
+	"name": "Arquitetura Híbrida - Local",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "apiVersion",
+			"value": "v1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "operadorId",
+			"value": "operador-teste-001",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "correlationId",
+			"value": "{{$guid}}",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "timestamp",
+			"value": "{{$timestamp}}",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "veiculoId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "seguradoId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "apoliceId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "sinistroId",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "placaTeste",
+			"value": "ABC1234",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "renavamTeste",
+			"value": "12345678901",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "chassiTeste",
+			"value": "1HGBH41JXMN109186",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cpfTeste",
+			"value": "12345678901",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "emailTeste",
+			"value": "teste@seguradora.com",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-12-19T18:00:00.000Z",
+	"_postman_exported_using": "Postman/10.20.0"
+}

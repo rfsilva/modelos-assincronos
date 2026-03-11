@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/resources/db/migration* 2>/dev/null | head -20)",
+      "Bash(wc -l /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/**/*.java 2>/dev/null | tail -1)",
+      "Bash(mvn clean:*)"
+    ]
+  }
+}
