@@ -3,7 +3,16 @@
     "allow": [
       "Bash(ls -la /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/resources/db/migration* 2>/dev/null | head -20)",
       "Bash(wc -l /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/**/*.java 2>/dev/null | tail -1)",
-      "Bash(mvn clean:*)"
+      "Bash(mvn clean:*)",
+      "Bash(ls -lh \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\main\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\sinistro\\\\event\" | grep -E \"Event\\\\.java$\")",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && mvn compile -DskipTests 2>&1 | tail -30)",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && mvn compile -DskipTests 2>&1 | tail -20)",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && mvn test -Dtest=*Sinistro* 2>&1 | tail -50)",
+      "Bash(mvn compile:*)",
+      "Bash(wc -l /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/sinistro/command/*.java /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/sinistro/command/handler/*.java)",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && ./mvnw clean compile -DskipTests 2>&1 | tail -100)",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && find src/main/java/com/seguradora/hibrida/domain/documento -name \"*.java\" -exec wc -l {} + | tail -1)",
+      "Bash(find \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\main\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\workflow\" -name \"*.java\" -type f -exec wc -l {} + | tail -1)"
     ]
   }
 }
