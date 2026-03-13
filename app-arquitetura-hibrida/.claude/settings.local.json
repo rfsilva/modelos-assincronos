@@ -12,7 +12,17 @@
       "Bash(wc -l /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/sinistro/command/*.java /c/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/sinistro/command/handler/*.java)",
       "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && ./mvnw clean compile -DskipTests 2>&1 | tail -100)",
       "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && find src/main/java/com/seguradora/hibrida/domain/documento -name \"*.java\" -exec wc -l {} + | tail -1)",
-      "Bash(find \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\main\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\workflow\" -name \"*.java\" -type f -exec wc -l {} + | tail -1)"
+      "Bash(find \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\main\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\workflow\" -name \"*.java\" -type f -exec wc -l {} + | tail -1)",
+      "Bash(find src/main/java -name \"*Application.java\" -type f 2>/dev/null | head -1)",
+      "Bash(ls -la src/main/resources/db/migration/*.sql)",
+      "Bash(find src/main/java -type d -name \"domain\" | head -1 | xargs ls -la)",
+      "Bash(ls -la mvnw* 2>/dev/null || echo \"No Maven wrapper scripts\")",
+      "Bash(java -version 2>&1)",
+      "Bash(mvn --version)",
+      "Bash(docker --version && docker-compose --version)",
+      "Bash(find src/test/java -name \"*.java\" 2>/dev/null | wc -l)",
+      "Bash(find src/main/java -name \"*.java\" -exec grep -l \"import.*\\\\.hibrida\\\\.\" {} \\\\; | head -5)",
+      "Bash(ls -la target/*.jar 2>/dev/null | head -3)"
     ]
   }
 }
