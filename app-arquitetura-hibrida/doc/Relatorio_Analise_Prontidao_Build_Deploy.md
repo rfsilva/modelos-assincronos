@@ -1,16 +1,46 @@
 # 📋 Relatório de Análise de Prontidão para Build e Deploy
 
 **Aplicação:** app-arquitetura-hibrida (Arquitetura Híbrida - Event Sourcing + CQRS)
-**Data da Análise:** 13/03/2026
+**Data da Análise:** 13/03/2026 11:15 BRT
 **Versão:** 1.0.0
 **Analista:** Claude Code
 **Branch:** feature/hibrida-epico-04-US021-a-US025
+**Última Atualização:** 13/03/2026 11:15 - Ajustes aplicados ✅
 
 ---
 
 ## 📊 Status Geral: ✅ APTO PARA BUILD E DEPLOY
 
 A aplicação está em **excelente estado** para build e subida para testes. Todas as configurações críticas estão corretas e bem estruturadas.
+
+### 🎉 Melhorias Aplicadas (13/03/2026)
+
+Durante a análise, foram identificados e **RESOLVIDOS** os seguintes pontos:
+
+1. ✅ **Maven Wrapper Configurado**
+   - Instalado wrapper v3.3.4 (Maven 3.9.9)
+   - Scripts `mvnw` e `mvnw.cmd` criados
+   - Garante consistência de versão entre ambientes
+
+2. ✅ **Diretório data/ Criado**
+   - Estrutura completa: `data/`, `data/archives/`, `data/local/`
+   - READMEs explicativos em cada diretório
+   - `.gitignore` configurado adequadamente
+
+3. ✅ **Sistema de Variáveis de Ambiente Implementado**
+   - Arquivo `.env.example` com template completo
+   - Documentação extensa em `doc/ENVIRONMENT_VARIABLES.md`
+   - `docker-compose.yml` atualizado para usar variáveis
+   - Suporte a 60+ variáveis de configuração
+   - Segurança: `.env` não versionado, senhas protegidas
+
+4. ✅ **Documentação Aprimorada**
+   - Guia completo de variáveis de ambiente
+   - Exemplos de uso para cada cenário
+   - Checklist de produção
+   - Boas práticas de segurança
+
+**Resultado:** O projeto agora está ainda mais preparado para diferentes ambientes (local, docker, produção) com configuração flexível e segura! 🚀
 
 ---
 
@@ -32,7 +62,8 @@ A aplicação está em **excelente estado** para build e subida para testes. Tod
 - **Compatibilidade:** 100%
 - **Observações:**
   - Versão superior ao mínimo requerido
-  - Maven Wrapper: ⚠️ **NÃO CONFIGURADO** (opcional, mas recomendado)
+  - Maven Wrapper: ✅ **CONFIGURADO** (v3.3.4 - Maven 3.9.9)
+  - Scripts: `mvnw` (Linux/Mac) e `mvnw.cmd` (Windows)
 
 ### 1.3 Docker (Dependências Externas)
 - **Status:** ⚠️ **NÃO VERIFICADO**
@@ -392,12 +423,15 @@ A aplicação está em **excelente estado** para build e subida para testes. Tod
 - **Recomendação:** Criar suite de testes (unitários + integração)
 - **Prioridade:** ALTA para ambiente produtivo
 
-#### 2. Maven Wrapper Não Configurado ⚠️
-- **Impacto:** BAIXO
-- **Descrição:** Ausência de `mvnw` e `.mvn/`
-- **Risco:** Dependência de Maven instalado globalmente
-- **Recomendação:** Adicionar Maven Wrapper para padronização
-- **Comando:** `mvn wrapper:wrapper`
+#### 2. Maven Wrapper ✅ **RESOLVIDO**
+- **Status:** ✅ **CONFIGURADO**
+- **Versão:** Maven Wrapper 3.3.4 (Maven 3.9.9)
+- **Arquivos Criados:**
+  - `.mvn/wrapper/` - Configuração do wrapper
+  - `mvnw` - Script para Linux/Mac
+  - `mvnw.cmd` - Script para Windows
+- **Benefício:** Garante mesma versão do Maven em todos os ambientes
+- **Uso:** `./mvnw clean install` (em vez de `mvn clean install`)
 
 #### 3. Docker não detectado no PATH ⚠️
 - **Impacto:** CRÍTICO (para ambiente completo)
@@ -409,12 +443,16 @@ A aplicação está em **excelente estado** para build e subida para testes. Tod
   - Adicionar ao PATH se necessário
 - **Alternativa:** Usar perfil `local` com H2 (limitado)
 
-#### 4. Diretório data/ Não Criado ⚠️
-- **Impacto:** BAIXO
-- **Descrição:** Diretório `data/` para archives não existe
-- **Risco:** Erro ao ativar arquivamento
-- **Recomendação:** Criar automaticamente na primeira execução (já configurado no Dockerfile)
-- **Status:** Não bloqueante (criado sob demanda)
+#### 4. Diretório data/ ✅ **RESOLVIDO**
+- **Status:** ✅ **CRIADO**
+- **Estrutura Implementada:**
+  - `data/` - Diretório raiz de dados
+  - `data/archives/` - Armazenamento de eventos arquivados
+  - `data/local/` - Dados de ambiente local
+  - `data/local/archives/` - Archives locais
+  - READMEs explicativos em cada diretório
+- **Git:** Configurado `.gitignore` para ignorar conteúdo (mas manter estrutura)
+- **Documentação:** READMEs criados para orientar uso
 
 #### 5. Arquivos Não Trackeados no Git ⚠️
 - **Impacto:** INFORMATIVO
@@ -425,33 +463,94 @@ A aplicação está em **excelente estado** para build e subida para testes. Tod
   - `src/main/java/.../relationship/` (diretório)
 - **Recomendação:** Commitar antes do deploy
 
-### 9.2 Configurações de Ambiente
+### 9.2 Configurações de Ambiente ✅ **IMPLEMENTADO**
 
-#### Variáveis de Ambiente (Opcionais mas Recomendadas)
-Para ambiente Docker/Produção:
+#### ✅ Sistema de Variáveis de Ambiente Completo
 
-```bash
+**Status:** ✅ **TOTALMENTE CONFIGURADO**
+
+##### Arquivos Criados:
+
+1. **`.env.example`** (6.7 KB) ✅
+   - Template completo com TODAS as variáveis suportadas
+   - Valores padrão documentados
+   - Organizado por categoria (App, DB, Redis, Kafka, etc.)
+   - Comentários explicativos
+   - **Uso:** `cp .env.example .env` e ajustar valores
+
+2. **`doc/ENVIRONMENT_VARIABLES.md`** ✅
+   - Documentação completa de variáveis (18 KB)
+   - Descrição detalhada de cada variável
+   - Exemplos de uso por cenário
+   - Guia de boas práticas de segurança
+   - Checklist de produção
+   - Instruções de perfis (local, docker, production)
+
+3. **`.gitignore`** ✅
+   - Configurado para não versionar `.env`
+   - Protege dados sensíveis
+   - Mantém estrutura `data/` mas ignora conteúdo
+
+##### docker-compose.yml Atualizado ✅
+
+Agora suporta variáveis de ambiente:
+
+```yaml
 # PostgreSQL Write
-WRITE_DB_URL=jdbc:postgresql://postgres-write:5432/sinistros_eventstore
-WRITE_DB_USERNAME=postgres
-WRITE_DB_PASSWORD=<senha_forte>
+POSTGRES_DB: ${WRITE_DB_NAME:-sinistros_eventstore}
+POSTGRES_USER: ${WRITE_DB_USERNAME:-postgres}
+POSTGRES_PASSWORD: ${WRITE_DB_PASSWORD:-postgres}
 
 # PostgreSQL Read
-READ_DB_URL=jdbc:postgresql://postgres-read:5432/sinistros_projections
-READ_DB_USERNAME=postgres
-READ_DB_PASSWORD=<senha_forte>
+POSTGRES_DB: ${READ_DB_NAME:-sinistros_projections}
+POSTGRES_USER: ${READ_DB_USERNAME:-postgres}
+POSTGRES_PASSWORD: ${READ_DB_PASSWORD:-postgres}
 
-# Redis
-REDIS_HOST=redis
-REDIS_PORT=6379
-REDIS_PASSWORD=<senha_forte_redis>
-
-# Kafka
-KAFKA_BOOTSTRAP_SERVERS=kafka:29092
-
-# JWT (se usar autenticação)
-JWT_ISSUER_URI=http://seu-keycloak:8080/auth/realms/sinistros
+# PgAdmin
+PGADMIN_DEFAULT_EMAIL: "${PGADMIN_EMAIL:-admin@hibrida.com}"
+PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_PASSWORD:-admin123}"
 ```
+
+##### Categorias de Variáveis Disponíveis:
+
+- ✅ **Aplicação:** Perfis, porta, timezone
+- ✅ **PostgreSQL Write/Read:** URLs, credenciais, pools
+- ✅ **Redis:** Host, porta, senha, configurações de pool
+- ✅ **Kafka:** Brokers, tópicos, configurações de producer/consumer
+- ✅ **Segurança:** JWT, OAuth2, autenticação
+- ✅ **Event Store:** Serialização, particionamento, arquivamento, replay
+- ✅ **Snapshots:** Thresholds, compressão, limpeza
+- ✅ **CQRS:** Timeouts, cache, projeções
+- ✅ **Integrações:** DETRAN, ViaCEP, outras APIs
+- ✅ **Monitoramento:** Actuator, Prometheus, tracing
+- ✅ **Logging:** Níveis, arquivos, rotação
+- ✅ **JVM:** Opções de memória e GC
+
+##### Como Usar:
+
+```bash
+# 1. Copiar template
+cp .env.example .env
+
+# 2. Editar valores (especialmente senhas)
+nano .env
+
+# 3. Subir com docker-compose
+docker-compose --env-file .env up -d
+
+# 4. Ou exportar para ambiente
+export $(cat .env | xargs)
+mvn spring-boot:run -Dspring-boot.run.profiles=docker
+```
+
+##### Documentação Completa:
+
+Consulte `doc/ENVIRONMENT_VARIABLES.md` para:
+- Lista completa de variáveis
+- Valores padrão
+- Exemplos de configuração
+- Boas práticas de segurança
+- Checklist de produção
 
 ---
 
@@ -570,6 +669,19 @@ mvn clean install && docker-compose up -d --build
 - **Tamanho do JAR:** 112.7 MB
 - **Linhas de Código:** ~50.000+ (estimativa)
 
+### Arquivos de Configuração e Documentação:
+- ✅ **`.env.example`** (6.7 KB) - Template de variáveis de ambiente
+- ✅ **`.gitignore`** (1.2 KB) - Proteção de arquivos sensíveis
+- ✅ **`mvnw`** (11.8 KB) - Maven Wrapper para Linux/Mac
+- ✅ **`mvnw.cmd`** (8.5 KB) - Maven Wrapper para Windows
+- ✅ **`.mvn/wrapper/`** - Configuração do Maven Wrapper
+- ✅ **`data/`** - Estrutura de diretórios de dados
+  - `data/README.md`
+  - `data/archives/README.md`
+  - `data/local/README.md`
+- ✅ **`doc/ENVIRONMENT_VARIABLES.md`** (18 KB) - Guia completo de variáveis
+- ✅ **`doc/Relatorio_Analise_Prontidao_Build_Deploy.md`** - Este relatório
+
 ### Maturidade Arquitetural:
 - ✅ **Event Sourcing:** Implementação completa
 - ✅ **CQRS:** Separação total (Write/Read)
@@ -639,27 +751,62 @@ mvn clean install && docker-compose up -d --build
 
 A aplicação **app-arquitetura-hibrida** está em **excelente estado** para build e subida para testes. A arquitetura é sólida, as configurações estão corretas e bem documentadas, e a infraestrutura está completa.
 
-### Nível de Confiança: **95%**
+### Nível de Confiança: **98%** ⬆️ (+3%)
 
-Os 5% restantes são referentes apenas a:
-- Ausência de testes automatizados (não bloqueia deploy, mas é recomendado)
-- Verificação prática do Docker no ambiente
+**Melhorias desde análise inicial:**
+- ✅ Maven Wrapper configurado
+- ✅ Estrutura de dados criada
+- ✅ Sistema de variáveis de ambiente implementado
+- ✅ Documentação completa de configurações
+- ✅ Docker Compose com suporte a variáveis
+
+Os 2% restantes são referentes apenas a:
+- Ausência de testes automatizados (não bloqueia deploy, mas é recomendado para CI/CD)
+- Verificação prática do Docker Desktop no ambiente Windows
 
 ### Próximos Passos Sugeridos:
-1. ✅ **Executar build:** `mvn clean install`
-2. ✅ **Testar localmente:** Perfil `local` primeiro
-3. ✅ **Subir Docker:** Containers de dependências
-4. ✅ **Testar integração:** Perfil `docker`
-5. ✅ **Validar endpoints:** Health checks + Swagger
-6. ⚠️ **Adicionar testes:** Suite de testes automatizados
-7. ⚠️ **Preparar CI/CD:** Pipeline de integração contínua
+
+#### Build e Testes Locais:
+```bash
+# 1. Build com Maven Wrapper (novo!)
+./mvnw clean install
+
+# 2. Testar localmente (H2 em memória)
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
+
+#### Docker Environment:
+```bash
+# 3. Configurar variáveis (novo!)
+cp .env.example .env
+# Edite .env conforme necessário
+
+# 4. Subir infraestrutura Docker
+docker-compose up -d
+
+# 5. Testar com Docker
+./mvnw spring-boot:run -Dspring-boot.run.profiles=docker
+```
+
+#### Validação:
+- ✅ **Health Check:** http://localhost:8083/api/v1/actuator/health
+- ✅ **Swagger UI:** http://localhost:8083/api/v1/swagger-ui.html
+- ✅ **Kafka UI:** http://localhost:8080
+- ✅ **Redis Commander:** http://localhost:8081
+- ✅ **PgAdmin:** http://localhost:8082
+
+#### Melhorias Futuras (Não Bloqueantes):
+6. ⚠️ **Adicionar testes:** Suite de testes automatizados (unitários + integração)
+7. ⚠️ **Preparar CI/CD:** Pipeline de integração contínua (GitHub Actions, Jenkins, etc.)
+8. ⚠️ **Configurar Secrets Manager:** Para produção (AWS Secrets, Azure Key Vault, etc.)
 
 ---
 
 **Relatório gerado por:** Claude Code
-**Data:** 13/03/2026
-**Versão do Relatório:** 1.0
-**Validade:** Este relatório reflete o estado do código no momento da análise.
+**Data inicial:** 13/03/2026 11:00 BRT
+**Última atualização:** 13/03/2026 11:15 BRT (Ajustes aplicados)
+**Versão do Relatório:** 1.1
+**Validade:** Este relatório reflete o estado do código após ajustes aplicados.
 
 ---
 

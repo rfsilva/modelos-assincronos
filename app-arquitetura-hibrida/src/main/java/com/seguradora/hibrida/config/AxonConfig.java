@@ -2,10 +2,13 @@ package com.seguradora.hibrida.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.seguradora.hibrida.eventstore.EventStore;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.axonframework.common.caching.Cache;
 import org.axonframework.common.caching.WeakReferenceCache;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.SimpleEventBus;
+import org.axonframework.eventsourcing.eventstore.jpa.JpaEventStorageEngine;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.json.JacksonSerializer;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +31,9 @@ import org.springframework.context.annotation.Configuration;
 public class AxonConfig {
 
     private final EventStore customEventStore;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     /**
      * Serializer JSON otimizado para o Axon Framework.
@@ -65,18 +71,19 @@ public class AxonConfig {
 
     /**
      * Wrapper do nosso Event Store customizado para integração com Axon.
-     * 
+     *
      * Permite que o Axon use nossa implementação customizada mantendo
      * compatibilidade com a interface padrão.
      */
     @Bean("axonEventStore")
     public org.axonframework.eventsourcing.eventstore.EventStore axonEventStore() {
         log.info("Configurando integração Axon com Event Store customizado");
-        
+
         // Por enquanto, mantemos o JPA Event Store do Axon
         // Em versões futuras, criaremos um adapter para nosso Event Store customizado
         return org.axonframework.eventsourcing.eventstore.EmbeddedEventStore.builder()
-                .storageEngine(org.axonframework.eventsourcing.eventstore.jpa.JpaEventStorageEngine.builder()
+                .storageEngine(JpaEventStorageEngine.builder()
+                        .entityManagerProvider(() -> entityManager)
                         .build())
                 .build();
     }

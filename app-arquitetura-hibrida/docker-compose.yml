@@ -6,9 +6,9 @@ services:
     image: postgres:15-alpine
     container_name: hibrida-postgres-write
     environment:
-      POSTGRES_DB: sinistros_eventstore
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${WRITE_DB_NAME:-sinistros_eventstore}
+      POSTGRES_USER: ${WRITE_DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${WRITE_DB_PASSWORD:-postgres}
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
     ports:
       - "5435:5432"
@@ -37,9 +37,9 @@ services:
     image: postgres:15-alpine
     container_name: hibrida-postgres-read
     environment:
-      POSTGRES_DB: sinistros_projections
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${READ_DB_NAME:-sinistros_projections}
+      POSTGRES_USER: ${READ_DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${READ_DB_PASSWORD:-postgres}
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
     ports:
       - "5436:5432"
@@ -276,8 +276,8 @@ services:
     ports:
       - "8082:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@hibrida.com"
-      PGADMIN_DEFAULT_PASSWORD: "admin123"
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_EMAIL:-admin@hibrida.com}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_PASSWORD:-admin123}"
       PGADMIN_CONFIG_SERVER_MODE: "False"
       PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
     volumes:

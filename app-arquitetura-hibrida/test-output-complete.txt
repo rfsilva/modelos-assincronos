@@ -1,0 +1,466 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< com.seguradora:app-arquitetura-hibrida >---------------
+[INFO] Building app-arquitetura-hibrida 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ app-arquitetura-hibrida ---
+[INFO] Deleting C:\develop\rfsilva\modelos-assincronos\app-arquitetura-hibrida\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ app-arquitetura-hibrida ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 14 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ app-arquitetura-hibrida ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 446 source files with javac [debug release 21] to target\classes
+[INFO] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/model/Valor.java: Some input files use or override a deprecated API.
+[INFO] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/domain/apolice/model/Valor.java: Recompile with -Xlint:deprecation for details.
+[INFO] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/eventbus/impl/SimpleEventBus.java: Some input files use unchecked or unsafe operations.
+[INFO] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/main/java/com/seguradora/hibrida/eventbus/impl/SimpleEventBus.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ app-arquitetura-hibrida ---
+[INFO] skip non existing resourceDirectory C:\develop\rfsilva\modelos-assincronos\app-arquitetura-hibrida\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ app-arquitetura-hibrida ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 58 source files with javac [debug release 21] to target\test-classes
+[INFO] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[57,17] cannot find symbol
+  symbol:   method averageSize(double)
+  location: class com.seguradora.hibrida.snapshot.SnapshotStatistics.SnapshotStatisticsBuilder
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[14,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[22,106] incompatible types: java.lang.Throwable cannot be converted to com.seguradora.hibrida.eventstore.replay.ReplayConfiguration
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[29,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[59,49] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[60,56] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[175,19] eventBus has private access in com.seguradora.hibrida.eventbus.controller.EventBusController
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[217,56] no suitable method found for thenReturn(java.time.Instant)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[218,56] no suitable method found for thenReturn(java.util.Set<java.lang.Class<java.lang.Object>>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>) is not applicable
+      (argument mismatch; inference variable E has incompatible bounds
+          equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+          lower bounds: java.lang.Class<java.lang.Object>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>,java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>...) is not applicable
+      (argument mismatch; inference variable E has incompatible bounds
+          equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+          lower bounds: java.lang.Class<java.lang.Object>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[241,56] no suitable method found for thenReturn(java.time.Instant)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[242,56] no suitable method found for thenReturn(java.util.Set<java.lang.Class<java.lang.Object>>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>) is not applicable
+      (argument mismatch; inference variable E has incompatible bounds
+          equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+          lower bounds: java.lang.Class<java.lang.Object>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>,java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>...) is not applicable
+      (argument mismatch; inference variable E has incompatible bounds
+          equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+          lower bounds: java.lang.Class<java.lang.Object>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[284,19] eventBus has private access in com.seguradora.hibrida.eventbus.controller.EventBusController
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/controller/ReplayControllerTest.java:[339,46] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Double) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Double)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Double,java.lang.Double...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Double)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/controller/ProjectionControllerTest.java:[63,61] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/controller/ProjectionControllerTest.java:[340,65] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/AggregateNotFoundExceptionTest.java:[14,48] no suitable constructor found for AggregateNotFoundException(java.lang.String)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.Class<?>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.Long) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/AggregateNotFoundExceptionTest.java:[22,48] no suitable constructor found for AggregateNotFoundException(java.lang.String,java.lang.Throwable)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String) is not applicable
+      (argument mismatch; java.lang.Throwable cannot be converted to java.lang.String)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.Class<?>) is not applicable
+      (argument mismatch; java.lang.Throwable cannot be converted to java.lang.Class<?>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/AggregateNotFoundExceptionTest.java:[30,48] no suitable constructor found for AggregateNotFoundException(java.lang.String)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.Class<?>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.Long) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayExecutionExceptionTest.java:[14,46] no suitable constructor found for ReplayExecutionException(java.lang.String)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayExecutionExceptionTest.java:[22,46] no suitable constructor found for ReplayExecutionException(java.lang.String,java.lang.Throwable)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayExecutionExceptionTest.java:[29,46] no suitable constructor found for ReplayExecutionException(java.lang.String)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlerTimeoutExceptionTest.java:[14,50] constructor EventHandlerTimeoutException in class com.seguradora.hibrida.eventbus.exception.EventHandlerTimeoutException cannot be applied to given types;
+  required: java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,int,long
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlerTimeoutExceptionTest.java:[22,50] constructor EventHandlerTimeoutException in class com.seguradora.hibrida.eventbus.exception.EventHandlerTimeoutException cannot be applied to given types;
+  required: java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,int,long
+  found:    java.lang.String,java.lang.Throwable
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlerTimeoutExceptionTest.java:[29,50] constructor EventHandlerTimeoutException in class com.seguradora.hibrida.eventbus.exception.EventHandlerTimeoutException cannot be applied to given types;
+  required: java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,int,long
+  found:    java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventPublishingExceptionTest.java:[14,46] no suitable constructor found for EventPublishingException(java.lang.String)
+    constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventPublishingExceptionTest.java:[22,46] no suitable constructor found for EventPublishingException(java.lang.String,java.lang.Throwable)
+    constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventPublishingExceptionTest.java:[29,46] no suitable constructor found for EventPublishingException(java.lang.String)
+    constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/EventHandlerNotFoundExceptionTest.java:[14,51] no suitable constructor found for EventHandlerNotFoundException(java.lang.String)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.String,java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/EventHandlerNotFoundExceptionTest.java:[22,51] no suitable constructor found for EventHandlerNotFoundException(java.lang.String,java.lang.Throwable)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.String,java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>) is not applicable
+      (argument mismatch; java.lang.Throwable cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/EventHandlerNotFoundExceptionTest.java:[30,51] no suitable constructor found for EventHandlerNotFoundException(java.lang.String)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.String,java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandExceptionTest.java:[14,38] com.seguradora.hibrida.command.exception.CommandException is abstract; cannot be instantiated
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandExceptionTest.java:[22,38] com.seguradora.hibrida.command.exception.CommandException is abstract; cannot be instantiated
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandExceptionTest.java:[30,38] com.seguradora.hibrida.command.exception.CommandException is abstract; cannot be instantiated
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/controller/CommandBusControllerTest.java:[140,58] no suitable method found for thenReturn(java.util.Set<java.lang.String>)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.command.Command>>) is not applicable
+      (argument mismatch; inference variable E has incompatible bounds
+          equality constraints: java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+          lower bounds: java.lang.String)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.command.Command>>,java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.command.Command>>...) is not applicable
+      (argument mismatch; inference variable E has incompatible bounds
+          equality constraints: java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+          lower bounds: java.lang.String)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[29,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommand is not abstract and does not override abstract method getUserId() in com.seguradora.hibrida.command.Command
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[32,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[38,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommand is not abstract and does not override abstract method getUserId() in com.seguradora.hibrida.command.Command
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[41,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[48,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommandHandler is not abstract and does not override abstract method handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommand) in com.seguradora.hibrida.command.CommandHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[50,21] handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommand) in com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommandHandler cannot implement handle(T) in com.seguradora.hibrida.command.CommandHandler
+  return type void is not compatible with com.seguradora.hibrida.command.CommandResult
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[49,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[60,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommandHandler is not abstract and does not override abstract method handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommand) in com.seguradora.hibrida.command.CommandHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[62,21] handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommand) in com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommandHandler cannot implement handle(T) in com.seguradora.hibrida.command.CommandHandler
+  return type void is not compatible with com.seguradora.hibrida.command.CommandResult
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[61,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[252,17] DynamicCommand is not abstract and does not override abstract method getUserId() in com.seguradora.hibrida.command.Command
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[259,21] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[265,95] <anonymous com.seguradora.hibrida.command.CommandHandlerRegistryTest$1> is not abstract and does not override abstract method handle(DynamicCommand) in com.seguradora.hibrida.command.CommandHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[267,33] handle(DynamicCommand) in <anonymous com.seguradora.hibrida.command.CommandHandlerRegistryTest$1> cannot implement handle(T) in com.seguradora.hibrida.command.CommandHandler
+  return type void is not compatible with com.seguradora.hibrida.command.CommandResult
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[266,21] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[192,40] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[216,37] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[316,44] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[340,46] no suitable method found for thenReturn(int)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+    method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+      (argument mismatch; int cannot be converted to java.lang.Long)
+[INFO] 53 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  59.719 s
+[INFO] Finished at: 2026-03-13T13:53:58-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:testCompile (default-testCompile) on project app-arquitetura-hibrida: Compilation failure: Compilation failure: 
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[57,17] cannot find symbol
+[ERROR]   symbol:   method averageSize(double)
+[ERROR]   location: class com.seguradora.hibrida.snapshot.SnapshotStatistics.SnapshotStatisticsBuilder
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[14,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[22,106] incompatible types: java.lang.Throwable cannot be converted to com.seguradora.hibrida.eventstore.replay.ReplayConfiguration
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[29,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[59,49] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[60,56] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[175,19] eventBus has private access in com.seguradora.hibrida.eventbus.controller.EventBusController
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[217,56] no suitable method found for thenReturn(java.time.Instant)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[218,56] no suitable method found for thenReturn(java.util.Set<java.lang.Class<java.lang.Object>>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>) is not applicable
+[ERROR]       (argument mismatch; inference variable E has incompatible bounds
+[ERROR]           equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR]           lower bounds: java.lang.Class<java.lang.Object>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>,java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>...) is not applicable
+[ERROR]       (argument mismatch; inference variable E has incompatible bounds
+[ERROR]           equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR]           lower bounds: java.lang.Class<java.lang.Object>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[241,56] no suitable method found for thenReturn(java.time.Instant)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; java.time.Instant cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[242,56] no suitable method found for thenReturn(java.util.Set<java.lang.Class<java.lang.Object>>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>) is not applicable
+[ERROR]       (argument mismatch; inference variable E has incompatible bounds
+[ERROR]           equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR]           lower bounds: java.lang.Class<java.lang.Object>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>,java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>>...) is not applicable
+[ERROR]       (argument mismatch; inference variable E has incompatible bounds
+[ERROR]           equality constraints: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR]           lower bounds: java.lang.Class<java.lang.Object>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/controller/EventBusControllerTest.java:[284,19] eventBus has private access in com.seguradora.hibrida.eventbus.controller.EventBusController
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/controller/ReplayControllerTest.java:[339,46] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Double) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Double)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Double,java.lang.Double...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Double)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/controller/ProjectionControllerTest.java:[63,61] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/controller/ProjectionControllerTest.java:[340,65] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/AggregateNotFoundExceptionTest.java:[14,48] no suitable constructor found for AggregateNotFoundException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.Class<?>) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.Long) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/AggregateNotFoundExceptionTest.java:[22,48] no suitable constructor found for AggregateNotFoundException(java.lang.String,java.lang.Throwable)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (argument mismatch; java.lang.Throwable cannot be converted to java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.Class<?>) is not applicable
+[ERROR]       (argument mismatch; java.lang.Throwable cannot be converted to java.lang.Class<?>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/AggregateNotFoundExceptionTest.java:[30,48] no suitable constructor found for AggregateNotFoundException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.Class<?>) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.Long) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.AggregateNotFoundException.AggregateNotFoundException(java.lang.String,java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayExecutionExceptionTest.java:[14,46] no suitable constructor found for ReplayExecutionException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayExecutionExceptionTest.java:[22,46] no suitable constructor found for ReplayExecutionException(java.lang.String,java.lang.Throwable)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayExecutionExceptionTest.java:[29,46] no suitable constructor found for ReplayExecutionException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayExecutionException.ReplayExecutionException(java.util.UUID,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlerTimeoutExceptionTest.java:[14,50] constructor EventHandlerTimeoutException in class com.seguradora.hibrida.eventbus.exception.EventHandlerTimeoutException cannot be applied to given types;
+[ERROR]   required: java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,int,long
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlerTimeoutExceptionTest.java:[22,50] constructor EventHandlerTimeoutException in class com.seguradora.hibrida.eventbus.exception.EventHandlerTimeoutException cannot be applied to given types;
+[ERROR]   required: java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,int,long
+[ERROR]   found:    java.lang.String,java.lang.Throwable
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlerTimeoutExceptionTest.java:[29,50] constructor EventHandlerTimeoutException in class com.seguradora.hibrida.eventbus.exception.EventHandlerTimeoutException cannot be applied to given types;
+[ERROR]   required: java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,int,long
+[ERROR]   found:    java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventPublishingExceptionTest.java:[14,46] no suitable constructor found for EventPublishingException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventPublishingExceptionTest.java:[22,46] no suitable constructor found for EventPublishingException(java.lang.String,java.lang.Throwable)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventPublishingExceptionTest.java:[29,46] no suitable constructor found for EventPublishingException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventPublishingException.EventPublishingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/EventHandlerNotFoundExceptionTest.java:[14,51] no suitable constructor found for EventHandlerNotFoundException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.String,java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/EventHandlerNotFoundExceptionTest.java:[22,51] no suitable constructor found for EventHandlerNotFoundException(java.lang.String,java.lang.Throwable)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String) is not applicable
+[ERROR]       (argument mismatch; java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.String,java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>) is not applicable
+[ERROR]       (argument mismatch; java.lang.Throwable cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/EventHandlerNotFoundExceptionTest.java:[30,51] no suitable constructor found for EventHandlerNotFoundException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.EventHandlerNotFoundException.EventHandlerNotFoundException(java.lang.String,java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandExceptionTest.java:[14,38] com.seguradora.hibrida.command.exception.CommandException is abstract; cannot be instantiated
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandExceptionTest.java:[22,38] com.seguradora.hibrida.command.exception.CommandException is abstract; cannot be instantiated
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandExceptionTest.java:[30,38] com.seguradora.hibrida.command.exception.CommandException is abstract; cannot be instantiated
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/controller/CommandBusControllerTest.java:[140,58] no suitable method found for thenReturn(java.util.Set<java.lang.String>)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.command.Command>>) is not applicable
+[ERROR]       (argument mismatch; inference variable E has incompatible bounds
+[ERROR]           equality constraints: java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR]           lower bounds: java.lang.String)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.command.Command>>,java.util.Set<java.lang.Class<? extends com.seguradora.hibrida.command.Command>>...) is not applicable
+[ERROR]       (argument mismatch; inference variable E has incompatible bounds
+[ERROR]           equality constraints: java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR]           lower bounds: java.lang.String)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[29,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommand is not abstract and does not override abstract method getUserId() in com.seguradora.hibrida.command.Command
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[32,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[38,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommand is not abstract and does not override abstract method getUserId() in com.seguradora.hibrida.command.Command
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[41,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[48,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommandHandler is not abstract and does not override abstract method handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommand) in com.seguradora.hibrida.command.CommandHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[50,21] handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommand) in com.seguradora.hibrida.command.CommandHandlerRegistryTest.TestCommandHandler cannot implement handle(T) in com.seguradora.hibrida.command.CommandHandler
+[ERROR]   return type void is not compatible with com.seguradora.hibrida.command.CommandResult
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[49,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[60,12] com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommandHandler is not abstract and does not override abstract method handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommand) in com.seguradora.hibrida.command.CommandHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[62,21] handle(com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommand) in com.seguradora.hibrida.command.CommandHandlerRegistryTest.AnotherCommandHandler cannot implement handle(T) in com.seguradora.hibrida.command.CommandHandler
+[ERROR]   return type void is not compatible with com.seguradora.hibrida.command.CommandResult
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[61,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[252,17] DynamicCommand is not abstract and does not override abstract method getUserId() in com.seguradora.hibrida.command.Command
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[259,21] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[265,95] <anonymous com.seguradora.hibrida.command.CommandHandlerRegistryTest$1> is not abstract and does not override abstract method handle(DynamicCommand) in com.seguradora.hibrida.command.CommandHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[267,33] handle(DynamicCommand) in <anonymous com.seguradora.hibrida.command.CommandHandlerRegistryTest$1> cannot implement handle(T) in com.seguradora.hibrida.command.CommandHandler
+[ERROR]   return type void is not compatible with com.seguradora.hibrida.command.CommandResult
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/CommandHandlerRegistryTest.java:[266,21] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[192,40] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[216,37] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[316,44] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreMaintenanceControllerTest.java:[340,46] no suitable method found for thenReturn(int)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR]     method org.mockito.stubbing.OngoingStubbing.thenReturn(java.lang.Long,java.lang.Long...) is not applicable
+[ERROR]       (argument mismatch; int cannot be converted to java.lang.Long)
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

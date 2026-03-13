@@ -1,0 +1,803 @@
+[ERROR] COMPILATION ERROR : 
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[31,39] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[60,42] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionRegistryTest.java:[31,39] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionRegistryTest.java:[60,42] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/snapshot/serialization/SnapshotSerializationExceptionTest.java:[15,52] no suitable constructor found for SnapshotSerializationException(java.lang.String)
+    constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String,java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/snapshot/serialization/SnapshotSerializationExceptionTest.java:[23,110] incompatible types: java.lang.Throwable cannot be converted to java.lang.String
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/snapshot/serialization/SnapshotSerializationExceptionTest.java:[30,52] no suitable constructor found for SnapshotSerializationException(java.lang.String)
+    constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String,java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandHandlerNotFoundExceptionTest.java:[14,89] incompatible types: java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandHandlerNotFoundExceptionTest.java:[22,89] incompatible types: java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandHandlerNotFoundExceptionTest.java:[29,89] incompatible types: java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/BusinessRuleViolationExceptionTest.java:[14,52] no suitable constructor found for BusinessRuleViolationException(java.lang.String)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/BusinessRuleViolationExceptionTest.java:[22,52] no suitable constructor found for BusinessRuleViolationException(java.lang.String,java.lang.Throwable)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>) is not applicable
+      (argument mismatch; java.lang.Throwable cannot be converted to java.util.List<java.lang.String>)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.lang.String) is not applicable
+      (argument mismatch; java.lang.Throwable cannot be converted to java.lang.String)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/BusinessRuleViolationExceptionTest.java:[30,52] no suitable constructor found for BusinessRuleViolationException(java.lang.String)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandValidationExceptionTest.java:[22,48] no suitable constructor found for CommandValidationException(java.lang.String,java.lang.Throwable)
+    constructor com.seguradora.hibrida.command.exception.CommandValidationException.CommandValidationException(java.lang.Class<? extends com.seguradora.hibrida.command.Command>,java.lang.String) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>)
+    constructor com.seguradora.hibrida.command.exception.CommandValidationException.CommandValidationException(java.lang.Class<? extends com.seguradora.hibrida.command.Command>,java.util.Set<java.lang.String>) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionExceptionTest.java:[14,41] no suitable constructor found for ProjectionException(java.lang.String)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionExceptionTest.java:[22,85] incompatible types: java.lang.Throwable cannot be converted to java.lang.String
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionExceptionTest.java:[29,41] no suitable constructor found for ProjectionException(java.lang.String)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlingExceptionTest.java:[14,44] no suitable constructor found for EventHandlingException(java.lang.String)
+    constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlingExceptionTest.java:[22,44] no suitable constructor found for EventHandlingException(java.lang.String,java.lang.Throwable)
+    constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlingExceptionTest.java:[29,44] no suitable constructor found for EventHandlingException(java.lang.String)
+    constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[34,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[39,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[44,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[49,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[54,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[63,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[68,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[73,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[78,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[83,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[90,59] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[90,12] com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler is not abstract and does not override abstract method getEventType() in com.seguradora.hibrida.eventbus.EventHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[98,30] cannot find symbol
+  symbol:   variable NORMAL_PRIORITY
+  location: interface com.seguradora.hibrida.eventbus.EventHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[112,62] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[112,12] com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler is not abstract and does not override abstract method getEventType() in com.seguradora.hibrida.eventbus.EventHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[131,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[134,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[135,28] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[146,42] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    <nulltype>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[155,42] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,<nulltype>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[168,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[169,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[172,28] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[185,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[186,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[187,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[190,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[190,58] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[201,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[204,35] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[208,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[219,35] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[232,35] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    <nulltype>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[245,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[247,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[248,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[250,17] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[251,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[267,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[268,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[276,13] method contains in class org.assertj.core.api.AbstractIterableAssert<SELF,ACTUAL,ELEMENT,ELEMENT_ASSERT> cannot be applied to given types;
+  required: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>[]
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>
+  reason: varargs mismatch; java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[283,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[283,58] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[306,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[307,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[308,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[337,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[348,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[349,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[358,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[359,53] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[368,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[369,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[372,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[372,59] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[375,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[375,59] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[392,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[393,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[396,17] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[399,17] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[402,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[402,58] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[415,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[430,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[433,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[436,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+  required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+  found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+  reason: inference variable T has incompatible bounds
+    equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+    upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreControllerTest.java:[329,45] incompatible types: inference variable T has incompatible bounds
+    equality constraints: java.lang.Object[]
+    lower bounds: java.lang.Object
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[80,36] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[124,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[148,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[169,36] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[209,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[232,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[253,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[273,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[296,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+  required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+  found:    int,long,double,double
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[14,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[22,106] incompatible types: java.lang.Throwable cannot be converted to com.seguradora.hibrida.eventstore.replay.ReplayConfiguration
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[29,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+      (actual and formal argument lists differ in length)
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:testCompile (default-testCompile) on project app-arquitetura-hibrida: Compilation failure: Compilation failure: 
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[31,39] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[60,42] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionRegistryTest.java:[31,39] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionRegistryTest.java:[60,42] interface expected here
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/snapshot/serialization/SnapshotSerializationExceptionTest.java:[15,52] no suitable constructor found for SnapshotSerializationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String,java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/snapshot/serialization/SnapshotSerializationExceptionTest.java:[23,110] incompatible types: java.lang.Throwable cannot be converted to java.lang.String
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/snapshot/serialization/SnapshotSerializationExceptionTest.java:[30,52] no suitable constructor found for SnapshotSerializationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.snapshot.serialization.SnapshotSerializationException.SnapshotSerializationException(java.lang.String,java.lang.Throwable,java.lang.String,java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandHandlerNotFoundExceptionTest.java:[14,89] incompatible types: java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandHandlerNotFoundExceptionTest.java:[22,89] incompatible types: java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandHandlerNotFoundExceptionTest.java:[29,89] incompatible types: java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/BusinessRuleViolationExceptionTest.java:[14,52] no suitable constructor found for BusinessRuleViolationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/BusinessRuleViolationExceptionTest.java:[22,52] no suitable constructor found for BusinessRuleViolationException(java.lang.String,java.lang.Throwable)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>) is not applicable
+[ERROR]       (argument mismatch; java.lang.Throwable cannot be converted to java.util.List<java.lang.String>)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (argument mismatch; java.lang.Throwable cannot be converted to java.lang.String)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/exception/BusinessRuleViolationExceptionTest.java:[30,52] no suitable constructor found for BusinessRuleViolationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.util.List<java.lang.String>,java.lang.String,java.lang.String,java.lang.Long) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.aggregate.exception.BusinessRuleViolationException.BusinessRuleViolationException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/command/exception/CommandValidationExceptionTest.java:[22,48] no suitable constructor found for CommandValidationException(java.lang.String,java.lang.Throwable)
+[ERROR]     constructor com.seguradora.hibrida.command.exception.CommandValidationException.CommandValidationException(java.lang.Class<? extends com.seguradora.hibrida.command.Command>,java.lang.String) is not applicable
+[ERROR]       (argument mismatch; java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>)
+[ERROR]     constructor com.seguradora.hibrida.command.exception.CommandValidationException.CommandValidationException(java.lang.Class<? extends com.seguradora.hibrida.command.Command>,java.util.Set<java.lang.String>) is not applicable
+[ERROR]       (argument mismatch; java.lang.String cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.command.Command>)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionExceptionTest.java:[14,41] no suitable constructor found for ProjectionException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionExceptionTest.java:[22,85] incompatible types: java.lang.Throwable cannot be converted to java.lang.String
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/projection/ProjectionExceptionTest.java:[29,41] no suitable constructor found for ProjectionException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.projection.ProjectionException.ProjectionException(java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlingExceptionTest.java:[14,44] no suitable constructor found for EventHandlingException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlingExceptionTest.java:[22,44] no suitable constructor found for EventHandlingException(java.lang.String,java.lang.Throwable)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/exception/EventHandlingExceptionTest.java:[29,44] no suitable constructor found for EventHandlingException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventbus.exception.EventHandlingException.EventHandlingException(java.lang.String,com.seguradora.hibrida.eventstore.model.DomainEvent,java.lang.String,boolean,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[34,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[39,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[44,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[49,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[54,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[63,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[68,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[73,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[78,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[83,9] method does not override or implement a method from a supertype
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[90,59] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[90,12] com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler is not abstract and does not override abstract method getEventType() in com.seguradora.hibrida.eventbus.EventHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[98,30] cannot find symbol
+[ERROR]   symbol:   variable NORMAL_PRIORITY
+[ERROR]   location: interface com.seguradora.hibrida.eventbus.EventHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[112,62] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[112,12] com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler is not abstract and does not override abstract method getEventType() in com.seguradora.hibrida.eventbus.EventHandler
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[131,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[134,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[135,28] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[146,42] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    <nulltype>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[155,42] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,<nulltype>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[168,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[169,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[172,28] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[185,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[186,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[187,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[190,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[190,58] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[201,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[204,35] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[208,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[219,35] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[232,35] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    <nulltype>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[245,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[247,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[248,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[250,17] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[251,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[267,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[268,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[276,13] method contains in class org.assertj.core.api.AbstractIterableAssert<SELF,ACTUAL,ELEMENT,ELEMENT_ASSERT> cannot be applied to given types;
+[ERROR]   required: java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>[]
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>
+[ERROR]   reason: varargs mismatch; java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[283,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[283,58] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[306,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[307,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[308,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[337,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[348,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[349,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[358,50] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[359,53] incompatible types: java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent> cannot be converted to java.lang.Class<? extends com.seguradora.hibrida.eventstore.model.DomainEvent>
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[368,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[369,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[372,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[372,59] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[375,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[375,59] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[392,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[393,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[396,17] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[399,17] method unregisterHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[402,27] type argument com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent is not within bounds of type-variable T
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[402,58] method getHandlers in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[415,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[430,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[433,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.TestEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventbus/EventHandlerRegistryTest.java:[436,17] method registerHandler in class com.seguradora.hibrida.eventbus.EventHandlerRegistry cannot be applied to given types;
+[ERROR]   required: java.lang.Class<T>,com.seguradora.hibrida.eventbus.EventHandler<T>
+[ERROR]   found:    java.lang.Class<com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent>,com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEventHandler
+[ERROR]   reason: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.seguradora.hibrida.eventbus.EventHandlerRegistryTest.AnotherEvent
+[ERROR]     upper bounds: com.seguradora.hibrida.eventstore.model.DomainEvent
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/controller/EventStoreControllerTest.java:[329,45] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: java.lang.Object[]
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[80,36] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[124,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[148,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[169,36] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[209,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[232,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[253,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[273,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/aggregate/health/AggregateHealthIndicatorTest.java:[296,62] constructor SnapshotStatistics in class com.seguradora.hibrida.snapshot.SnapshotStatistics cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,long,long,long,long,java.time.Instant,java.time.Instant,long,double,double,double,long,long,long
+[ERROR]   found:    int,long,double,double
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[14,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[22,106] incompatible types: java.lang.Throwable cannot be converted to com.seguradora.hibrida.eventstore.replay.ReplayConfiguration
+[ERROR] /C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore/replay/exception/ReplayConfigurationExceptionTest.java:[29,50] no suitable constructor found for ReplayConfigurationException(java.lang.String)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR]     constructor com.seguradora.hibrida.eventstore.replay.exception.ReplayConfigurationException.ReplayConfigurationException(java.lang.String,com.seguradora.hibrida.eventstore.replay.ReplayConfiguration,java.lang.Throwable) is not applicable
+[ERROR]       (actual and formal argument lists differ in length)
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
