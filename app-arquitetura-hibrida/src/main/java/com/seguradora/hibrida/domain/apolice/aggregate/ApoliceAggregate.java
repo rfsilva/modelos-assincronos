@@ -1,11 +1,11 @@
 package com.seguradora.hibrida.domain.apolice.aggregate;
 
 import com.seguradora.hibrida.aggregate.AggregateRoot;
+import com.seguradora.hibrida.aggregate.EventSourcingHandler;
 import com.seguradora.hibrida.aggregate.validation.BusinessRule;
 import com.seguradora.hibrida.domain.apolice.event.*;
 import com.seguradora.hibrida.domain.apolice.model.*;
 import com.seguradora.hibrida.domain.apolice.service.CalculadoraPremioService;
-import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -3,6 +3,7 @@ package com.seguradora.hibrida.domain.apolice.event;
 import com.seguradora.hibrida.eventstore.model.DomainEvent;
 import com.seguradora.hibrida.domain.apolice.model.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Instant;
@@ -202,6 +203,7 @@ public class ApoliceCriadaEvent extends DomainEvent {
     public String getOperadorId() { return operadorId; }
     
     @Override
+    @JsonIgnore
     public String getEventType() {
         return "ApoliceCriadaEvent";
     }

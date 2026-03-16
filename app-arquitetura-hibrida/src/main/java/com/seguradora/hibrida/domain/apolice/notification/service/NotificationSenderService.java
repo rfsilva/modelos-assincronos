@@ -256,19 +256,23 @@ public class NotificationSenderService {
      * Tenta enviar novamente ou marca como falha.
      */
     private void tentarNovamente(ApoliceNotification notification) {
-        if (notification.canRetry()) {
-            // Reagendar para próxima tentativa
-            Instant proximaTentativa = notification.calculateNextRetry();
-            notification.setStatus(NotificationStatus.PENDING);
-            notification.setAgendadaPara(proximaTentativa);
-            notification.setTentativas(notification.getTentativas() + 1);
-            
-            notificationRepository.save(notification);
-            
-            log.info("Notificação {} reagendada para tentativa {} em {}", 
-                    notification.getId(), notification.getTentativas(), proximaTentativa);
-        } else {
-            marcarComoFalha(notification, "Número máximo de tentativas excedido");
+        try {
+            if (notification.canRetry()) {
+                // Reagendar para próxima tentativa
+                Instant proximaTentativa = notification.calculateNextRetry();
+                notification.setStatus(NotificationStatus.PENDING);
+                notification.setAgendadaPara(proximaTentativa);
+                notification.setTentativas(notification.getTentativas() + 1);
+
+                notificationRepository.save(notification);
+
+                log.info("Notificação {} reagendada para tentativa {} em {}",
+                        notification.getId(), notification.getTentativas(), proximaTentativa);
+            } else {
+                marcarComoFalha(notification, "Número máximo de tentativas excedido");
+            }
+        } catch (Exception e) {
+            log.error("Erro ao tentar novamente notificação {}: {}", notification.getId(), e.getMessage());
         }
     }
     
@@ -276,10 +280,14 @@ public class NotificationSenderService {
      * Marca notificação como falha.
      */
     private void marcarComoFalha(ApoliceNotification notification, String erro) {
-        notification.markAsFailed(erro);
-        notificationRepository.save(notification);
-        
-        log.warn("Notificação {} marcada como falha: {}", notification.getId(), erro);
+        try {
+            notification.markAsFailed(erro);
+            notificationRepository.save(notification);
+
+            log.warn("Notificação {} marcada como falha: {}", notification.getId(), erro);
+        } catch (Exception e) {
+            log.error("Erro ao marcar notificação {} como falha: {}", notification.getId(), e.getMessage());
+        }
     }
     
     /**

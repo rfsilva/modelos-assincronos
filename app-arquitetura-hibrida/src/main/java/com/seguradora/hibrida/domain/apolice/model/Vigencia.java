@@ -88,8 +88,8 @@ public class Vigencia implements Serializable {
         if (diasVigencia < 30) {
             throw new IllegalArgumentException("Vigência mínima é de 30 dias");
         }
-        
-        if (diasVigencia > 1825) { // 5 anos
+
+        if (diasVigencia > 1827) { // 5 anos (considerando anos bissextos)
             throw new IllegalArgumentException("Vigência máxima é de 5 anos");
         }
     }

@@ -295,19 +295,19 @@ public class VencimentoNotificationScheduler {
     private double calcularScoreRenovacao(ApoliceQueryModel apolice) {
         // Algoritmo simulado de score
         double score = 100.0;
-        
+
         // Reduzir score baseado em fatores simulados
         if (apolice.getValorSegurado().doubleValue() < 10000) {
-            score -= 20; // Valor baixo
+            score -= 30; // Valor baixo
         }
-        
+
         if (apolice.getCoberturas() == null || apolice.getCoberturas().size() < 2) {
-            score -= 15; // Poucas coberturas
+            score -= 25; // Poucas coberturas
         }
-        
-        // Adicionar variação aleatória
-        score += (Math.random() - 0.5) * 30;
-        
+
+        // TODO: Integrar com sistema de análise de risco para cálculo real do score
+        // Por enquanto, retorna score determinístico baseado nos fatores acima
+
         return Math.max(0, Math.min(100, score));
     }
     

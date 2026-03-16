@@ -2,6 +2,7 @@ package com.seguradora.hibrida.domain.apolice.event;
 
 import com.seguradora.hibrida.eventstore.model.DomainEvent;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
@@ -158,6 +159,7 @@ public class ApoliceCanceladaEvent extends DomainEvent {
     /**
      * Verifica se o cancelamento foi por solicitação do segurado.
      */
+    @JsonIgnore
     public boolean isCancelamentoPorSegurado() {
         return TipoCancelamento.SOLICITACAO_SEGURADO.name().equals(tipoCancelamento);
     }
@@ -165,6 +167,7 @@ public class ApoliceCanceladaEvent extends DomainEvent {
     /**
      * Verifica se o cancelamento foi por inadimplência.
      */
+    @JsonIgnore
     public boolean isCancelamentoPorInadimplencia() {
         return TipoCancelamento.INADIMPLENCIA.name().equals(tipoCancelamento);
     }
@@ -172,6 +175,7 @@ public class ApoliceCanceladaEvent extends DomainEvent {
     /**
      * Verifica se há valor de reembolso.
      */
+    @JsonIgnore
     public boolean temReembolso() {
         try {
             return Double.parseDouble(valorReembolso) > 0;
@@ -192,6 +196,7 @@ public class ApoliceCanceladaEvent extends DomainEvent {
     public String getTipoCancelamento() { return tipoCancelamento; }
     
     @Override
+    @JsonIgnore
     public String getEventType() {
         return "ApoliceCanceladaEvent";
     }

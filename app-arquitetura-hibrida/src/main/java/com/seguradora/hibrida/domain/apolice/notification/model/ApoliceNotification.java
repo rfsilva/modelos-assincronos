@@ -80,8 +80,7 @@ public class ApoliceNotification {
     private NotificationStatus status = NotificationStatus.PENDING;
     
     @Column(name = "priority", nullable = false)
-    @Builder.Default
-    private Integer priority = 5;
+    private Integer priority;
     
     // === CONTEÚDO ===
     
@@ -275,8 +274,8 @@ public class ApoliceNotification {
         if (criadaEm == null) {
             criadaEm = Instant.now();
         }
-        if (priority == null && type != null) {
-            priority = type.getPrioridade();
+        if (priority == null) {
+            priority = (type != null) ? type.getPrioridade() : 5;
         }
         if (metadata == null) {
             metadata = new HashMap<>();

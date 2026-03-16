@@ -39,7 +39,19 @@
       "Bash(./mvnw clean:*)",
       "Bash(grep -l \"UnnecessaryStubbing\" target/surefire-reports/*.txt 2>/dev/null | head -20)",
       "Bash(mvn test:*)",
-      "Bash(mvn dependency:tree | grep -i \"axon\" | head -10)"
+      "Bash(mvn dependency:tree | grep -i \"axon\" | head -10)",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && wc -l src/test/java/com/seguradora/hibrida/domain/apolice/command/handler/*.java)",
+      "Bash(find \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\test\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\apolice\\\\notification\" -name \"*Test.java\" -type f -exec basename {} \\\\; | sort)",
+      "Bash(awk 'NR>=160 && NR<=170' \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\test\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\apolice\\\\query\\\\model\\\\ApoliceQueryModelTest.java\")",
+      "Bash(awk 'NR==165' \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\test\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\apolice\\\\query\\\\model\\\\ApoliceQueryModelTest.java\" | od -c)",
+      "Bash(cd \"C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida\" && ./mvnw -q test -Dtest=\"ApoliceDetailViewTest\" 2>&1)",
+      "Bash(awk 'NR==479' \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\test\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\apolice\\\\notification\\\\service\\\\NotificationTemplateServiceTest.java\" | od -c)",
+      "Bash(find \"C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/domain/apolice/query\" -name \"*.java\" -exec wc -l {} + | tail -1)",
+      "Bash(ls -la \"C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/domain/apolice/query\"/**/*.java 2>/dev/null | wc -l)",
+      "Bash(cd C:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida && ./mvnw test-compile 2>&1 | grep -E \"ERROR|COMPILATION\" | head -20)",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && ./mvnw test-compile 2>&1 | grep -A 3 \"ApoliceQueryRepositoryTest.java\")",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\" && ./mvnw test-compile 2>&1 | grep -E \"\\(BUILD SUCCESS|BUILD FAILURE|ERROR\\)\" | head -20)",
+      "Bash(cd \"C:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\main\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\domain\\\\apolice\\\\event\" && for file in ApoliceAtualizadaEvent.java ApoliceCanceladaEvent.java ApoliceCriadaEvent.java ApoliceRenovadaEvent.java CoberturaAdicionadaEvent.java; do grep -n \"public String getEventType\\(\\)\" \"$file\" | head -1; done)"
     ]
   }
 }

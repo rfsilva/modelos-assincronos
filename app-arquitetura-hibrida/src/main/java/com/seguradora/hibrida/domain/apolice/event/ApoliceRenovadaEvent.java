@@ -2,6 +2,7 @@ package com.seguradora.hibrida.domain.apolice.event;
 
 import com.seguradora.hibrida.eventstore.model.DomainEvent;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -180,6 +181,7 @@ public class ApoliceRenovadaEvent extends DomainEvent {
     /**
      * Verifica se houve alterações nas coberturas.
      */
+    @JsonIgnore
     public boolean houveAlteracoesCoberturas() {
         return alteracoesCoberturas != null && !alteracoesCoberturas.isEmpty();
     }
@@ -187,6 +189,7 @@ public class ApoliceRenovadaEvent extends DomainEvent {
     /**
      * Verifica se foi renovação automática.
      */
+    @JsonIgnore
     public boolean isRenovacaoAutomatica() {
         return TipoRenovacao.AUTOMATICA.name().equals(tipoRenovacao);
     }
@@ -194,6 +197,7 @@ public class ApoliceRenovadaEvent extends DomainEvent {
     /**
      * Verifica se foi renovação manual.
      */
+    @JsonIgnore
     public boolean isRenovacaoManual() {
         return TipoRenovacao.MANUAL.name().equals(tipoRenovacao);
     }
@@ -212,6 +216,7 @@ public class ApoliceRenovadaEvent extends DomainEvent {
     public String getObservacoes() { return observacoes; }
     
     @Override
+    @JsonIgnore
     public String getEventType() {
         return "ApoliceRenovadaEvent";
     }

@@ -112,26 +112,28 @@ public class RenovarApoliceCommandHandler {
     
     private void validarElegibilidade(ApoliceAggregate aggregate, RenovarApoliceCommand command) {
         log.debug("Validando elegibilidade para renovação da apólice {}", command.getApoliceId());
-        
+
         // Verificar se pode ser renovada
         apoliceValidationService.validarRenovacao(
                 aggregate.getStatus(),
                 aggregate.getVigencia(),
                 command.getNovaVigencia()
         );
-        
-        // Verificar histórico de pagamentos (simulado)
-        boolean temPagamentosEmDia = Math.random() > 0.1; // 90% chance de estar em dia
-        if (!temPagamentosEmDia) {
-            throw new IllegalStateException("Não é possível renovar apólice com pagamentos em atraso");
-        }
-        
-        // Verificar se não há sinistros suspeitos (simulado)
-        boolean temSinistrosSuspeitos = Math.random() < 0.05; // 5% chance
-        if (temSinistrosSuspeitos) {
-            throw new IllegalStateException("Renovação bloqueada devido a sinistros em análise");
-        }
-        
+
+        // TODO: Integrar com sistema de pagamentos para verificar se há pendências
+        // Por enquanto, assume que os pagamentos estão em dia
+        // Em produção, esta validação seria feita via serviço externo:
+        // if (!pagamentoService.verificarPagamentosEmDia(aggregate.getId())) {
+        //     throw new IllegalStateException("Não é possível renovar apólice com pagamentos em atraso");
+        // }
+
+        // TODO: Integrar com sistema de sinistros para verificar análises pendentes
+        // Por enquanto, assume que não há sinistros suspeitos
+        // Em produção, esta validação seria feita via serviço externo:
+        // if (sinistroService.temSinistrosSuspeitos(aggregate.getId())) {
+        //     throw new IllegalStateException("Renovação bloqueada devido a sinistros em análise");
+        // }
+
         log.debug("Apólice {} elegível para renovação", command.getApoliceId());
     }
     

@@ -24,22 +24,29 @@ public class NotificationTemplateService {
      */
     public String generateTitle(NotificationType type, NotificationChannel channel, Map<String, String> parameters) {
         log.debug("Gerando título para tipo {} e canal {}", type, channel);
-        
+
+        // Handle null parameters gracefully
+        if (parameters == null) {
+            parameters = Map.of();
+        }
+
+        final Map<String, String> params = parameters;
+
         return switch (type) {
-            case APOLICE_CRIADA -> "✅ Apólice Criada - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case APOLICE_ATUALIZADA -> "📝 Apólice Atualizada - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case APOLICE_CANCELADA -> "❌ Apólice Cancelada - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case APOLICE_RENOVADA -> "🔄 Apólice Renovada - " + parameters.getOrDefault("numeroApolice", "N/A");
-            
-            case VENCIMENTO_30_DIAS -> "⏰ Vencimento em 30 dias - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case VENCIMENTO_15_DIAS -> "⚠️ Vencimento em 15 dias - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case VENCIMENTO_7_DIAS -> "🚨 Vencimento em 7 dias - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case VENCIMENTO_1_DIA -> "🔴 Vence AMANHÃ - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case APOLICE_VENCIDA -> "💥 APÓLICE VENCIDA - " + parameters.getOrDefault("numeroApolice", "N/A");
-            
-            case COBERTURA_ADICIONADA -> "➕ Nova Cobertura - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case RENOVACAO_AUTOMATICA -> "🤖 Renovação Automática - " + parameters.getOrDefault("numeroApolice", "N/A");
-            case SCORE_BAIXO -> "📉 Score Baixo - " + parameters.getOrDefault("numeroApolice", "N/A");
+            case APOLICE_CRIADA -> "✅ Apólice Criada - " + params.getOrDefault("numeroApolice", "N/A");
+            case APOLICE_ATUALIZADA -> "📝 Apólice Atualizada - " + params.getOrDefault("numeroApolice", "N/A");
+            case APOLICE_CANCELADA -> "❌ Apólice Cancelada - " + params.getOrDefault("numeroApolice", "N/A");
+            case APOLICE_RENOVADA -> "🔄 Apólice Renovada - " + params.getOrDefault("numeroApolice", "N/A");
+
+            case VENCIMENTO_30_DIAS -> "⏰ Vencimento em 30 dias - " + params.getOrDefault("numeroApolice", "N/A");
+            case VENCIMENTO_15_DIAS -> "⚠️ Vencimento em 15 dias - " + params.getOrDefault("numeroApolice", "N/A");
+            case VENCIMENTO_7_DIAS -> "🚨 Vencimento em 7 dias - " + params.getOrDefault("numeroApolice", "N/A");
+            case VENCIMENTO_1_DIA -> "🔴 Vence AMANHÃ - " + params.getOrDefault("numeroApolice", "N/A");
+            case APOLICE_VENCIDA -> "💥 APÓLICE VENCIDA - " + params.getOrDefault("numeroApolice", "N/A");
+
+            case COBERTURA_ADICIONADA -> "➕ Nova Cobertura - " + params.getOrDefault("numeroApolice", "N/A");
+            case RENOVACAO_AUTOMATICA -> "🤖 Renovação Automática - " + params.getOrDefault("numeroApolice", "N/A");
+            case SCORE_BAIXO -> "📉 Score Baixo - " + params.getOrDefault("numeroApolice", "N/A");
         };
     }
     
@@ -48,11 +55,16 @@ public class NotificationTemplateService {
      */
     public String generateMessage(NotificationType type, NotificationChannel channel, Map<String, String> parameters) {
         log.debug("Gerando mensagem para tipo {} e canal {}", type, channel);
-        
+
+        // Handle null parameters gracefully
+        if (parameters == null) {
+            parameters = Map.of();
+        }
+
         String nomeCliente = parameters.getOrDefault("seguradoNome", "Cliente");
         String numeroApolice = parameters.getOrDefault("numeroApolice", "N/A");
         String produto = parameters.getOrDefault("produto", "Seguro");
-        
+
         return switch (type) {
             case APOLICE_CRIADA -> generateApoliceCriadaMessage(nomeCliente, numeroApolice, produto, channel, parameters);
             case APOLICE_ATUALIZADA -> generateApoliceAtualizadaMessage(nomeCliente, numeroApolice, channel, parameters);

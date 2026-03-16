@@ -140,23 +140,27 @@ public class CancelarApoliceCommandHandler {
     
     private void verificarSinistrosAbertos(CancelarApoliceCommand command) {
         log.debug("Verificando sinistros em aberto para apólice {}", command.getApoliceId());
-        
-        // Simulação - em produção seria consulta ao sistema de sinistros
-        boolean temSinistrosAbertos = Math.random() < 0.1; // 10% chance de ter sinistros
-        
-        if (temSinistrosAbertos) {
-            switch (command.getTipoCancelamento()) {
-                case SOLICITACAO_SEGURADO, VENDA_VEICULO -> {
-                    throw new IllegalStateException(
-                        "Não é possível cancelar apólice com sinistros em aberto"
-                    );
-                }
-                case FRAUDE, INADIMPLENCIA -> {
-                    log.warn("Cancelando apólice {} com sinistros em aberto devido a {}", 
-                            command.getApoliceId(), command.getTipoCancelamento());
-                }
-            }
-        }
+
+        // TODO: Integrar com sistema de sinistros para verificar pendências
+        // Por enquanto, assume que não há sinistros em aberto
+        // Em produção, esta validação seria feita via serviço externo:
+        // boolean temSinistrosAbertos = sinistroService.verificarSinistrosAbertos(command.getApoliceId());
+        //
+        // if (temSinistrosAbertos) {
+        //     switch (command.getTipoCancelamento()) {
+        //         case SOLICITACAO_SEGURADO, VENDA_VEICULO -> {
+        //             throw new IllegalStateException(
+        //                 "Não é possível cancelar apólice com sinistros em aberto"
+        //             );
+        //         }
+        //         case FRAUDE, INADIMPLENCIA -> {
+        //             log.warn("Cancelando apólice {} com sinistros em aberto devido a {}",
+        //                     command.getApoliceId(), command.getTipoCancelamento());
+        //         }
+        //     }
+        // }
+
+        log.debug("Verificação de sinistros concluída para apólice {}", command.getApoliceId());
         
         log.debug("Verificação de sinistros concluída para apólice {}", command.getApoliceId());
     }

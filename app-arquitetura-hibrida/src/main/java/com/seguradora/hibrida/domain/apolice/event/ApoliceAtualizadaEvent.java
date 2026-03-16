@@ -2,6 +2,7 @@ package com.seguradora.hibrida.domain.apolice.event;
 
 import com.seguradora.hibrida.eventstore.model.DomainEvent;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
@@ -160,6 +161,7 @@ public class ApoliceAtualizadaEvent extends DomainEvent {
     /**
      * Retorna uma descrição das alterações realizadas.
      */
+    @JsonIgnore
     public String getDescricaoAlteracoes() {
         StringBuilder sb = new StringBuilder();
         
@@ -187,6 +189,7 @@ public class ApoliceAtualizadaEvent extends DomainEvent {
     public String getMotivo() { return motivo; }
     
     @Override
+    @JsonIgnore
     public String getEventType() {
         return "ApoliceAtualizadaEvent";
     }

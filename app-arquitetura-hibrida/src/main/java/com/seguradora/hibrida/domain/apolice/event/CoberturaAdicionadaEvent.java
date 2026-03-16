@@ -2,6 +2,7 @@ package com.seguradora.hibrida.domain.apolice.event;
 
 import com.seguradora.hibrida.eventstore.model.DomainEvent;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -177,6 +178,7 @@ public class CoberturaAdicionadaEvent extends DomainEvent {
     /**
      * Verifica se a cobertura tem carência.
      */
+    @JsonIgnore
     public boolean temCarencia() {
         return carenciaDias > 0;
     }
@@ -184,6 +186,7 @@ public class CoberturaAdicionadaEvent extends DomainEvent {
     /**
      * Verifica se há valor adicional no prêmio.
      */
+    @JsonIgnore
     public boolean temValorAdicional() {
         try {
             return Double.parseDouble(valorAdicionalPremio) > 0;
@@ -205,6 +208,7 @@ public class CoberturaAdicionadaEvent extends DomainEvent {
     public String getMotivo() { return motivo; }
     
     @Override
+    @JsonIgnore
     public String getEventType() {
         return "CoberturaAdicionadaEvent";
     }
