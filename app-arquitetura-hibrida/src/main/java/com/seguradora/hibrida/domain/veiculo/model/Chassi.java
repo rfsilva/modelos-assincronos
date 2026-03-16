@@ -24,7 +24,9 @@ public final class Chassi implements Serializable {
     private static final String CARACTERES_PROIBIDOS = "IOQ";
     private static final String VALORES_DIGITO_VERIFICADOR = "0123456789X";
     private static final int[] PESOS = {8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2};
-    private static final String VALORES_CALCULO = "0123456789ABCDEFGHJKLMNPRSTUVWXYZ";
+
+    // Mapeamento simples para transliteração: 0-9=0-9, A=10, B=11, etc.
+    private static final String TRANSLITERACAO_CHARS = "0123456789ABCDEFGHJKLMNPRSTUVWXYZ";
     
     private final String valor;
     
@@ -115,31 +117,31 @@ public final class Chassi implements Serializable {
     
     /**
      * Retorna o VDS (Vehicle Descriptor Section).
-     * 
-     * <p>Caracteres 4-9 que descrevem o veículo.
-     * 
+     *
+     * <p>Caracteres 4-9 que descrevem o veículo (6 caracteres, incluindo DV).
+     *
      * @return VDS (6 caracteres)
      */
     public String getCodigoVeiculo() {
         return valor.substring(3, 9);
     }
-    
+
     /**
      * Retorna o dígito verificador.
-     * 
+     *
      * <p>9º caractere usado para validação.
-     * 
+     *
      * @return Dígito verificador
      */
     public char getDigitoVerificador() {
         return valor.charAt(8);
     }
-    
+
     /**
      * Retorna o VIS (Vehicle Identifier Section).
-     * 
+     *
      * <p>Últimos 8 caracteres que identificam o veículo específico.
-     * 
+     *
      * @return VIS (8 caracteres)
      */
     public String getCodigoIdentificacao() {
@@ -205,14 +207,14 @@ public final class Chassi implements Serializable {
     
     /**
      * Valida o dígito verificador do chassi/VIN.
-     * 
+     *
      * <p>Algoritmo padrão ISO 3779:
      * 1. Cada caractere é convertido para valor numérico
      * 2. Multiplica pelo peso da posição
      * 3. Soma todos os produtos
      * 4. Divide por 11 e pega o resto
      * 5. Se resto = 10, DV = X; senão DV = resto
-     * 
+     *
      * @param chassi Chassi completo (17 caracteres)
      * @return true se o dígito verificador está correto
      */
@@ -220,26 +222,26 @@ public final class Chassi implements Serializable {
         if (chassi == null || chassi.length() != TAMANHO_VIN) {
             return false;
         }
-        
+
         try {
-            char digitoInformado = chassi.charAt(8);
-            
+            char digitoInformado = chassi.toUpperCase().charAt(8);
+
             int soma = 0;
             for (int i = 0; i < TAMANHO_VIN; i++) {
                 if (i == 8) continue; // Pula o dígito verificador
-                
-                char c = chassi.charAt(i);
+
+                char c = chassi.toUpperCase().charAt(i);
                 int valor = obterValor(c);
                 int peso = PESOS[i];
-                
+
                 soma += valor * peso;
             }
-            
+
             int resto = soma % 11;
             char digitoCalculado = (resto == 10) ? 'X' : (char) ('0' + resto);
-            
+
             return digitoCalculado == digitoInformado;
-            
+
         } catch (Exception e) {
             return false;
         }
@@ -247,12 +249,12 @@ public final class Chassi implements Serializable {
     
     /**
      * Obtém o valor numérico de um caractere para cálculo do dígito verificador.
-     * 
+     *
      * @param c Caractere
      * @return Valor numérico
      */
     private static int obterValor(char c) {
-        int index = VALORES_CALCULO.indexOf(c);
+        int index = TRANSLITERACAO_CHARS.indexOf(c);
         if (index >= 0 && index <= 9) {
             return index; // 0-9
         } else if (index >= 10) {
@@ -263,11 +265,11 @@ public final class Chassi implements Serializable {
     
     /**
      * Gera um chassi de exemplo para testes.
-     * 
+     *
      * @return Chassi válido de exemplo
      */
     public static Chassi exemplo() {
-        return new Chassi("1HGBH41JXMN109186");
+        return new Chassi("1HGBH41J6MN109186");
     }
     
     /**

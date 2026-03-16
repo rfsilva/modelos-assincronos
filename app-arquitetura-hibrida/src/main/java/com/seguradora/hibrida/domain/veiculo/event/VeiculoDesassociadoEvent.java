@@ -88,18 +88,20 @@ public class VeiculoDesassociadoEvent extends DomainEvent {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        if (!super.equals(obj)) return false;
-        
+
         VeiculoDesassociadoEvent that = (VeiculoDesassociadoEvent) obj;
-        return Objects.equals(apoliceId, that.apoliceId) &&
+        return Objects.equals(getAggregateId(), that.getAggregateId()) &&
+               getVersion() == that.getVersion() &&
+               Objects.equals(apoliceId, that.apoliceId) &&
                Objects.equals(dataFim, that.dataFim) &&
                Objects.equals(motivo, that.motivo) &&
                Objects.equals(operadorId, that.operadorId);
     }
-    
+
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), apoliceId, dataFim, motivo, operadorId);
+        return Objects.hash(getAggregateId(), getVersion(), apoliceId, dataFim,
+                           motivo, operadorId);
     }
     
     @Override

@@ -41,26 +41,41 @@ public final class Placa implements Serializable {
     
     /**
      * Cria uma instância de Placa a partir de uma string.
-     * 
+     *
      * @param placa String representando a placa
      * @return Instância de Placa
      * @throws IllegalArgumentException se a placa for inválida
      */
     public static Placa of(String placa) {
-        if (placa == null || placa.trim().isEmpty()) {
+        if (placa == null) {
             throw new IllegalArgumentException("Placa não pode ser nula ou vazia");
         }
-        
+
         String placaLimpa = placa.trim().toUpperCase().replace("-", "");
-        
+
+        // Validar tamanho (incluindo string vazia após trim)
+        if (placaLimpa.length() != 7) {
+            throw new IllegalArgumentException("Placa deve ter 7 caracteres");
+        }
+
+        // Validar três primeiras posições devem ser letras
+        if (!placaLimpa.substring(0, 3).matches("[A-Z]{3}")) {
+            throw new IllegalArgumentException("As três primeiras posições devem ser letras");
+        }
+
+        // Validar caracteres proibidos
+        if (!validarCaracteresPermitidos(placaLimpa)) {
+            throw new IllegalArgumentException("Placa não pode conter as letras I, O ou Q");
+        }
+
         // Validar formato
         if (!isFormatoValido(placaLimpa)) {
             throw new IllegalArgumentException("Formato de placa inválido: " + placa);
         }
-        
+
         // Determinar se é Mercosul
         boolean isMercosul = isMercosul(placaLimpa);
-        
+
         return new Placa(placaLimpa, isMercosul);
     }
     

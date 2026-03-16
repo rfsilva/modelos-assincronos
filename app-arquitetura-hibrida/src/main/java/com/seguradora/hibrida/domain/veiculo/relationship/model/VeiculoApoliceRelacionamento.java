@@ -170,6 +170,6 @@ public class VeiculoApoliceRelacionamento {
     @Override
     public String toString() {
         return String.format("VeiculoApoliceRelacionamento{id='%s', veiculoPlaca='%s', apoliceNumero='%s', status=%s, dataInicio=%s, dataFim=%s}",
-            id, veiculoPlaca, apoliceNumero, status, dataInicio, dataFim);
+            id, veiculoPlaca, apoliceNumero, status != null ? status.name() : "null", dataInicio, dataFim);
     }
 }

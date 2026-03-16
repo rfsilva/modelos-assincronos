@@ -24,8 +24,10 @@ public class ChassiValidator {
     private static final String CARACTERES_VALIDOS = "ABCDEFGHJKLMNPRSTUVWXYZ0123456789";
 
     // Valores para cálculo do dígito verificador
-    private static final String TRANSLITERACAO = "0123456789ABCDEFGH..JKLMN.P.R..STUVWXYZ";
     private static final int[] PESOS = {8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2};
+
+    // Mapeamento ISO 3779 para transliteração
+    private static final String TRANSLITERACAO_CHARS = "0123456789ABCDEFGHJKLMNPRSTUVWXYZ";
 
     /**
      * Valida um número de chassi/VIN.
@@ -88,35 +90,41 @@ public class ChassiValidator {
     /**
      * Valida o dígito verificador (9ª posição) para VINs norte-americanos.
      *
+     * <p>Nota: A validação do dígito verificador é obrigatória conforme ISO 3779.
+     * O dígito pode ser 0-9 ou 'X' (representando 10).
+     *
      * @param chassi Chassi a ser validado
      * @return true se o dígito verificador está correto
      */
     private static boolean validateCheckDigit(String chassi) {
         try {
+            char digitoVerificador = chassi.charAt(8);
+
             int soma = 0;
 
+            // Calcula a soma de todos os caracteres (exceto o dígito verificador na posição 8)
             for (int i = 0; i < VIN_LENGTH; i++) {
-                char c = chassi.charAt(i);
-                int valor = transliterar(c);
-
-                // Posição 9 (índice 8) é o dígito verificador
                 if (i == 8) {
-                    char digitoVerificador = chassi.charAt(8);
-                    int calculado = calcularDigitoVerificador(soma);
-
-                    // O dígito pode ser um número ou 'X' (que representa 10)
-                    if (digitoVerificador == 'X') {
-                        return calculado == 10;
-                    } else if (Character.isDigit(digitoVerificador)) {
-                        return calculado == Character.getNumericValue(digitoVerificador);
-                    }
-                    return true; // Se não for padrão americano, aceita qualquer valor
+                    continue; // Pula o dígito verificador
                 }
 
+                char c = chassi.charAt(i);
+                int valor = transliterar(c);
                 soma += valor * PESOS[i];
             }
 
-            return true; // VIN válido (sem verificação de dígito para padrões não-americanos)
+            // Calcula o dígito verificador esperado
+            int calculado = calcularDigitoVerificador(soma);
+
+            // O dígito pode ser um número ou 'X' (que representa 10)
+            if (digitoVerificador == 'X') {
+                return calculado == 10;
+            } else if (Character.isDigit(digitoVerificador)) {
+                return calculado == Character.getNumericValue(digitoVerificador);
+            }
+
+            // Se não for dígito nem X, invalido
+            return false;
 
         } catch (Exception e) {
             return false;
@@ -124,11 +132,16 @@ public class ChassiValidator {
     }
 
     /**
-     * Transliter um caractere para seu valor numérico.
+     * Transliter um caractere para seu valor numérico conforme ISO 3779.
      */
     private static int transliterar(char c) {
-        int index = TRANSLITERACAO.indexOf(c);
-        return index >= 0 ? (index % 10) : 0;
+        int index = TRANSLITERACAO_CHARS.indexOf(c);
+        if (index >= 0 && index <= 9) {
+            return index; // 0-9
+        } else if (index >= 10) {
+            return index - 9; // A=1, B=2, etc.
+        }
+        return 0;
     }
 
     /**
@@ -197,7 +210,9 @@ public class ChassiValidator {
         }
 
         public char getCheckDigit() {
-            return wmi.charAt(8); // 9ª posição (índice 8)
+            // O check digit está na 9ª posição do VIN completo (índice 8)
+            // que corresponde ao último caractere do VDS (índice 5 do VDS)
+            return vds.charAt(5);
         }
 
         public int getModelYear() {
@@ -207,14 +222,40 @@ public class ChassiValidator {
         }
 
         private int decodeYearCharacter(char c) {
-            // Implementação simplificada - anos 2000+
-            // A=2010, B=2011, ..., Y=2000
-            if (Character.isLetter(c)) {
-                return 2010 + (c - 'A');
-            } else if (Character.isDigit(c)) {
-                return 2000 + Character.getNumericValue(c);
+            // Mapeamento ISO 3779 para ano do modelo
+            switch (c) {
+                case 'A': return 2010;
+                case 'B': return 2011;
+                case 'C': return 2012;
+                case 'D': return 2013;
+                case 'E': return 2014;
+                case 'F': return 2015;
+                case 'G': return 2016;
+                case 'H': return 2017;
+                case 'J': return 2018;
+                case 'K': return 2019;
+                case 'L': return 2020;
+                case 'M': return 2021;
+                case 'N': return 2022;
+                case 'P': return 2023;
+                case 'R': return 2024;
+                case 'S': return 2025;
+                case 'T': return 2026;
+                case 'V': return 2027;
+                case 'W': return 2028;
+                case 'X': return 2029;
+                case 'Y': return 2000;
+                case '1': return 2001;
+                case '2': return 2002;
+                case '3': return 2003;
+                case '4': return 2004;
+                case '5': return 2005;
+                case '6': return 2006;
+                case '7': return 2007;
+                case '8': return 2008;
+                case '9': return 2009;
+                default: return 0;
             }
-            return 0;
         }
     }
 }

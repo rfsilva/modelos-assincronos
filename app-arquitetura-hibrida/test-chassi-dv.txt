@@ -1,0 +1,20 @@
+// Teste rápido para verificar um VIN válido
+import com.seguradora.hibrida.domain.veiculo.model.Chassi;
+
+public class TestChassiDV {
+    public static void main(String[] args) {
+        // Testar com VIN exemplo
+        String vin = "1HGBH41JXMN109186";
+        System.out.println("VIN: " + vin);
+        System.out.println("DV válido? " + Chassi.validarDigitoVerificador(vin));
+        
+        // Tentar encontrar um VIN válido simples
+        for (int i = 0; i < 10; i++) {
+            String testVin = "1HGBH41JXMN10918" + i;
+            if (Chassi.validarDigitoVerificador(testVin)) {
+                System.out.println("VIN válido encontrado: " + testVin);
+                break;
+            }
+        }
+    }
+}

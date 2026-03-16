@@ -46,10 +46,10 @@ public final class Proprietario implements Serializable {
      * @throws IllegalArgumentException se algum dado for inválido
      */
     public static Proprietario of(String cpfCnpj, String nome, TipoPessoa tipoPessoa) {
-        String documentoValidado = validarCpfCnpj(cpfCnpj, tipoPessoa);
-        String nomeValidado = validarNome(nome);
         TipoPessoa tipoValidado = validarTipoPessoa(tipoPessoa);
-        
+        String documentoValidado = validarCpfCnpj(cpfCnpj, tipoValidado);
+        String nomeValidado = validarNome(nome);
+
         return new Proprietario(documentoValidado, nomeValidado, tipoValidado);
     }
     
@@ -256,22 +256,22 @@ public final class Proprietario implements Serializable {
         if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome não pode ser nulo ou vazio");
         }
-        
-        String nomeLimpo = nome.trim();
-        
+
+        String nomeLimpo = nome.trim().replaceAll("\\s+", " ");
+
         if (nomeLimpo.length() < 2) {
             throw new IllegalArgumentException("Nome deve ter pelo menos 2 caracteres");
         }
-        
+
         if (nomeLimpo.length() > 100) {
             throw new IllegalArgumentException("Nome não pode ter mais de 100 caracteres");
         }
-        
+
         // Validar caracteres permitidos (letras, espaços, acentos, hífen, apóstrofo)
         if (!nomeLimpo.matches("^[a-zA-ZÀ-ÿ\\s'\\-\\.]+$")) {
             throw new IllegalArgumentException("Nome contém caracteres inválidos: " + nome);
         }
-        
+
         return nomeLimpo;
     }
     
@@ -379,20 +379,20 @@ public final class Proprietario implements Serializable {
     
     /**
      * Gera um proprietário de exemplo para testes.
-     * 
+     *
      * @return Proprietário de exemplo
      */
     public static Proprietario exemplo() {
-        return of("12345678901", "João da Silva", TipoPessoa.FISICA);
+        return of("11144477735", "João da Silva", TipoPessoa.FISICA);
     }
-    
+
     /**
      * Gera um proprietário pessoa jurídica de exemplo para testes.
-     * 
+     *
      * @return Proprietário PJ de exemplo
      */
     public static Proprietario exemploEmpresa() {
-        return of("12345678000195", "Empresa Exemplo LTDA", TipoPessoa.JURIDICA);
+        return of("11222333000181", "Empresa Exemplo LTDA", TipoPessoa.JURIDICA);
     }
     
     @Override

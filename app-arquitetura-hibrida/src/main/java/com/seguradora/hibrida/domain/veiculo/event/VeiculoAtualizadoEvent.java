@@ -93,17 +93,19 @@ public class VeiculoAtualizadoEvent extends DomainEvent {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        if (!super.equals(obj)) return false;
-        
+
         VeiculoAtualizadoEvent that = (VeiculoAtualizadoEvent) obj;
-        return Objects.equals(especificacaoAnterior, that.especificacaoAnterior) &&
+        return Objects.equals(getAggregateId(), that.getAggregateId()) &&
+               getVersion() == that.getVersion() &&
+               Objects.equals(especificacaoAnterior, that.especificacaoAnterior) &&
                Objects.equals(novaEspecificacao, that.novaEspecificacao) &&
                Objects.equals(operadorId, that.operadorId);
     }
-    
+
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), especificacaoAnterior, novaEspecificacao, operadorId);
+        return Objects.hash(getAggregateId(), getVersion(), especificacaoAnterior,
+                           novaEspecificacao, operadorId);
     }
     
     @Override

@@ -356,6 +356,6 @@ public class VeiculoQueryModel {
     @Override
     public String toString() {
         return String.format("VeiculoQueryModel{id='%s', placa='%s', marca='%s', modelo='%s', status=%s}",
-            id, placa, marca, modelo, status);
+            id, placa, marca, modelo, status != null ? status.name() : "null");
     }
 }

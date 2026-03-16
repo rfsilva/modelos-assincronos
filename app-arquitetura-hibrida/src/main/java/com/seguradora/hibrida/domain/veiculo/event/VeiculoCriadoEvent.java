@@ -167,19 +167,21 @@ public class VeiculoCriadoEvent extends DomainEvent {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        if (!super.equals(obj)) return false;
-        
+
         VeiculoCriadoEvent that = (VeiculoCriadoEvent) obj;
-        return anoFabricacao == that.anoFabricacao &&
+        return Objects.equals(getAggregateId(), that.getAggregateId()) &&
+               getVersion() == that.getVersion() &&
+               anoFabricacao == that.anoFabricacao &&
                anoModelo == that.anoModelo &&
                Objects.equals(placa, that.placa) &&
                Objects.equals(renavam, that.renavam) &&
                Objects.equals(chassi, that.chassi);
     }
-    
+
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), placa, renavam, chassi, anoFabricacao, anoModelo);
+        return Objects.hash(getAggregateId(), getVersion(), placa, renavam, chassi,
+                           anoFabricacao, anoModelo);
     }
     
     @Override

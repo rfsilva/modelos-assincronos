@@ -104,19 +104,20 @@ public class PropriedadeTransferidaEvent extends DomainEvent {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        if (!super.equals(obj)) return false;
-        
+
         PropriedadeTransferidaEvent that = (PropriedadeTransferidaEvent) obj;
-        return Objects.equals(proprietarioAnterior, that.proprietarioAnterior) &&
+        return Objects.equals(getAggregateId(), that.getAggregateId()) &&
+               getVersion() == that.getVersion() &&
+               Objects.equals(proprietarioAnterior, that.proprietarioAnterior) &&
                Objects.equals(novoProprietario, that.novoProprietario) &&
                Objects.equals(dataTransferencia, that.dataTransferencia) &&
                Objects.equals(operadorId, that.operadorId);
     }
-    
+
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), proprietarioAnterior, novoProprietario, 
-                           dataTransferencia, operadorId);
+        return Objects.hash(getAggregateId(), getVersion(), proprietarioAnterior,
+                           novoProprietario, dataTransferencia, operadorId);
     }
     
     @Override
