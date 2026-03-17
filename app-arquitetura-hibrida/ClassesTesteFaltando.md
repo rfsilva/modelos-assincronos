@@ -2,7 +2,7 @@
 
 > Gerado em: 2026-03-17
 > **446** classes de implementação · **248** com testes · **204** sem testes
-> Última atualização: 2026-03-17 — implementados testes de `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/documento`, `domain/segurado`, `domain/veiculo` e `snapshot`
+> Última atualização: 2026-03-17 — implementados testes de `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/documento`, `domain/segurado`, `domain/veiculo`, `snapshot`, `eventbus` e `projection`
 
 Legenda de status: `[ ]` pendente · `[x]` concluído
 
@@ -233,18 +233,18 @@ Legenda de status: `[ ]` pendente · `[x]` concluído
 
 | Status | Pacote | Classe |
 |--------|--------|--------|
-| [ ] | `eventbus` | `EventBus` |
-| [ ] | `eventbus` | `EventBusStatistics` |
-| [ ] | `eventbus` | `EventHandler` |
-| [ ] | `eventbus` | `EventHandlerRegistry` |
-| [ ] | `eventbus/config` | `EventBusConfiguration` |
-| [ ] | `eventbus/config` | `EventBusHealthIndicator` |
-| [ ] | `eventbus/config` | `EventBusMetrics` |
-| [ ] | `eventbus/config` | `KafkaEventBusConfiguration` |
-| [ ] | `eventbus/impl` | `KafkaEventBus` |
-| [ ] | `eventbus/impl` | `SimpleEventBus` |
-| [ ] | `eventbus/example` | `TestEvent` |
-| [ ] | `eventbus/example` | `TestEventHandler` |
+| [x] | `eventbus` | `EventBus` |
+| [x] | `eventbus` | `EventBusStatistics` |
+| [x] | `eventbus` | `EventHandler` |
+| [x] | `eventbus` | `EventHandlerRegistry` |
+| [x] | `eventbus/config` | `EventBusConfiguration` |
+| [x] | `eventbus/config` | `EventBusHealthIndicator` |
+| [x] | `eventbus/config` | `EventBusMetrics` |
+| [x] | `eventbus/config` | `KafkaEventBusConfiguration` |
+| [x] | `eventbus/impl` | `KafkaEventBus` |
+| [x] | `eventbus/impl` | `SimpleEventBus` |
+| [x] | `eventbus/example` | `TestEvent` |
+| [x] | `eventbus/example` | `TestEventHandler` |
 
 ---
 
@@ -293,27 +293,27 @@ Legenda de status: `[ ]` pendente · `[x]` concluído
 
 | Status | Pacote | Classe |
 |--------|--------|--------|
-| [ ] | `projection` | `AbstractProjectionHandler` |
-| [ ] | `projection` | `ProjectionEventProcessor` |
-| [ ] | `projection` | `ProjectionHandler` |
-| [ ] | `projection` | `ProjectionRegistry` |
-| [ ] | `projection/config` | `ProjectionConfiguration` |
-| [ ] | `projection/config` | `ProjectionRebuildConfiguration` |
-| [ ] | `projection/consistency` | `ConsistencyIssue` |
-| [ ] | `projection/consistency` | `ConsistencyReport` |
-| [ ] | `projection/consistency` | `IssueSeverity` |
-| [ ] | `projection/consistency` | `IssueType` |
-| [ ] | `projection/consistency` | `ProjectionConsistencyChecker` |
-| [ ] | `projection/rebuild` | `ProjectionRebuilder` |
-| [ ] | `projection/rebuild` | `RebuildResult` |
-| [ ] | `projection/rebuild` | `RebuildStatus` |
-| [ ] | `projection/rebuild` | `RebuildType` |
-| [ ] | `projection/scheduler` | `ProjectionMaintenanceScheduler` |
-| [ ] | `projection/tracking` | `ProjectionStatus` |
-| [ ] | `projection/tracking` | `ProjectionTracker` |
-| [ ] | `projection/tracking` | `ProjectionTrackerRepository` |
-| [ ] | `projection/versioning` | `ProjectionVersion` |
-| [ ] | `projection/versioning` | `ProjectionVersionRepository` |
+| [x] | `projection` | `AbstractProjectionHandler` |
+| [x] | `projection` | `ProjectionEventProcessor` |
+| [x] | `projection` | `ProjectionHandler` |
+| [x] | `projection` | `ProjectionRegistry` |
+| [x] | `projection/config` | `ProjectionConfiguration` |
+| [x] | `projection/config` | `ProjectionRebuildConfiguration` |
+| [x] | `projection/consistency` | `ConsistencyIssue` |
+| [x] | `projection/consistency` | `ConsistencyReport` |
+| [x] | `projection/consistency` | `IssueSeverity` |
+| [x] | `projection/consistency` | `IssueType` |
+| [x] | `projection/consistency` | `ProjectionConsistencyChecker` |
+| [x] | `projection/rebuild` | `ProjectionRebuilder` |
+| [x] | `projection/rebuild` | `RebuildResult` |
+| [x] | `projection/rebuild` | `RebuildStatus` |
+| [x] | `projection/rebuild` | `RebuildType` |
+| [x] | `projection/scheduler` | `ProjectionMaintenanceScheduler` |
+| [x] | `projection/tracking` | `ProjectionStatus` |
+| [x] | `projection/tracking` | `ProjectionTracker` |
+| [x] | `projection/tracking` | `ProjectionTrackerRepository` |
+| [x] | `projection/versioning` | `ProjectionVersion` |
+| [x] | `projection/versioning` | `ProjectionVersionRepository` |
 
 ---
 
