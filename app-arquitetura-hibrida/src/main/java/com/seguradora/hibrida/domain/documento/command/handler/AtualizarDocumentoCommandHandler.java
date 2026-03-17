@@ -113,11 +113,11 @@ public class AtualizarDocumentoCommandHandler {
      * Valida o novo conteúdo do documento.
      */
     private void validarNovoConteudo(DocumentoAggregate aggregate, AtualizarDocumentoCommand command) {
-        // Validar tamanho
-        List<String> erros = validatorService.validarTamanho(
+        // Validar tamanho - usar ArrayList mutável
+        java.util.List<String> erros = new java.util.ArrayList<>(validatorService.validarTamanho(
                 command.getTamanho(),
                 aggregate.getTipo()
-        );
+        ));
 
         // Validar conteúdo (magic bytes, estrutura)
         erros.addAll(validatorService.validarConteudo(

@@ -110,10 +110,13 @@ public class RejeitarDocumentoCommandHandler {
         }
 
         // Verificar se motivo é genérico demais
-        String motivoLower = motivo.toLowerCase();
+        String motivoLower = motivo.toLowerCase().trim();
         if (motivoLower.equals("invalido") ||
             motivoLower.equals("errado") ||
-            motivoLower.equals("incorreto")) {
+            motivoLower.equals("incorreto") ||
+            motivoLower.equals("documento invalido") ||
+            motivoLower.equals("documento errado") ||
+            motivoLower.equals("documento incorreto")) {
             throw new IllegalArgumentException(
                     "Motivo da rejeição muito genérico. Forneça detalhes específicos.");
         }

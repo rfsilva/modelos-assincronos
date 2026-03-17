@@ -103,8 +103,9 @@ public class CriarDocumentoCommandHandler {
      * Valida o conteúdo do documento.
      */
     private void validarConteudo(CriarDocumentoCommand command) {
-        // Validar tipo e formato
-        List<String> erros = validatorService.validarTipo(command.getTipo(), command.getFormato());
+        // Validar tipo e formato - usar ArrayList mutável
+        java.util.List<String> erros = new java.util.ArrayList<>(
+                validatorService.validarTipo(command.getTipo(), command.getFormato()));
 
         // Validar tamanho
         erros.addAll(validatorService.validarTamanho(command.getTamanho(), command.getTipo()));

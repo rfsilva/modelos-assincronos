@@ -111,11 +111,11 @@ public class ValidarDocumentoCommandHandler {
 
             byte[] conteudo = storageService.recuperar(path);
 
-            // Validar hash (integridade)
-            List<String> erros = validatorService.validarHash(
+            // Validar hash (integridade) - usar ArrayList mutável
+            java.util.List<String> erros = new java.util.ArrayList<>(validatorService.validarHash(
                     conteudo,
                     aggregate.getDocumento().getHash()
-            );
+            ));
 
             // Validar conteúdo
             erros.addAll(validatorService.validarConteudo(
