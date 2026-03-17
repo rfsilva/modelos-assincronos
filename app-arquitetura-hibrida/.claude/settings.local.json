@@ -105,7 +105,8 @@
       "Bash(grep \"|AggregateRoot$\" /tmp/main_pkg_cls.txt)",
       "Bash(ls \"c:\\\\develop\\\\rfsilva\\\\modelos-assincronos\\\\app-arquitetura-hibrida\\\\src\\\\test\\\\java\\\\com\\\\seguradora\\\\hibrida\\\\cqrs\"\" 2>/dev/null || echo \"NOT_EXISTS \")",
       "Bash(find c:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/snapshot -type f -name *.java)",
-      "Bash(mvn test-compile:*)"
+      "Bash(mvn test-compile:*)",
+      "Bash(find c:/develop/rfsilva/modelos-assincronos/app-arquitetura-hibrida/src/test/java/com/seguradora/hibrida/eventstore -name *.java)"
     ]
   }
 }

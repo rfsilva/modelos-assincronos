@@ -240,8 +240,9 @@ class ReplayProgressTest {
     @DisplayName("Deve calcular tempo decorrido corretamente")
     void shouldCalculateElapsedTimeCorrectly() {
         // Given
-        Instant startedAt = Instant.now().minus(1, ChronoUnit.HOURS);
-        Instant completedAt = Instant.now();
+        Instant now = Instant.now();
+        Instant startedAt = now.minus(1, ChronoUnit.HOURS);
+        Instant completedAt = now;
 
         ReplayProgress progress = ReplayProgress.builder()
             .startedAt(startedAt)

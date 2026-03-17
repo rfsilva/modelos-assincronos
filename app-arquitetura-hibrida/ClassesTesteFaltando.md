@@ -2,7 +2,7 @@
 
 > Gerado em: 2026-03-17
 > **446** classes de implementação · **248** com testes · **204** sem testes
-> Última atualização: 2026-03-17 — implementados testes de `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/documento`, `domain/segurado`, `domain/veiculo`, `snapshot`, `eventbus` e `projection`
+> Última atualização: 2026-03-17 — implementados testes de `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/documento`, `domain/segurado`, `domain/veiculo`, `snapshot`, `eventbus`, `projection` e `eventstore`
 
 Legenda de status: `[ ]` pendente · `[x]` concluído
 
@@ -252,40 +252,40 @@ Legenda de status: `[ ]` pendente · `[x]` concluído
 
 | Status | Pacote | Classe |
 |--------|--------|--------|
-| [ ] | `eventstore` | `EventStore` |
-| [ ] | `eventstore/config` | `EventStoreConfiguration` |
-| [ ] | `eventstore/config` | `EventStoreHealthIndicator` |
-| [ ] | `eventstore/config` | `EventStoreMetrics` |
-| [ ] | `eventstore/entity` | `EventStoreEntry` |
-| [ ] | `eventstore/exception` | `ConcurrencyException` |
-| [ ] | `eventstore/impl` | `PostgreSQLEventStore` |
-| [ ] | `eventstore/model` | `DomainEvent` |
-| [ ] | `eventstore/model` | `EventMetadata` |
-| [ ] | `eventstore/partition` | `PartitionManager` |
-| [ ] | `eventstore/partition` | `PartitionStatistics` |
-| [ ] | `eventstore/repository` | `EventStoreRepository` |
-| [ ] | `eventstore/scheduler` | `EventStoreMaintenanceScheduler` |
-| [ ] | `eventstore/serialization` | `EventSerializer` |
-| [ ] | `eventstore/serialization` | `JsonEventSerializer` |
-| [ ] | `eventstore/serialization` | `SerializationResult` |
-| [ ] | `eventstore/archive` | `ArchiveMetadata` |
-| [ ] | `eventstore/archive` | `ArchiveResult` |
-| [ ] | `eventstore/archive` | `ArchiveStatistics` |
-| [ ] | `eventstore/archive` | `ArchiveStorageService` |
-| [ ] | `eventstore/archive` | `ArchiveSummary` |
-| [ ] | `eventstore/archive` | `EventArchiver` |
-| [ ] | `eventstore/archive/impl` | `FileSystemArchiveStorage` |
-| [ ] | `eventstore/replay` | `EventReplayer` |
-| [ ] | `eventstore/replay` | `ReplayConfiguration` |
-| [ ] | `eventstore/replay` | `ReplayDetailedReport` |
-| [ ] | `eventstore/replay` | `ReplayError` |
-| [ ] | `eventstore/replay` | `ReplayFilter` |
-| [ ] | `eventstore/replay` | `ReplayStatistics` |
-| [ ] | `eventstore/replay/config` | `ReplayConfiguration` |
-| [ ] | `eventstore/replay/config` | `ReplayHealthIndicator` |
-| [ ] | `eventstore/replay/config` | `ReplayMetrics` |
-| [ ] | `eventstore/replay/example` | `ReplayExampleService` |
-| [ ] | `eventstore/replay/impl` | `DefaultEventReplayer` |
+| [x] | `eventstore` | `EventStore` |
+| [x] | `eventstore/config` | `EventStoreConfiguration` |
+| [x] | `eventstore/config` | `EventStoreHealthIndicator` |
+| [x] | `eventstore/config` | `EventStoreMetrics` |
+| [x] | `eventstore/entity` | `EventStoreEntry` |
+| [x] | `eventstore/exception` | `ConcurrencyException` |
+| [x] | `eventstore/impl` | `PostgreSQLEventStore` |
+| [x] | `eventstore/model` | `DomainEvent` |
+| [x] | `eventstore/model` | `EventMetadata` |
+| [x] | `eventstore/partition` | `PartitionManager` |
+| [x] | `eventstore/partition` | `PartitionStatistics` |
+| [x] | `eventstore/repository` | `EventStoreRepository` |
+| [x] | `eventstore/scheduler` | `EventStoreMaintenanceScheduler` |
+| [x] | `eventstore/serialization` | `EventSerializer` |
+| [x] | `eventstore/serialization` | `JsonEventSerializer` |
+| [x] | `eventstore/serialization` | `SerializationResult` |
+| [x] | `eventstore/archive` | `ArchiveMetadata` |
+| [x] | `eventstore/archive` | `ArchiveResult` |
+| [x] | `eventstore/archive` | `ArchiveStatistics` |
+| [x] | `eventstore/archive` | `ArchiveStorageService` |
+| [x] | `eventstore/archive` | `ArchiveSummary` |
+| [x] | `eventstore/archive` | `EventArchiver` |
+| [x] | `eventstore/archive/impl` | `FileSystemArchiveStorage` |
+| [x] | `eventstore/replay` | `EventReplayer` |
+| [x] | `eventstore/replay` | `ReplayConfiguration` |
+| [x] | `eventstore/replay` | `ReplayDetailedReport` |
+| [x] | `eventstore/replay` | `ReplayError` |
+| [x] | `eventstore/replay` | `ReplayFilter` |
+| [x] | `eventstore/replay` | `ReplayStatistics` |
+| [x] | `eventstore/replay/config` | `ReplayConfiguration` |
+| [x] | `eventstore/replay/config` | `ReplayHealthIndicator` |
+| [x] | `eventstore/replay/config` | `ReplayMetrics` |
+| [x] | `eventstore/replay/example` | `ReplayExampleService` |
+| [x] | `eventstore/replay/impl` | `DefaultEventReplayer` |
 
 ---
 
