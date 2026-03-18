@@ -2,7 +2,7 @@
 
 > Gerado em: 2026-03-17
 > **446** classes de implementação · **248** com testes · **204** sem testes
-> Última atualização: 2026-03-17 — implementados testes de `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/documento`, `domain/segurado`, `domain/veiculo`, `snapshot`, `eventbus`, `projection` e `eventstore`
+> Última atualização: 2026-03-17 — implementados testes de `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/analytics`, `domain/documento`, `domain/segurado`, `domain/veiculo`, `snapshot`, `eventbus`, `projection` e `eventstore`
 
 Legenda de status: `[ ]` pendente · `[x]` concluído
 
@@ -80,18 +80,18 @@ Legenda de status: `[ ]` pendente · `[x]` concluído
 
 | Status | Pacote | Classe |
 |--------|--------|--------|
-| [ ] | `domain/analytics/model` | `AnalyticsProjection` |
-| [ ] | `domain/analytics/model` | `TipoMetrica` |
-| [ ] | `domain/analytics/handler` | `AnalyticsProjectionHandler` |
-| [ ] | `domain/analytics/repository` | `AnalyticsProjectionRepository` |
-| [ ] | `domain/analytics/service` | `RelatorioService` |
-| [ ] | `domain/analytics/controller` | `RelatorioController` |
-| [ ] | `domain/analytics/dto` | `DashboardExecutivoView` |
-| [ ] | `domain/analytics/dto` | `EvolucaoTemporalView` |
-| [ ] | `domain/analytics/dto` | `RelatorioApolicesView` |
-| [ ] | `domain/analytics/dto` | `RelatorioPerformanceView` |
-| [ ] | `domain/analytics/dto` | `RelatorioRenovacoesView` |
-| [ ] | `domain/analytics/dto` | `RelatorioSeguradosView` |
+| [x] | `domain/analytics/model` | `AnalyticsProjection` |
+| [x] | `domain/analytics/model` | `TipoMetrica` |
+| [x] | `domain/analytics/handler` | `AnalyticsProjectionHandler` |
+| [x] | `domain/analytics/repository` | `AnalyticsProjectionRepository` |
+| [x] | `domain/analytics/service` | `RelatorioService` |
+| [x] | `domain/analytics/controller` | `RelatorioController` |
+| [x] | `domain/analytics/dto` | `DashboardExecutivoView` |
+| [x] | `domain/analytics/dto` | `EvolucaoTemporalView` |
+| [x] | `domain/analytics/dto` | `RelatorioApolicesView` |
+| [x] | `domain/analytics/dto` | `RelatorioPerformanceView` |
+| [x] | `domain/analytics/dto` | `RelatorioRenovacoesView` |
+| [x] | `domain/analytics/dto` | `RelatorioSeguradosView` |
 
 ---
 
