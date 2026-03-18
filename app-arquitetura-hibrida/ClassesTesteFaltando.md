@@ -201,31 +201,31 @@ Legenda de status: `[ ]` pendente · `[x]` concluído
 
 | Status | Pacote | Classe |
 |--------|--------|--------|
-| [ ] | `domain/workflow/approval` | `Aprovacao` |
-| [ ] | `domain/workflow/approval` | `AprovacaoNotificationService` |
-| [ ] | `domain/workflow/approval` | `AprovacaoService` |
-| [ ] | `domain/workflow/approval` | `AprovadorPolicy` |
-| [ ] | `domain/workflow/config` | `WorkflowConfiguration` |
-| [ ] | `domain/workflow/defaults` | `WorkflowTemplates` |
-| [ ] | `domain/workflow/engine` | `WorkflowEngine` |
-| [ ] | `domain/workflow/engine` | `WorkflowEngineImpl` |
-| [ ] | `domain/workflow/engine` | `WorkflowExecutor` |
-| [ ] | `domain/workflow/execution` | `EtapaExecucao` |
-| [ ] | `domain/workflow/execution` | `WorkflowContext` |
-| [ ] | `domain/workflow/execution` | `WorkflowInstance` |
-| [ ] | `domain/workflow/execution` | `WorkflowResult` |
-| [ ] | `domain/workflow/metrics` | `SlaConfiguration` |
-| [ ] | `domain/workflow/metrics` | `SlaMonitor` |
-| [ ] | `domain/workflow/metrics` | `WorkflowMetrics` |
-| [ ] | `domain/workflow/model` | `EtapaWorkflow` |
-| [ ] | `domain/workflow/model` | `NivelAprovacao` |
-| [ ] | `domain/workflow/model` | `StatusEtapa` |
-| [ ] | `domain/workflow/model` | `TipoEtapa` |
-| [ ] | `domain/workflow/model` | `TransicaoWorkflow` |
-| [ ] | `domain/workflow/model` | `WorkflowDefinition` |
-| [ ] | `domain/workflow/repository` | `AprovacaoRepository` |
-| [ ] | `domain/workflow/repository` | `WorkflowDefinitionRepository` |
-| [ ] | `domain/workflow/repository` | `WorkflowInstanceRepository` |
+| [x] | `domain/workflow/approval` | `Aprovacao` |
+| [x] | `domain/workflow/approval` | `AprovacaoNotificationService` |
+| [x] | `domain/workflow/approval` | `AprovacaoService` |
+| [x] | `domain/workflow/approval` | `AprovadorPolicy` |
+| [x] | `domain/workflow/config` | `WorkflowConfiguration` |
+| [x] | `domain/workflow/defaults` | `WorkflowTemplates` |
+| [x] | `domain/workflow/engine` | `WorkflowEngine` |
+| [x] | `domain/workflow/engine` | `WorkflowEngineImpl` |
+| [x] | `domain/workflow/engine` | `WorkflowExecutor` |
+| [x] | `domain/workflow/execution` | `EtapaExecucao` |
+| [x] | `domain/workflow/execution` | `WorkflowContext` |
+| [x] | `domain/workflow/execution` | `WorkflowInstance` |
+| [x] | `domain/workflow/execution` | `WorkflowResult` |
+| [x] | `domain/workflow/metrics` | `SlaConfiguration` |
+| [x] | `domain/workflow/metrics` | `SlaMonitor` |
+| [x] | `domain/workflow/metrics` | `WorkflowMetrics` |
+| [x] | `domain/workflow/model` | `EtapaWorkflow` |
+| [x] | `domain/workflow/model` | `NivelAprovacao` |
+| [x] | `domain/workflow/model` | `StatusEtapa` |
+| [x] | `domain/workflow/model` | `TipoEtapa` |
+| [x] | `domain/workflow/model` | `TransicaoWorkflow` |
+| [x] | `domain/workflow/model` | `WorkflowDefinition` |
+| [x] | `domain/workflow/repository` | `AprovacaoRepository` |
+| [x] | `domain/workflow/repository` | `WorkflowDefinitionRepository` |
+| [x] | `domain/workflow/repository` | `WorkflowInstanceRepository` |
 
 ---
 
