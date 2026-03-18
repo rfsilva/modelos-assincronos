@@ -1,10 +1,62 @@
 # Classes sem cobertura de testes
 
 > Gerado em: 2026-03-17
-> **446** classes de implementação · **248** com testes · **204** sem testes
-> Última atualização: 2026-03-17 — implementados testes de `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/analytics`, `domain/documento`, `domain/segurado`, `domain/veiculo`, `snapshot`, `eventbus`, `projection` e `eventstore`
+> Última revisão: 2026-03-18 (varredura completa confirmada)
+> **446** classes de implementação · **446** arquivos de teste · **0** classes de produção sem testes
+> Todos os domínios concluídos: `(root)`, `aggregate`, `command`, `config`, `cqrs`, `domain/apolice`, `domain/analytics`, `domain/documento`, `domain/segurado`, `domain/sinistro`, `domain/veiculo`, `domain/workflow`, `snapshot`, `eventbus`, `projection`, `eventstore`
+>
+> ✅ Varredura realizada em 2026-03-18: todas as 446 classes de produção possuem arquivo de teste associado.
 
-Legenda de status: `[ ]` pendente · `[x]` concluído
+---
+
+## Cobertura de código (JaCoCo) — 2026-03-18
+
+| Métrica | Coberto | Total | Percentual |
+|---------|---------|-------|------------|
+| Instruções | 91.663 | 141.143 | **64,9%** |
+| Branches | 5.752 | 12.840 | **44,8%** |
+| Linhas | 17.486 | 22.697 | **77,0%** |
+| Métodos | 6.369 | 8.757 | **72,7%** |
+| Complexidade ciclomática | 8.439 | 15.291 | **55,2%** |
+
+### Pacotes com cobertura abaixo de 20% (oportunidades de melhoria)
+
+| Pacote | Instruções | Branches | Linhas | Métodos |
+|--------|-----------|---------|--------|---------|
+| `cqrs.config` | 0% | 0% | 0% | 0% |
+| `eventstore.replay.impl` | 0% | 0% | 0% | 0% |
+| `eventstore.impl` | 0% | 0% | 0% | 0% |
+| `eventstore.replay.example` | 0% | 0% | 0% | 0% |
+| `eventstore.archive.impl` | 0% | 0% | 0% | 0% |
+| `eventstore.scheduler` | 0% | 0% | 0% | 0% |
+| `projection.scheduler` | 1% | 0% | 1% | 7% |
+| `domain.analytics.handler` | 3% | 0% | 5% | 27% |
+| `eventbus.impl` | 14% | 18% | 19% | 24% |
+| `snapshot.impl` | 18% | 15% | 17% | 38% |
+
+### Pacotes com cobertura ≥ 90%
+
+| Pacote | Instruções | Branches |
+|--------|-----------|---------|
+| `domain.veiculo.relationship.model` | 100% | 98% |
+| `domain.veiculo.query.model` | 100% | 88% |
+| `domain.apolice.event` | 100% | 79% |
+| `snapshot.controller` | 100% | 93% |
+| `snapshot.trigger` | 100% | 86% |
+| `domain.veiculo.service` | 100% | 100% |
+| `config.ratelimit` | 100% | 100% |
+| `domain.veiculo.command.handler` | 100% | 100% |
+| `domain.veiculo.relationship.scheduler` | 100% | 100% |
+| `eventstore.controller` | 100% | 100% |
+| `domain.apolice.command.handler` | 98% | 96% |
+| `domain.apolice.service` | 98% | 91% |
+| `domain.veiculo.controller` | 98% | 83% |
+| `domain.apolice.command` | 98% | 65% |
+| `domain.apolice.query.service` | 98% | 67% |
+
+---
+
+Legenda de status: `[ ]` pendente · `[x]` concluído · `[-]` não aplicável (interface sem lógica própria)
 
 ---
 
@@ -122,69 +174,93 @@ Legenda de status: `[ ]` pendente · `[x]` concluído
 
 ## domain/sinistro
 
+> **Situação atual:** 44 de 58 classes com testes → **14 pendentes** (grupos `query/dto` parcial, `query/model`, `query/repository` e `query/service`).
+
+### aggregate / command / command.handler / config / controller / event / model / projection — todos concluídos ✓
+
 | Status | Pacote | Classe |
 |--------|--------|--------|
-| [ ] | `domain/sinistro/aggregate` | `SinistroAggregate` |
-| [ ] | `domain/sinistro/command` | `AnexarDocumentoCommand` |
-| [ ] | `domain/sinistro/command` | `AprovarSinistroCommand` |
-| [ ] | `domain/sinistro/command` | `CriarSinistroCommand` |
-| [ ] | `domain/sinistro/command` | `IniciarAnaliseCommand` |
-| [ ] | `domain/sinistro/command` | `ReprovarSinistroCommand` |
-| [ ] | `domain/sinistro/command` | `ValidarSinistroCommand` |
-| [ ] | `domain/sinistro/command/handler` | `AnexarDocumentoCommandHandler` |
-| [ ] | `domain/sinistro/command/handler` | `AprovarSinistroCommandHandler` |
-| [ ] | `domain/sinistro/command/handler` | `CriarSinistroCommandHandler` |
-| [ ] | `domain/sinistro/command/handler` | `IniciarAnaliseCommandHandler` |
-| [ ] | `domain/sinistro/command/handler` | `ReprovarSinistroCommandHandler` |
-| [ ] | `domain/sinistro/command/handler` | `ValidarSinistroCommandHandler` |
-| [ ] | `domain/sinistro/config` | `SinistroCacheConfig` |
-| [ ] | `domain/sinistro/config` | `SinistroCacheConfiguration` |
-| [ ] | `domain/sinistro/controller` | `SinistroQueryController` |
-| [ ] | `domain/sinistro/event` | `ConsultaDetranConcluidaEvent` |
-| [ ] | `domain/sinistro/event` | `ConsultaDetranFalhadaEvent` |
-| [ ] | `domain/sinistro/event` | `ConsultaDetranIniciadaEvent` |
-| [ ] | `domain/sinistro/event` | `DocumentoAnexadoEvent` |
-| [ ] | `domain/sinistro/event` | `DocumentoRejeitadoEvent` |
-| [ ] | `domain/sinistro/event` | `DocumentoValidadoEvent` |
-| [ ] | `domain/sinistro/event` | `SinistroAprovadoEvent` |
-| [ ] | `domain/sinistro/event` | `SinistroCriadoEvent` |
-| [ ] | `domain/sinistro/event` | `SinistroEmAnaliseEvent` |
-| [ ] | `domain/sinistro/event` | `SinistroEvent` |
-| [ ] | `domain/sinistro/event` | `SinistroEventHandler` |
-| [ ] | `domain/sinistro/event` | `SinistroReprovadoEvent` |
-| [ ] | `domain/sinistro/event` | `SinistroValidadoEvent` |
-| [ ] | `domain/sinistro/model` | `AvaliacaoDanos` |
-| [ ] | `domain/sinistro/model` | `DetranConsultaStatus` |
-| [ ] | `domain/sinistro/model` | `LocalOcorrencia` |
-| [ ] | `domain/sinistro/model` | `OcorrenciaSinistro` |
-| [ ] | `domain/sinistro/model` | `PrazoProcessamento` |
-| [ ] | `domain/sinistro/model` | `ProcessamentoDetran` |
-| [ ] | `domain/sinistro/model` | `ProtocoloSinistro` |
-| [ ] | `domain/sinistro/model` | `Sinistro` |
-| [ ] | `domain/sinistro/model` | `SinistroStateMachine` |
-| [ ] | `domain/sinistro/model` | `StatusSinistro` |
-| [ ] | `domain/sinistro/model` | `TipoDano` |
-| [ ] | `domain/sinistro/model` | `TipoSinistro` |
-| [ ] | `domain/sinistro/model` | `ValorIndenizacao` |
-| [ ] | `domain/sinistro/projection` | `SinistroDashboardProjection` |
-| [ ] | `domain/sinistro/projection` | `SinistroProjectionHandler` |
-| [ ] | `domain/sinistro/projection` | `SinistroProjectionRebuilder` |
-| [ ] | `domain/sinistro/query/dto` | `DashboardView` |
-| [ ] | `domain/sinistro/query/dto` | `SinistroDetailView` |
-| [ ] | `domain/sinistro/query/dto` | `SinistroFilter` |
-| [ ] | `domain/sinistro/query/dto` | `SinistroListView` |
-| [ ] | `domain/sinistro/query/model` | `SinistroAnalyticsView` |
-| [ ] | `domain/sinistro/query/model` | `SinistroDashboardView` |
-| [ ] | `domain/sinistro/query/model` | `SinistroDetailView` |
-| [ ] | `domain/sinistro/query/model` | `SinistroListView` |
-| [ ] | `domain/sinistro/query/model` | `SinistroQueryModel` |
-| [ ] | `domain/sinistro/query/repository` | `SinistroAnalyticsRepository` |
-| [ ] | `domain/sinistro/query/repository` | `SinistroDashboardRepository` |
-| [ ] | `domain/sinistro/query/repository` | `SinistroDetailRepository` |
-| [ ] | `domain/sinistro/query/repository` | `SinistroListRepository` |
-| [ ] | `domain/sinistro/query/repository` | `SinistroQueryRepository` |
-| [ ] | `domain/sinistro/query/service` | `SinistroQueryService` |
-| [ ] | `domain/sinistro/query/service` | `SinistroQueryServiceImpl` |
+| [x] | `domain/sinistro/aggregate` | `SinistroAggregate` |
+| [x] | `domain/sinistro/command` | `AnexarDocumentoCommand` |
+| [x] | `domain/sinistro/command` | `AprovarSinistroCommand` |
+| [x] | `domain/sinistro/command` | `CriarSinistroCommand` |
+| [x] | `domain/sinistro/command` | `IniciarAnaliseCommand` |
+| [x] | `domain/sinistro/command` | `ReprovarSinistroCommand` |
+| [x] | `domain/sinistro/command` | `ValidarSinistroCommand` |
+| [x] | `domain/sinistro/command/handler` | `AnexarDocumentoCommandHandler` |
+| [x] | `domain/sinistro/command/handler` | `AprovarSinistroCommandHandler` |
+| [x] | `domain/sinistro/command/handler` | `CriarSinistroCommandHandler` |
+| [x] | `domain/sinistro/command/handler` | `IniciarAnaliseCommandHandler` |
+| [x] | `domain/sinistro/command/handler` | `ReprovarSinistroCommandHandler` |
+| [x] | `domain/sinistro/command/handler` | `ValidarSinistroCommandHandler` |
+| [x] | `domain/sinistro/config` | `SinistroCacheConfig` |
+| [x] | `domain/sinistro/config` | `SinistroCacheConfiguration` |
+| [x] | `domain/sinistro/controller` | `SinistroQueryController` |
+| [x] | `domain/sinistro/event` | `ConsultaDetranConcluidaEvent` |
+| [x] | `domain/sinistro/event` | `ConsultaDetranFalhadaEvent` |
+| [x] | `domain/sinistro/event` | `ConsultaDetranIniciadaEvent` |
+| [x] | `domain/sinistro/event` | `DocumentoAnexadoEvent` |
+| [x] | `domain/sinistro/event` | `DocumentoRejeitadoEvent` |
+| [x] | `domain/sinistro/event` | `DocumentoValidadoEvent` |
+| [x] | `domain/sinistro/event` | `SinistroAprovadoEvent` |
+| [x] | `domain/sinistro/event` | `SinistroCriadoEvent` |
+| [x] | `domain/sinistro/event` | `SinistroEmAnaliseEvent` |
+| [x] | `domain/sinistro/event` | `SinistroEvent` |
+| [x] | `domain/sinistro/event` | `SinistroEventHandler` |
+| [x] | `domain/sinistro/event` | `SinistroReprovadoEvent` |
+| [x] | `domain/sinistro/event` | `SinistroValidadoEvent` |
+| [x] | `domain/sinistro/model` | `AvaliacaoDanos` |
+| [x] | `domain/sinistro/model` | `DetranConsultaStatus` |
+| [x] | `domain/sinistro/model` | `LocalOcorrencia` |
+| [x] | `domain/sinistro/model` | `OcorrenciaSinistro` |
+| [x] | `domain/sinistro/model` | `PrazoProcessamento` |
+| [x] | `domain/sinistro/model` | `ProcessamentoDetran` |
+| [x] | `domain/sinistro/model` | `ProtocoloSinistro` |
+| [x] | `domain/sinistro/model` | `Sinistro` |
+| [x] | `domain/sinistro/model` | `SinistroStateMachine` |
+| [x] | `domain/sinistro/model` | `StatusSinistro` |
+| [x] | `domain/sinistro/model` | `TipoDano` |
+| [x] | `domain/sinistro/model` | `TipoSinistro` |
+| [x] | `domain/sinistro/model` | `ValorIndenizacao` |
+| [x] | `domain/sinistro/projection` | `SinistroDashboardProjection` |
+| [x] | `domain/sinistro/projection` | `SinistroProjectionHandler` |
+| [x] | `domain/sinistro/projection` | `SinistroProjectionRebuilder` |
+
+### query/dto — parcialmente concluído
+
+| Status | Pacote | Classe |
+|--------|--------|--------|
+| [x] | `domain/sinistro/query/dto` | `DashboardView` |
+| [x] | `domain/sinistro/query/dto` | `SinistroDetailView` |
+| [x] | `domain/sinistro/query/dto` | `SinistroFilter` |
+| [x] | `domain/sinistro/query/dto` | `SinistroListView` |
+
+### query/model
+
+| Status | Pacote | Classe |
+|--------|--------|--------|
+| [x] | `domain/sinistro/query/model` | `SinistroAnalyticsView` |
+| [x] | `domain/sinistro/query/model` | `SinistroDashboardView` |
+| [x] | `domain/sinistro/query/model` | `SinistroDetailView` |
+| [x] | `domain/sinistro/query/model` | `SinistroListView` |
+| [x] | `domain/sinistro/query/model` | `SinistroQueryModel` |
+
+### query/repository
+
+| Status | Pacote | Classe |
+|--------|--------|--------|
+| [x] | `domain/sinistro/query/repository` | `SinistroAnalyticsRepository` |
+| [x] | `domain/sinistro/query/repository` | `SinistroDashboardRepository` |
+| [x] | `domain/sinistro/query/repository` | `SinistroDetailRepository` |
+| [x] | `domain/sinistro/query/repository` | `SinistroListRepository` |
+| [x] | `domain/sinistro/query/repository` | `SinistroQueryRepository` |
+
+### query/service
+
+| Status | Pacote | Classe |
+|--------|--------|--------|
+| [x] | `domain/sinistro/query/service` | `SinistroQueryService` |
+| [x] | `domain/sinistro/query/service` | `SinistroQueryServiceImpl` |
 
 ---
 
